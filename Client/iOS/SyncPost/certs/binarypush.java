@@ -38,7 +38,7 @@ public class binarypush {
         short payLength = 0;
         try {
             payb = encoder.encode(CharBuffer.wrap(payload));
-            payLength = (short)(payb.position() + 1);
+            payLength = (short) payb.array().length;//(short)(payb.position() + 1);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,7 +57,7 @@ public class binarypush {
     };
     
     public static byte[] expirationDateItem(long time){
-        ByteBuffer bb = ByteBuffer.allocate(3 + 4);
+        ByteBuffer bb = ByteBuffer.allocate(3 + 8);
         bb.put((byte) 4);
         bb.putShort((short) 4);
         bb.putLong(time);
