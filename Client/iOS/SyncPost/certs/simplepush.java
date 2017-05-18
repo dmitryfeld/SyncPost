@@ -6,7 +6,7 @@ import java.nio.ByteBuffer;
 
 public class simplepush {
 
-    private static String token = "603bba3c8940e8aa7eb1c7a653580e7ae1d862fcdf0a484cb11e0c3f2c2ce62d";
+    private static String token = "2874fb555f27e2475d1d166579b3e1d54b7dcf55045feb2ed41e73edc0dd3938";
     private static String host = "gateway.sandbox.push.apple.com";
     private static int port = 2195;
     private static String passphrase = "syncpost";
@@ -19,6 +19,18 @@ public class simplepush {
             buffer.put((byte)Integer.parseInt(str,16));
         
         return buffer.array();
+    }
+    
+    public static void writeToAPNS(OutputStream out,String deviceToken,String payload) throws IOException {
+        byte[] b = decode(deviceToken);
+        
+        out.write(0);
+        out.write(0);
+        out.write(32);
+        out.write(b);
+        out.write(0);
+        out.write(payload.length());
+        out.write(payload.getBytes());
     }
     
     public static void main(String args[]) {
@@ -40,18 +52,9 @@ public class simplepush {
             sslSocket.setEnabledCipherSuites(cipherSuites);
             sslSocket.startHandshake();
             
-            char[] t = token.toCharArray();
-            byte[] b = decode(token);
-            
             OutputStream outputstream = sslSocket.getOutputStream();
             
-            outputstream.write(0);
-            outputstream.write(0);
-            outputstream.write(32);
-            outputstream.write(b);
-            outputstream.write(0);
-            outputstream.write(payload.length());
-            outputstream.write(payload.getBytes());
+            writeToAPNS(outputstream,token,payload);
             
             outputstream.flush();
             outputstream.close();
