@@ -38,7 +38,7 @@ public class binarypush {
         short payLength = 0;
         try {
             payb = encoder.encode(CharBuffer.wrap(payload));
-            payLength = (short)payb.position();
+            payLength = (short)(payb.position() + 1);
         } catch (Exception e) {
             e.printStackTrace();
         }
