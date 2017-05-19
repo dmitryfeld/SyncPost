@@ -2,8 +2,6 @@ import javax.net.ssl.*;
 import java.io.*;
 import java.security.KeyStore;
 import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.nio.charset.*;
 import java.util.Date;
 
 public class binarypush {
@@ -25,6 +23,7 @@ public class binarypush {
     
     public static byte[] deviceTokenItem(String deviceToken) {
         ByteBuffer bb = ByteBuffer.allocate(3 + 32);
+        //bb.order( ByteOrder.BIG_ENDIAN)
         bb.put((byte) 1);
         bb.putShort((short) 32);
         bb.put(decode(deviceToken));
@@ -32,35 +31,28 @@ public class binarypush {
     };
     
     public static byte[] payloadItem(String payload) {
-        Charset charset = Charset.forName("UTF-8");
-        CharsetEncoder encoder = charset.newEncoder();
-        ByteBuffer payb = ByteBuffer.allocate(0);
-        short payLength = 0;
-        try {
-            payb = encoder.encode(CharBuffer.wrap(payload));
-            payLength = (short) payb.array().length;//(short)(payb.position() + 1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        byte[] payb =payload.getBytes();
+        short payLength = (short)payb.length;
         ByteBuffer bb = ByteBuffer.allocate(3 + payLength);
         bb.put((byte) 2);
+        bb.putShort((short)(payLength));
         bb.put(payb);
         return bb.array();
     };
     
     public static byte[] notificationIdItem(int id){
         ByteBuffer bb = ByteBuffer.allocate(3 + 4);
-        bb.put((byte) id);
-        bb.putShort((short) 3);
+        bb.put((byte) 3);
+        bb.putShort((short) 4);
         bb.putInt(id);
         return bb.array();
     };
     
-    public static byte[] expirationDateItem(long time){
-        ByteBuffer bb = ByteBuffer.allocate(3 + 8);
+    public static byte[] expirationDateItem(int time){
+        ByteBuffer bb = ByteBuffer.allocate(3 + 4);
         bb.put((byte) 4);
         bb.putShort((short) 4);
-        bb.putLong(time);
+        bb.putInt(time);
         return bb.array();
     };
     
@@ -73,9 +65,8 @@ public class binarypush {
     };
     
     public static void writeToAPNS(OutputStream stream,String deviceToken,String payload,int notificationId, int expirationIntervalSeconds, byte priority) throws IOException {
-        byte[] b = decode(token);
         Date d = new Date();
-        long time = d.getTime() + expirationIntervalSeconds * 1000;
+        int time = (int)((System.currentTimeMillis() + expirationIntervalSeconds) / 1000);
         byte[] token = deviceTokenItem(deviceToken);
         byte[] pay = payloadItem(payload);
         byte[] notification = notificationIdItem(notificationId);
@@ -93,8 +84,21 @@ public class binarypush {
         stream.write(prior);
     }
 
+    public static byte[] getBytesFromInputStream(InputStream is) throws IOException
+    {
+        try (ByteArrayOutputStream os = new ByteArrayOutputStream();)
+        {
+            byte[] buffer = new byte[0xFFFF];
 
-    
+            for (int len; (len = is.read(buffer)) != -1;)
+                os.write(buffer, 0, len);
+
+            os.flush();
+
+            return os.toByteArray();
+        }
+    }
+
     public static void main(String args[]) {
         System.out.println("test");
         
@@ -119,7 +123,10 @@ public class binarypush {
             writeToAPNS(outputstream,token,payload,0xBEAF,20,(byte)10);
             
             outputstream.flush();
+
             outputstream.close();
+
+
             
         } catch (Exception exception) {
             exception.printStackTrace();
