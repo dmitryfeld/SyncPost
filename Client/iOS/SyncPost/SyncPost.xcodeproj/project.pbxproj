@@ -7,27 +7,77 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000985371ECF5906006E6C51 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 000985361ECF5906006E6C51 /* Defaults.plist */; };
+		003EF9241EF3964B00A8D8D6 /* SignOnController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 003EF9221EF3964B00A8D8D6 /* SignOnController.storyboard */; };
+		003EF9281EF3983200A8D8D6 /* DFSPSignOnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF9271EF3983200A8D8D6 /* DFSPSignOnViewController.m */; };
+		003EF92B1EF3993100A8D8D6 /* DFSPSignOnController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF92A1EF3993100A8D8D6 /* DFSPSignOnController.m */; };
+		003EF9301EF3A11300A8D8D6 /* DFSPSpinnerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF92F1EF3A11300A8D8D6 /* DFSPSpinnerController.m */; };
+		003EF9331EF3A60C00A8D8D6 /* SpinnerController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 003EF9311EF3A60C00A8D8D6 /* SpinnerController.storyboard */; };
+		003EF9361EF3BA2800A8D8D6 /* DFSPSpinnerTransitionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF9351EF3BA2800A8D8D6 /* DFSPSpinnerTransitionDelegate.m */; };
+		003EF9391EF3BABB00A8D8D6 /* DFSPSpnnerTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF9381EF3BABB00A8D8D6 /* DFSPSpnnerTransitioning.m */; };
+		003EF93C1EF4C8F000A8D8D6 /* UIColor+Service.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF93B1EF4C8F000A8D8D6 /* UIColor+Service.m */; };
+		003EF9411EF6F3B300A8D8D6 /* DFSPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF9401EF6F3B300A8D8D6 /* DFSPService.m */; };
+		003EF9441EF6F4EC00A8D8D6 /* DFSPRestAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF9431EF6F4EC00A8D8D6 /* DFSPRestAPI.m */; };
+		003EF9471EF6F50F00A8D8D6 /* NSError+Rest.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF9461EF6F50F00A8D8D6 /* NSError+Rest.m */; };
+		003EF94A1EF6F76200A8D8D6 /* DFSPRestMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF9491EF6F76200A8D8D6 /* DFSPRestMapper.m */; };
+		003EF94D1EF6F95200A8D8D6 /* DFSPRestRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF94C1EF6F95200A8D8D6 /* DFSPRestRequest.m */; };
+		003EF9501EF6F9F400A8D8D6 /* DFSPRestResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF94F1EF6F9F400A8D8D6 /* DFSPRestResponse.m */; };
 		0062A36F1E9773B400E8726E /* DFSPPushNotificationSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 0062A3651E9773B400E8726E /* DFSPPushNotificationSupport.m */; };
 		0062A3701E9773B400E8726E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0062A3671E9773B400E8726E /* AppDelegate.m */; };
-		0062A3711E9773B400E8726E /* NSString+Service.m in Sources */ = {isa = PBXBuildFile; fileRef = 0062A3691E9773B400E8726E /* NSString+Service.m */; };
 		0062A3721E9773B400E8726E /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0062A36C1E9773B400E8726E /* FirstViewController.m */; };
 		0062A3731E9773B400E8726E /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0062A36E1E9773B400E8726E /* SecondViewController.m */; };
 		0062A37B1E9773C800E8726E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0062A3751E9773C800E8726E /* InfoPlist.strings */; };
 		0062A37C1E9773C800E8726E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0062A3771E9773C800E8726E /* Localizable.strings */; };
 		0062A3821E97741D00E8726E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0062A37E1E97741D00E8726E /* LaunchScreen.storyboard */; };
 		0062A3831E97741D00E8726E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0062A3801E97741D00E8726E /* Main.storyboard */; };
+		009312FC1EF9075D003247B0 /* token.json in Resources */ = {isa = PBXBuildFile; fileRef = 009312FB1EF9075D003247B0 /* token.json */; };
+		00CEBD3F1ECE31A200BF6EB4 /* NSString+Service.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEBD3E1ECE31A200BF6EB4 /* NSString+Service.m */; };
+		00CEBD481ECE508C00BF6EB4 /* DFSPMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEBD471ECE508C00BF6EB4 /* DFSPMember.m */; };
+		00CEBD4C1ECE713300BF6EB4 /* DFSPAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEBD4B1ECE713300BF6EB4 /* DFSPAuthorization.m */; };
+		00CEBD4F1ECE73D900BF6EB4 /* DFSPCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEBD4E1ECE73D900BF6EB4 /* DFSPCredentials.m */; };
+		00CEBD521ECE772C00BF6EB4 /* DFSPAuthorizationPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEBD511ECE772C00BF6EB4 /* DFSPAuthorizationPoint.m */; };
+		00CEBD551ECE824000BF6EB4 /* DFSPAccessPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEBD541ECE824000BF6EB4 /* DFSPAccessPoint.m */; };
+		00DA2B6C1EF3568500E2DAF2 /* DFSPSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DA2B6B1EF3568500E2DAF2 /* DFSPSingleton.m */; };
+		00DA2B6F1EF3599F00E2DAF2 /* DFSPApplicationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DA2B6E1EF3599F00E2DAF2 /* DFSPApplicationData.m */; };
+		00DA2B761EF35E6500E2DAF2 /* DFSPSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DA2B751EF35E6500E2DAF2 /* DFSPSettings.m */; };
+		00DA2B791EF35ED100E2DAF2 /* DFSPEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DA2B781EF35ED100E2DAF2 /* DFSPEnvironment.m */; };
 		00DA875D1E97069B00862BF5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DA875C1E97069B00862BF5 /* main.m */; };
 		00DA876B1E97069B00862BF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00DA876A1E97069B00862BF5 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		000985361ECF5906006E6C51 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
 		002FF67A1E971563000B517D /* SyncPost.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SyncPost.entitlements; sourceTree = "<group>"; };
+		003EF9231EF3964B00A8D8D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SignOnController.storyboard; sourceTree = "<group>"; };
+		003EF9261EF3983200A8D8D6 /* DFSPSignOnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSignOnViewController.h; sourceTree = "<group>"; };
+		003EF9271EF3983200A8D8D6 /* DFSPSignOnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPSignOnViewController.m; sourceTree = "<group>"; };
+		003EF9291EF3993100A8D8D6 /* DFSPSignOnController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSignOnController.h; sourceTree = "<group>"; };
+		003EF92A1EF3993100A8D8D6 /* DFSPSignOnController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPSignOnController.m; sourceTree = "<group>"; };
+		003EF92E1EF3A11300A8D8D6 /* DFSPSpinnerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSpinnerController.h; sourceTree = "<group>"; };
+		003EF92F1EF3A11300A8D8D6 /* DFSPSpinnerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPSpinnerController.m; sourceTree = "<group>"; };
+		003EF9321EF3A60C00A8D8D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SpinnerController.storyboard; sourceTree = "<group>"; };
+		003EF9341EF3BA2800A8D8D6 /* DFSPSpinnerTransitionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSpinnerTransitionDelegate.h; sourceTree = "<group>"; };
+		003EF9351EF3BA2800A8D8D6 /* DFSPSpinnerTransitionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPSpinnerTransitionDelegate.m; sourceTree = "<group>"; };
+		003EF9371EF3BABB00A8D8D6 /* DFSPSpnnerTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSpnnerTransitioning.h; sourceTree = "<group>"; };
+		003EF9381EF3BABB00A8D8D6 /* DFSPSpnnerTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPSpnnerTransitioning.m; sourceTree = "<group>"; };
+		003EF93A1EF4C8F000A8D8D6 /* UIColor+Service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Service.h"; sourceTree = "<group>"; };
+		003EF93B1EF4C8F000A8D8D6 /* UIColor+Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Service.m"; sourceTree = "<group>"; };
+		003EF93F1EF6F3B300A8D8D6 /* DFSPService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPService.h; sourceTree = "<group>"; };
+		003EF9401EF6F3B300A8D8D6 /* DFSPService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPService.m; sourceTree = "<group>"; };
+		003EF9421EF6F4EC00A8D8D6 /* DFSPRestAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPRestAPI.h; sourceTree = "<group>"; };
+		003EF9431EF6F4EC00A8D8D6 /* DFSPRestAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPRestAPI.m; sourceTree = "<group>"; };
+		003EF9451EF6F50F00A8D8D6 /* NSError+Rest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Rest.h"; sourceTree = "<group>"; };
+		003EF9461EF6F50F00A8D8D6 /* NSError+Rest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Rest.m"; sourceTree = "<group>"; };
+		003EF9481EF6F76200A8D8D6 /* DFSPRestMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPRestMapper.h; sourceTree = "<group>"; };
+		003EF9491EF6F76200A8D8D6 /* DFSPRestMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPRestMapper.m; sourceTree = "<group>"; };
+		003EF94B1EF6F95200A8D8D6 /* DFSPRestRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPRestRequest.h; sourceTree = "<group>"; };
+		003EF94C1EF6F95200A8D8D6 /* DFSPRestRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPRestRequest.m; sourceTree = "<group>"; };
+		003EF94E1EF6F9F400A8D8D6 /* DFSPRestResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPRestResponse.h; sourceTree = "<group>"; };
+		003EF94F1EF6F9F400A8D8D6 /* DFSPRestResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPRestResponse.m; sourceTree = "<group>"; };
 		0062A3641E9773B400E8726E /* DFSPPushNotificationSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPPushNotificationSupport.h; sourceTree = "<group>"; };
 		0062A3651E9773B400E8726E /* DFSPPushNotificationSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPPushNotificationSupport.m; sourceTree = "<group>"; };
 		0062A3661E9773B400E8726E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0062A3671E9773B400E8726E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0062A3681E9773B400E8726E /* NSString+Service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Service.h"; sourceTree = "<group>"; };
-		0062A3691E9773B400E8726E /* NSString+Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Service.m"; sourceTree = "<group>"; };
 		0062A36B1E9773B400E8726E /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		0062A36C1E9773B400E8726E /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		0062A36D1E9773B400E8726E /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
@@ -38,6 +88,28 @@
 		0062A37A1E9773C800E8726E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0062A37F1E97741D00E8726E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0062A3811E97741D00E8726E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		009312FB1EF9075D003247B0 /* token.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = token.json; sourceTree = "<group>"; };
+		00CEBD3D1ECE31A200BF6EB4 /* NSString+Service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Service.h"; sourceTree = "<group>"; };
+		00CEBD3E1ECE31A200BF6EB4 /* NSString+Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Service.m"; sourceTree = "<group>"; };
+		00CEBD421ECE34FA00BF6EB4 /* DFSPModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPModel.h; sourceTree = "<group>"; };
+		00CEBD461ECE508C00BF6EB4 /* DFSPMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPMember.h; sourceTree = "<group>"; };
+		00CEBD471ECE508C00BF6EB4 /* DFSPMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPMember.m; sourceTree = "<group>"; };
+		00CEBD4A1ECE713300BF6EB4 /* DFSPAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPAuthorization.h; sourceTree = "<group>"; };
+		00CEBD4B1ECE713300BF6EB4 /* DFSPAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPAuthorization.m; sourceTree = "<group>"; };
+		00CEBD4D1ECE73D900BF6EB4 /* DFSPCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPCredentials.h; sourceTree = "<group>"; };
+		00CEBD4E1ECE73D900BF6EB4 /* DFSPCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPCredentials.m; sourceTree = "<group>"; };
+		00CEBD501ECE772C00BF6EB4 /* DFSPAuthorizationPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPAuthorizationPoint.h; sourceTree = "<group>"; };
+		00CEBD511ECE772C00BF6EB4 /* DFSPAuthorizationPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPAuthorizationPoint.m; sourceTree = "<group>"; };
+		00CEBD531ECE824000BF6EB4 /* DFSPAccessPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPAccessPoint.h; sourceTree = "<group>"; };
+		00CEBD541ECE824000BF6EB4 /* DFSPAccessPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPAccessPoint.m; sourceTree = "<group>"; };
+		00DA2B6A1EF3568500E2DAF2 /* DFSPSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSingleton.h; sourceTree = "<group>"; };
+		00DA2B6B1EF3568500E2DAF2 /* DFSPSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPSingleton.m; sourceTree = "<group>"; };
+		00DA2B6D1EF3599F00E2DAF2 /* DFSPApplicationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPApplicationData.h; sourceTree = "<group>"; };
+		00DA2B6E1EF3599F00E2DAF2 /* DFSPApplicationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPApplicationData.m; sourceTree = "<group>"; };
+		00DA2B741EF35E6500E2DAF2 /* DFSPSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSettings.h; sourceTree = "<group>"; };
+		00DA2B751EF35E6500E2DAF2 /* DFSPSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPSettings.m; sourceTree = "<group>"; };
+		00DA2B771EF35ED100E2DAF2 /* DFSPEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPEnvironment.h; sourceTree = "<group>"; };
+		00DA2B781EF35ED100E2DAF2 /* DFSPEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPEnvironment.m; sourceTree = "<group>"; };
 		00DA87581E97069B00862BF5 /* SyncPost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyncPost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00DA875C1E97069B00862BF5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		00DA876A1E97069B00862BF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,15 +127,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		003EF9251EF3981000A8D8D6 /* SignOn */ = {
+			isa = PBXGroup;
+			children = (
+				003EF9261EF3983200A8D8D6 /* DFSPSignOnViewController.h */,
+				003EF9271EF3983200A8D8D6 /* DFSPSignOnViewController.m */,
+				003EF9291EF3993100A8D8D6 /* DFSPSignOnController.h */,
+				003EF92A1EF3993100A8D8D6 /* DFSPSignOnController.m */,
+			);
+			path = SignOn;
+			sourceTree = "<group>";
+		};
+		003EF92C1EF39EFE00A8D8D6 /* Spinner */ = {
+			isa = PBXGroup;
+			children = (
+				003EF92E1EF3A11300A8D8D6 /* DFSPSpinnerController.h */,
+				003EF92F1EF3A11300A8D8D6 /* DFSPSpinnerController.m */,
+				003EF9341EF3BA2800A8D8D6 /* DFSPSpinnerTransitionDelegate.h */,
+				003EF9351EF3BA2800A8D8D6 /* DFSPSpinnerTransitionDelegate.m */,
+				003EF9371EF3BABB00A8D8D6 /* DFSPSpnnerTransitioning.h */,
+				003EF9381EF3BABB00A8D8D6 /* DFSPSpnnerTransitioning.m */,
+			);
+			path = Spinner;
+			sourceTree = "<group>";
+		};
+		003EF92D1EF3A05100A8D8D6 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		003EF93D1EF6F37400A8D8D6 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				003EF93E1EF6F39C00A8D8D6 /* AAS */,
+				003EF93F1EF6F3B300A8D8D6 /* DFSPService.h */,
+				003EF9401EF6F3B300A8D8D6 /* DFSPService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		003EF93E1EF6F39C00A8D8D6 /* AAS */ = {
+			isa = PBXGroup;
+			children = (
+				009312FA1EF9075D003247B0 /* Simulated */,
+			);
+			path = AAS;
+			sourceTree = "<group>";
+		};
 		0062A3621E9773B400E8726E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				0062A3631E9773B400E8726E /* APN */,
+				00CEBD3C1ECE31A200BF6EB4 /* Common */,
+				00CEBD401ECE31C500BF6EB4 /* Model */,
+				00CEBD411ECE31C500BF6EB4 /* REST */,
+				003EF93D1EF6F37400A8D8D6 /* Service */,
+				00DA2B691EF3567000E2DAF2 /* Singletons */,
+				0062A36A1E9773B400E8726E /* UI */,
 				0062A3661E9773B400E8726E /* AppDelegate.h */,
 				0062A3671E9773B400E8726E /* AppDelegate.m */,
-				0062A3681E9773B400E8726E /* NSString+Service.h */,
-				0062A3691E9773B400E8726E /* NSString+Service.m */,
-				0062A36A1E9773B400E8726E /* UI */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -80,6 +204,9 @@
 		0062A36A1E9773B400E8726E /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				003EF92D1EF3A05100A8D8D6 /* Alert */,
+				003EF92C1EF39EFE00A8D8D6 /* Spinner */,
+				003EF9251EF3981000A8D8D6 /* SignOn */,
 				0062A36B1E9773B400E8726E /* FirstViewController.h */,
 				0062A36C1E9773B400E8726E /* FirstViewController.m */,
 				0062A36D1E9773B400E8726E /* SecondViewController.h */,
@@ -102,8 +229,103 @@
 			children = (
 				0062A37E1E97741D00E8726E /* LaunchScreen.storyboard */,
 				0062A3801E97741D00E8726E /* Main.storyboard */,
+				003EF9221EF3964B00A8D8D6 /* SignOnController.storyboard */,
+				003EF9311EF3A60C00A8D8D6 /* SpinnerController.storyboard */,
 			);
 			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		009312FA1EF9075D003247B0 /* Simulated */ = {
+			isa = PBXGroup;
+			children = (
+				009312FB1EF9075D003247B0 /* token.json */,
+			);
+			path = Simulated;
+			sourceTree = "<group>";
+		};
+		00CEBD3C1ECE31A200BF6EB4 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				00CEBD3D1ECE31A200BF6EB4 /* NSString+Service.h */,
+				00CEBD3E1ECE31A200BF6EB4 /* NSString+Service.m */,
+				003EF93A1EF4C8F000A8D8D6 /* UIColor+Service.h */,
+				003EF93B1EF4C8F000A8D8D6 /* UIColor+Service.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		00CEBD401ECE31C500BF6EB4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				00CEBD491ECE6FD900BF6EB4 /* Access */,
+				00CEBD451ECE507D00BF6EB4 /* Member */,
+				00CEBD421ECE34FA00BF6EB4 /* DFSPModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		00CEBD411ECE31C500BF6EB4 /* REST */ = {
+			isa = PBXGroup;
+			children = (
+				003EF9421EF6F4EC00A8D8D6 /* DFSPRestAPI.h */,
+				003EF9431EF6F4EC00A8D8D6 /* DFSPRestAPI.m */,
+				003EF9451EF6F50F00A8D8D6 /* NSError+Rest.h */,
+				003EF9461EF6F50F00A8D8D6 /* NSError+Rest.m */,
+				003EF9481EF6F76200A8D8D6 /* DFSPRestMapper.h */,
+				003EF9491EF6F76200A8D8D6 /* DFSPRestMapper.m */,
+				003EF94B1EF6F95200A8D8D6 /* DFSPRestRequest.h */,
+				003EF94C1EF6F95200A8D8D6 /* DFSPRestRequest.m */,
+				003EF94E1EF6F9F400A8D8D6 /* DFSPRestResponse.h */,
+				003EF94F1EF6F9F400A8D8D6 /* DFSPRestResponse.m */,
+			);
+			path = REST;
+			sourceTree = "<group>";
+		};
+		00CEBD451ECE507D00BF6EB4 /* Member */ = {
+			isa = PBXGroup;
+			children = (
+				00CEBD461ECE508C00BF6EB4 /* DFSPMember.h */,
+				00CEBD471ECE508C00BF6EB4 /* DFSPMember.m */,
+			);
+			path = Member;
+			sourceTree = "<group>";
+		};
+		00CEBD491ECE6FD900BF6EB4 /* Access */ = {
+			isa = PBXGroup;
+			children = (
+				00CEBD531ECE824000BF6EB4 /* DFSPAccessPoint.h */,
+				00CEBD541ECE824000BF6EB4 /* DFSPAccessPoint.m */,
+				00CEBD4A1ECE713300BF6EB4 /* DFSPAuthorization.h */,
+				00CEBD4B1ECE713300BF6EB4 /* DFSPAuthorization.m */,
+				00CEBD4D1ECE73D900BF6EB4 /* DFSPCredentials.h */,
+				00CEBD4E1ECE73D900BF6EB4 /* DFSPCredentials.m */,
+				00CEBD501ECE772C00BF6EB4 /* DFSPAuthorizationPoint.h */,
+				00CEBD511ECE772C00BF6EB4 /* DFSPAuthorizationPoint.m */,
+			);
+			path = Access;
+			sourceTree = "<group>";
+		};
+		00DA2B691EF3567000E2DAF2 /* Singletons */ = {
+			isa = PBXGroup;
+			children = (
+				00DA2B731EF35E6500E2DAF2 /* Settings */,
+				00DA2B6A1EF3568500E2DAF2 /* DFSPSingleton.h */,
+				00DA2B6B1EF3568500E2DAF2 /* DFSPSingleton.m */,
+				00DA2B6D1EF3599F00E2DAF2 /* DFSPApplicationData.h */,
+				00DA2B6E1EF3599F00E2DAF2 /* DFSPApplicationData.m */,
+			);
+			path = Singletons;
+			sourceTree = "<group>";
+		};
+		00DA2B731EF35E6500E2DAF2 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				00DA2B741EF35E6500E2DAF2 /* DFSPSettings.h */,
+				00DA2B751EF35E6500E2DAF2 /* DFSPSettings.m */,
+				00DA2B771EF35ED100E2DAF2 /* DFSPEnvironment.h */,
+				00DA2B781EF35ED100E2DAF2 /* DFSPEnvironment.m */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		00DA874F1E97069B00862BF5 = {
@@ -131,6 +353,7 @@
 				0062A3741E9773C800E8726E /* I18n */,
 				0062A37D1E97741D00E8726E /* Base.lproj */,
 				00DA876F1E97069B00862BF5 /* Info.plist */,
+				000985361ECF5906006E6C51 /* Defaults.plist */,
 				00DA875B1E97069B00862BF5 /* Supporting Files */,
 			);
 			path = SyncPost;
@@ -170,7 +393,7 @@
 		00DA87501E97069B00862BF5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Dmitry Feld";
 				TargetAttributes = {
 					00DA87571E97069B00862BF5 = {
@@ -214,8 +437,12 @@
 			files = (
 				0062A3831E97741D00E8726E /* Main.storyboard in Resources */,
 				0062A37C1E9773C800E8726E /* Localizable.strings in Resources */,
+				000985371ECF5906006E6C51 /* Defaults.plist in Resources */,
 				0062A37B1E9773C800E8726E /* InfoPlist.strings in Resources */,
+				003EF9241EF3964B00A8D8D6 /* SignOnController.storyboard in Resources */,
+				009312FC1EF9075D003247B0 /* token.json in Resources */,
 				0062A3821E97741D00E8726E /* LaunchScreen.storyboard in Resources */,
+				003EF9331EF3A60C00A8D8D6 /* SpinnerController.storyboard in Resources */,
 				00DA876B1E97069B00862BF5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -227,18 +454,55 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0062A3711E9773B400E8726E /* NSString+Service.m in Sources */,
+				003EF9301EF3A11300A8D8D6 /* DFSPSpinnerController.m in Sources */,
 				0062A3701E9773B400E8726E /* AppDelegate.m in Sources */,
 				0062A3721E9773B400E8726E /* FirstViewController.m in Sources */,
 				0062A3731E9773B400E8726E /* SecondViewController.m in Sources */,
+				003EF92B1EF3993100A8D8D6 /* DFSPSignOnController.m in Sources */,
+				00DA2B6C1EF3568500E2DAF2 /* DFSPSingleton.m in Sources */,
+				00CEBD551ECE824000BF6EB4 /* DFSPAccessPoint.m in Sources */,
+				00CEBD481ECE508C00BF6EB4 /* DFSPMember.m in Sources */,
+				003EF9441EF6F4EC00A8D8D6 /* DFSPRestAPI.m in Sources */,
+				003EF9391EF3BABB00A8D8D6 /* DFSPSpnnerTransitioning.m in Sources */,
+				003EF94D1EF6F95200A8D8D6 /* DFSPRestRequest.m in Sources */,
+				00CEBD4C1ECE713300BF6EB4 /* DFSPAuthorization.m in Sources */,
+				00CEBD4F1ECE73D900BF6EB4 /* DFSPCredentials.m in Sources */,
+				003EF9361EF3BA2800A8D8D6 /* DFSPSpinnerTransitionDelegate.m in Sources */,
+				003EF93C1EF4C8F000A8D8D6 /* UIColor+Service.m in Sources */,
 				0062A36F1E9773B400E8726E /* DFSPPushNotificationSupport.m in Sources */,
+				00DA2B791EF35ED100E2DAF2 /* DFSPEnvironment.m in Sources */,
 				00DA875D1E97069B00862BF5 /* main.m in Sources */,
+				00DA2B761EF35E6500E2DAF2 /* DFSPSettings.m in Sources */,
+				00DA2B6F1EF3599F00E2DAF2 /* DFSPApplicationData.m in Sources */,
+				003EF9411EF6F3B300A8D8D6 /* DFSPService.m in Sources */,
+				00CEBD3F1ECE31A200BF6EB4 /* NSString+Service.m in Sources */,
+				003EF94A1EF6F76200A8D8D6 /* DFSPRestMapper.m in Sources */,
+				003EF9471EF6F50F00A8D8D6 /* NSError+Rest.m in Sources */,
+				003EF9501EF6F9F400A8D8D6 /* DFSPRestResponse.m in Sources */,
+				00CEBD521ECE772C00BF6EB4 /* DFSPAuthorizationPoint.m in Sources */,
+				003EF9281EF3983200A8D8D6 /* DFSPSignOnViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		003EF9221EF3964B00A8D8D6 /* SignOnController.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				003EF9231EF3964B00A8D8D6 /* Base */,
+			);
+			name = SignOnController.storyboard;
+			sourceTree = "<group>";
+		};
+		003EF9311EF3A60C00A8D8D6 /* SpinnerController.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				003EF9321EF3A60C00A8D8D6 /* Base */,
+			);
+			name = SpinnerController.storyboard;
+			sourceTree = "<group>";
+		};
 		0062A3751E9773C800E8726E /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -280,6 +544,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -328,6 +593,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
