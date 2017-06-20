@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>environments</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>Okhta</string>
+			<key>accessURL</key>
+			<string>http://okhta.local:8080/syncpost</string>
+			<key>simulated</key>
+			<string>YES</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Rzhevka</string>
+			<key>accessURL</key>
+			<string>http://rzhevka.local:8080/syncpost</string>
+			<key>simulated</key>
+			<string>YES</string>
+		</dict>
+	</array>
+	<key>environmentID</key>
+	<integer>0</integer>
+</dict>
+</plist>
