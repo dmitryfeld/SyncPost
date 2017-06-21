@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		000985371ECF5906006E6C51 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 000985361ECF5906006E6C51 /* Defaults.plist */; };
+		001D0DFC1EFA42B400BFA0B8 /* DFSPGlobalMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 001D0DFB1EFA42B400BFA0B8 /* DFSPGlobalMapper.m */; };
+		001D0DFF1EFA447800BFA0B8 /* DFSPAuthorizationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 001D0DFE1EFA447800BFA0B8 /* DFSPAuthorizationService.m */; };
+		001D0E021EFA449100BFA0B8 /* DFSPAuthorizationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 001D0E011EFA449100BFA0B8 /* DFSPAuthorizationRequest.m */; };
 		003EF9241EF3964B00A8D8D6 /* SignOnController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 003EF9221EF3964B00A8D8D6 /* SignOnController.storyboard */; };
 		003EF9281EF3983200A8D8D6 /* DFSPSignOnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF9271EF3983200A8D8D6 /* DFSPSignOnViewController.m */; };
 		003EF92B1EF3993100A8D8D6 /* DFSPSignOnController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF92A1EF3993100A8D8D6 /* DFSPSignOnController.m */; };
@@ -47,6 +50,12 @@
 
 /* Begin PBXFileReference section */
 		000985361ECF5906006E6C51 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
+		001D0DFA1EFA42B400BFA0B8 /* DFSPGlobalMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPGlobalMapper.h; sourceTree = "<group>"; };
+		001D0DFB1EFA42B400BFA0B8 /* DFSPGlobalMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPGlobalMapper.m; sourceTree = "<group>"; };
+		001D0DFD1EFA447800BFA0B8 /* DFSPAuthorizationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPAuthorizationService.h; sourceTree = "<group>"; };
+		001D0DFE1EFA447800BFA0B8 /* DFSPAuthorizationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPAuthorizationService.m; sourceTree = "<group>"; };
+		001D0E001EFA449100BFA0B8 /* DFSPAuthorizationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPAuthorizationRequest.h; sourceTree = "<group>"; };
+		001D0E011EFA449100BFA0B8 /* DFSPAuthorizationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPAuthorizationRequest.m; sourceTree = "<group>"; };
 		002FF67A1E971563000B517D /* SyncPost.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SyncPost.entitlements; sourceTree = "<group>"; };
 		003EF9231EF3964B00A8D8D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SignOnController.storyboard; sourceTree = "<group>"; };
 		003EF9261EF3983200A8D8D6 /* DFSPSignOnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSignOnViewController.h; sourceTree = "<group>"; };
@@ -172,6 +181,10 @@
 			isa = PBXGroup;
 			children = (
 				009312FA1EF9075D003247B0 /* Simulated */,
+				001D0DFD1EFA447800BFA0B8 /* DFSPAuthorizationService.h */,
+				001D0DFE1EFA447800BFA0B8 /* DFSPAuthorizationService.m */,
+				001D0E001EFA449100BFA0B8 /* DFSPAuthorizationRequest.h */,
+				001D0E011EFA449100BFA0B8 /* DFSPAuthorizationRequest.m */,
 			);
 			path = AAS;
 			sourceTree = "<group>";
@@ -313,6 +326,8 @@
 				00DA2B6B1EF3568500E2DAF2 /* DFSPSingleton.m */,
 				00DA2B6D1EF3599F00E2DAF2 /* DFSPApplicationData.h */,
 				00DA2B6E1EF3599F00E2DAF2 /* DFSPApplicationData.m */,
+				001D0DFA1EFA42B400BFA0B8 /* DFSPGlobalMapper.h */,
+				001D0DFB1EFA42B400BFA0B8 /* DFSPGlobalMapper.m */,
 			);
 			path = Singletons;
 			sourceTree = "<group>";
@@ -458,6 +473,7 @@
 				0062A3701E9773B400E8726E /* AppDelegate.m in Sources */,
 				0062A3721E9773B400E8726E /* FirstViewController.m in Sources */,
 				0062A3731E9773B400E8726E /* SecondViewController.m in Sources */,
+				001D0E021EFA449100BFA0B8 /* DFSPAuthorizationRequest.m in Sources */,
 				003EF92B1EF3993100A8D8D6 /* DFSPSignOnController.m in Sources */,
 				00DA2B6C1EF3568500E2DAF2 /* DFSPSingleton.m in Sources */,
 				00CEBD551ECE824000BF6EB4 /* DFSPAccessPoint.m in Sources */,
@@ -474,10 +490,12 @@
 				00DA875D1E97069B00862BF5 /* main.m in Sources */,
 				00DA2B761EF35E6500E2DAF2 /* DFSPSettings.m in Sources */,
 				00DA2B6F1EF3599F00E2DAF2 /* DFSPApplicationData.m in Sources */,
+				001D0DFC1EFA42B400BFA0B8 /* DFSPGlobalMapper.m in Sources */,
 				003EF9411EF6F3B300A8D8D6 /* DFSPService.m in Sources */,
 				00CEBD3F1ECE31A200BF6EB4 /* NSString+Service.m in Sources */,
 				003EF94A1EF6F76200A8D8D6 /* DFSPRestMapper.m in Sources */,
 				003EF9471EF6F50F00A8D8D6 /* NSError+Rest.m in Sources */,
+				001D0DFF1EFA447800BFA0B8 /* DFSPAuthorizationService.m in Sources */,
 				003EF9501EF6F9F400A8D8D6 /* DFSPRestResponse.m in Sources */,
 				00CEBD521ECE772C00BF6EB4 /* DFSPAuthorizationPoint.m in Sources */,
 				003EF9281EF3983200A8D8D6 /* DFSPSignOnViewController.m in Sources */,

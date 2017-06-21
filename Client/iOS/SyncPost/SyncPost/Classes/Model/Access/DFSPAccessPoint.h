@@ -13,7 +13,7 @@
 @interface DFSPAccessPoint : NSObject<DFSPModel>
 @property (readonly,nonatomic) DFSPCredentials* credentials;
 @property (readonly,nonatomic) DFSPAuthorization* authorization;
-@property (readonly,nonatomic) NSString* requestString;
+@property (readonly,nonatomic) NSString* requestPath;
 - (instancetype) initWithTemplate:(DFSPAccessPoint*)model;
 - (DFSPMutableAccessPoint*) mutableCopy;
 @end
@@ -21,9 +21,9 @@
 @interface DFSPMutableAccessPoint : DFSPAccessPoint
 @property (strong,nonatomic,setter=setCredentials:) DFSPCredentials* credentials;
 @property (strong,nonatomic,setter=setAuthorization:) DFSPAuthorization* authorization;
-@property (strong,nonatomic,setter=setRequestString:) NSString* requestString;
+@property (strong,nonatomic,setter=setRequestPath:) NSString* requestPath;
 - (void) setAuthorization:(DFSPAuthorization *)authorization;
-- (void) setRequestString:(NSURL *)accessURL;
+- (void) setRequestPath:(NSString*)requestPath;
 - (DFSPAccessPoint*) immutableCopy;
 @end
 

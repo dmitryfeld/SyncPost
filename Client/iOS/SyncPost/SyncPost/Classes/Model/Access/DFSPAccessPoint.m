@@ -12,19 +12,19 @@
 @protected
     DFSPCredentials* _credentials;
     DFSPAuthorization* _authorization;
-    NSString* _requestString;
+    NSString* _requestPath;
 }
 @end
 
 @implementation DFSPAccessPoint
 @synthesize credentials = _credentials;
 @synthesize authorization = _authorization;
-@synthesize requestString = _requestString;
+@synthesize requestPath = _requestPath;
 - (instancetype) init {
     if (self = [super init]) {
         _credentials = [DFSPCredentials new];
         _authorization = [DFSPAuthorization new];
-        _requestString = nil;
+        _requestPath = nil;
     }
     return self;
 }
@@ -32,7 +32,7 @@
     if (self = [self init]) {
         _credentials = [model.credentials copy];
         _authorization = [model.authorization copy];
-        _requestString = [model.requestString copy];
+        _requestPath = [model.requestPath copy];
     }
     return self;
     
@@ -41,7 +41,7 @@
     if (self = [self init]) {
         _credentials = [aDecoder decodeObjectForKey:@"credentials"];
         _authorization = [aDecoder decodeObjectForKey:@"authorization"];
-        _requestString = [aDecoder decodeObjectForKey:@"requestString"];
+        _requestPath = [aDecoder decodeObjectForKey:@"requestPath"];
     }
     return self;
 }
@@ -51,7 +51,7 @@
 - (void) encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:_credentials forKey:@"credentials"];
     [aCoder encodeObject:_authorization forKey:@"authorization"];
-    [aCoder encodeObject:_requestString forKey:@"requestString"];
+    [aCoder encodeObject:_requestPath forKey:@"requestPath"];
 }
 - (BOOL) isEqual:(id)object {
     if (![object isKindOfClass:[DFSPAccessPoint class]]) {
@@ -64,10 +64,10 @@
     if (![_authorization isEqual:obj.authorization]) {
         return NO;
     }
-    return [_requestString isEqual:obj.requestString];
+    return [_requestPath isEqual:obj.requestPath];
 }
 -(NSUInteger)hash {
-    return [self.credentials hash] ^ [self.authorization hash] ^ [self.requestString hash];
+    return [self.credentials hash] ^ [self.authorization hash] ^ [self.requestPath hash];
 }
 - (DFSPMutableAccessPoint*) mutableCopy {
     return [[DFSPMutableAccessPoint alloc] initWithTemplate:self];
@@ -77,15 +77,15 @@
 @implementation DFSPMutableAccessPoint
 @dynamic credentials;
 @dynamic authorization;
-@dynamic requestString;
+@dynamic requestPath;
 - (void) setCredentials:(DFSPCredentials *)credentials {
     _credentials = [credentials copy];
 }
 - (void) setAuthorization:(DFSPAuthorization *)authorization {
     _authorization = [authorization copy];
 }
-- (void) setRequestString:(NSString *)requestString {
-    _requestString = [requestString copy];
+- (void) setRequestPath:(NSString *)requestPath {
+    _requestPath = [requestPath copy];
 }
 - (DFSPAccessPoint*) immutableCopy {
     return [[DFSPAccessPoint alloc] initWithTemplate:self];
@@ -121,7 +121,7 @@
         }
     } else if ([key isEqualToString:@"accessURL"]) {
         if ([value isKindOfClass:[NSString class]]) {
-            _requestString = value;
+            _requestPath = value;
         } else {
             NSLog(@"InvalidFormatKey:%@ Value:%@ pair",key,value);
         }
