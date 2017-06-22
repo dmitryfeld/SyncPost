@@ -12,8 +12,6 @@
 const static NSString *__kDFSPApplicationDataTag = @"__kDFSPApplicationDataTag";
 
 @interface DFSPApplicationData()<DFSPTagged> {
-    __strong DFSPCredentials* _credentials;
-    __strong DFSPAuthorization* _authorization;
 }
 
 @end
@@ -21,23 +19,14 @@ const static NSString *__kDFSPApplicationDataTag = @"__kDFSPApplicationDataTag";
 @implementation DFSPApplicationData
 @synthesize credentials = _credentials;
 @synthesize authorization = _authorization;
+@synthesize apnsPushToken = _apnsPushToken;
+@synthesize voipPushToken = _voipPushToken;
 - (instancetype) init {
     if (self = [super init]) {
         
     }
     return self;
 }
-- (void) authentifyWithCredentials:(DFSPCredentials*)credentials {
-    if (![_credentials isEqual:credentials]) {
-        _credentials = credentials;
-    }
-}
-- (void) authorizeWithAuthorization:(DFSPAuthorization*)authorization {
-    if (![_authorization isEqual:authorization]) {
-        _authorization = authorization;
-    }
-}
-
 - (id) tag {
     return __kDFSPApplicationDataTag;
 }

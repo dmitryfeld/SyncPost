@@ -10,6 +10,7 @@
 
 const NSString* kTPMGRestErrorDomain = @"kTPMGRestErrorDomain";
 
+
 @implementation NSError(Rest)
 + (NSString*) restStringForCode:(TPMGRestUnitErrorCodes)code {
     NSString* result = nil;
@@ -21,8 +22,17 @@ const NSString* kTPMGRestErrorDomain = @"kTPMGRestErrorDomain";
         case kTPMGRestErrorGeneralFailure:
             result = @"General Failure";
             break;
-        case kTPMGRestErrorCodeNoData:
+        case kTPMGRestErrorNoData:
             result = @"No Data Returned";
+            break;
+        case kTPMGRestErrorInvalidTemplate:
+            result = @"Invalid Template";
+            break;
+        case kTPMGRestErrorInvalidTemplateContext:
+            result = @"Invalid Template Context";
+            break;
+        case kTPMGRestErrorInvalidTemplateList:
+            result = @"Invalid Template List";
             break;
         case kTPMGRestErrorFailureToParseJSONError:
             result = @"Unparsable Data Dictionary";

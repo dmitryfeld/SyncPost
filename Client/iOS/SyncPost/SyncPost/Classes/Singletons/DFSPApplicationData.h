@@ -10,11 +10,11 @@
 #import "DFSPAuthorization.h"
 
 @interface DFSPApplicationData : NSObject
-@property (strong,nonatomic,readonly)DFSPCredentials* credentials;
-@property (strong,nonatomic,readonly)DFSPAuthorization* authorization;
+@property (strong,nonatomic) DFSPCredentials* credentials;
+@property (strong,nonatomic) DFSPAuthorization* authorization;
+@property (strong,nonatomic) NSString* apnsPushToken;
+@property (strong,nonatomic) NSString* voipPushToken;
 - (instancetype) init NS_DESIGNATED_INITIALIZER;
-- (void) authentifyWithCredentials:(DFSPCredentials*)credentials;
-- (void) authorizeWithAuthorization:(DFSPAuthorization*)authorization;
 @end
 
 DFSPApplicationData* DFSPApplicationDataGet();

@@ -12,9 +12,12 @@ extern const NSString* kTPMGRestErrorDomain;
 typedef enum __TPMGRestUnitErrorCodes__:NSUInteger {
     kTPMGRestErrorCodeOK = 0,
     kTPMGRestErrorGeneralFailure = 1,
-    kTPMGRestErrorCodeNoData = 2,
-    kTPMGRestErrorFailureToParseJSONError = 3,
-    kTPMGRestErrorInvalidResponseObject = 4
+    kTPMGRestErrorNoData = 2,
+    kTPMGRestErrorInvalidTemplate = 3,
+    kTPMGRestErrorInvalidTemplateContext = 4,
+    kTPMGRestErrorInvalidTemplateList = 5,
+    kTPMGRestErrorFailureToParseJSONError = 6,
+    kTPMGRestErrorInvalidResponseObject = 7
 } TPMGRestUnitErrorCodes;
 
 @interface NSError (Rest)

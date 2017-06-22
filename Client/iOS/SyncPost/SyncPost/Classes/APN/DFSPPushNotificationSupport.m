@@ -8,6 +8,7 @@
 
 #import "DFSPPushNotificationSupport.h"
 #import "NSString+Service.h"
+#import "DFSPApplicationData.h"
 
 @interface DFSPPushNotificationSupport() {
 @private
@@ -38,6 +39,7 @@
 }
 - (void) onDidRegisterWithToken:(NSData*)token {
     _deviceToken = [NSString stringWithDeviceID:token];
+    DFSPApplicationDataGet().apnsPushToken = _deviceToken;
     NSLog(@"APNS TOKEN: %@",_deviceToken);
 }
 - (void) onDidReceiveNotification:(NSDictionary*)notification andFetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {

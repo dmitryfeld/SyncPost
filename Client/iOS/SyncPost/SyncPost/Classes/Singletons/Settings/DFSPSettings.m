@@ -43,6 +43,10 @@ const static NSString *__kDFSPSettingsTag = @"__kDFSPSettingsTag";
         _bundleSeedIdentifier = bundleSeedIdentifier;
         _bundleIdentifier = bundleIdentifier;
         
+        if (!userDefaults.length) {
+            userDefaults = @"UserDefaults";
+        }
+
         [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:userDefaults ofType:@"plist"]]];
         
         {
@@ -50,7 +54,6 @@ const static NSString *__kDFSPSettingsTag = @"__kDFSPSettingsTag";
             _environments = [DFSPEnvironment listWithArrayOfDictionaries:environments];
             _environmentID = [[NSUserDefaults standardUserDefaults] integerForKey:@"environmentID"];
         }
-        
     }
     return self;
 }
