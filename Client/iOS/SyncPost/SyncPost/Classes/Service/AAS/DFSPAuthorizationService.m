@@ -7,7 +7,11 @@
 //
 
 #import "DFSPAuthorizationService.h"
+#import "DFSPRestAPI.h"
+#import "DFSPApplicationData.h"
 
 @implementation DFSPAuthorizationService
-
+- (void) requestAuthorizationWithCompletionHandle:(void(^)(NSError*,id<DFSPModel>))handle {
+    
+}
 @end

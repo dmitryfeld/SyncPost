@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		000985371ECF5906006E6C51 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 000985361ECF5906006E6C51 /* Defaults.plist */; };
+		001AFE4E1EFB4D3E00C9B0B5 /* DFSPRequestMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 001AFE4D1EFB4D3E00C9B0B5 /* DFSPRequestMap.m */; };
+		001AFE511EFB4F5100C9B0B5 /* DFSPRequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 001AFE501EFB4F5100C9B0B5 /* DFSPRequestData.m */; };
 		001D0DFC1EFA42B400BFA0B8 /* DFSPGlobalMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 001D0DFB1EFA42B400BFA0B8 /* DFSPGlobalMapper.m */; };
 		001D0DFF1EFA447800BFA0B8 /* DFSPAuthorizationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 001D0DFE1EFA447800BFA0B8 /* DFSPAuthorizationService.m */; };
 		001D0E021EFA449100BFA0B8 /* DFSPAuthorizationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 001D0E011EFA449100BFA0B8 /* DFSPAuthorizationRequest.m */; };
@@ -50,6 +52,10 @@
 
 /* Begin PBXFileReference section */
 		000985361ECF5906006E6C51 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
+		001AFE4C1EFB4D3E00C9B0B5 /* DFSPRequestMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPRequestMap.h; sourceTree = "<group>"; };
+		001AFE4D1EFB4D3E00C9B0B5 /* DFSPRequestMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPRequestMap.m; sourceTree = "<group>"; };
+		001AFE4F1EFB4F5100C9B0B5 /* DFSPRequestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPRequestData.h; sourceTree = "<group>"; };
+		001AFE501EFB4F5100C9B0B5 /* DFSPRequestData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPRequestData.m; sourceTree = "<group>"; };
 		001D0DFA1EFA42B400BFA0B8 /* DFSPGlobalMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPGlobalMapper.h; sourceTree = "<group>"; };
 		001D0DFB1EFA42B400BFA0B8 /* DFSPGlobalMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPGlobalMapper.m; sourceTree = "<group>"; };
 		001D0DFD1EFA447800BFA0B8 /* DFSPAuthorizationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPAuthorizationService.h; sourceTree = "<group>"; };
@@ -136,6 +142,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		001AFE4B1EFB4CE500C9B0B5 /* RequestMap */ = {
+			isa = PBXGroup;
+			children = (
+				001AFE4C1EFB4D3E00C9B0B5 /* DFSPRequestMap.h */,
+				001AFE4D1EFB4D3E00C9B0B5 /* DFSPRequestMap.m */,
+				001AFE4F1EFB4F5100C9B0B5 /* DFSPRequestData.h */,
+				001AFE501EFB4F5100C9B0B5 /* DFSPRequestData.m */,
+			);
+			path = RequestMap;
+			sourceTree = "<group>";
+		};
 		003EF9251EF3981000A8D8D6 /* SignOn */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +297,7 @@
 		00CEBD411ECE31C500BF6EB4 /* REST */ = {
 			isa = PBXGroup;
 			children = (
+				001AFE4B1EFB4CE500C9B0B5 /* RequestMap */,
 				003EF9421EF6F4EC00A8D8D6 /* DFSPRestAPI.h */,
 				003EF9431EF6F4EC00A8D8D6 /* DFSPRestAPI.m */,
 				003EF9451EF6F50F00A8D8D6 /* NSError+Rest.h */,
@@ -479,6 +497,7 @@
 				00CEBD551ECE824000BF6EB4 /* DFSPAccessPoint.m in Sources */,
 				00CEBD481ECE508C00BF6EB4 /* DFSPMember.m in Sources */,
 				003EF9441EF6F4EC00A8D8D6 /* DFSPRestAPI.m in Sources */,
+				001AFE4E1EFB4D3E00C9B0B5 /* DFSPRequestMap.m in Sources */,
 				003EF9391EF3BABB00A8D8D6 /* DFSPSpnnerTransitioning.m in Sources */,
 				003EF94D1EF6F95200A8D8D6 /* DFSPRestRequest.m in Sources */,
 				00CEBD4C1ECE713300BF6EB4 /* DFSPAuthorization.m in Sources */,
@@ -496,6 +515,7 @@
 				003EF94A1EF6F76200A8D8D6 /* DFSPRestMapper.m in Sources */,
 				003EF9471EF6F50F00A8D8D6 /* NSError+Rest.m in Sources */,
 				001D0DFF1EFA447800BFA0B8 /* DFSPAuthorizationService.m in Sources */,
+				001AFE511EFB4F5100C9B0B5 /* DFSPRequestData.m in Sources */,
 				003EF9501EF6F9F400A8D8D6 /* DFSPRestResponse.m in Sources */,
 				00CEBD521ECE772C00BF6EB4 /* DFSPAuthorizationPoint.m in Sources */,
 				003EF9281EF3983200A8D8D6 /* DFSPSignOnViewController.m in Sources */,

@@ -9,5 +9,5 @@
 #import "DFSPRestMapper.h"
 
 @interface DFSPAuthorizationService : DFSPRestMapper
-
+- (void) requestAuthorizationWithCompletionHandle:(void(^)(NSError*,id<DFSPModel>))handle;
 @end
