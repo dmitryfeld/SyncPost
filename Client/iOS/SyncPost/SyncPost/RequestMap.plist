@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>requestMap</key>
+	<dict>
+		<key>context</key>
+		<string>DFSPApplicationContext</string>
+		<key>requests</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>authorization</string>
+				<key>parameters</key>
+				<dict>
+					<key>userName</key>
+					<string>context.accessPoint.credentials.userName</string>
+					<key>password</key>
+					<string>context.accessPoint.credentials.password</string>
+					<key>oldToken</key>
+					<string>context.accessPoint.authorization.token</string>
+					<key>appVersion</key>
+					<string>context.appVersion</string>
+					<key>appName</key>
+					<string>context.appName</string>
+					<key>deviceType</key>
+					<string>context.deviceType</string>
+					<key>osVersion</key>
+					<string>context.osVersion</string>
+				</dict>
+				<key>body</key>
+				<dict/>
+				<key>contentType</key>
+				<string>DFSPAuthorization</string>
+				<key>requestPath</key>
+				<string>oauth/token</string>
+				<key>method</key>
+				<string>GET</string>
+				<key>simulatedDataPath</key>
+				<string>token</string>
+			</dict>
+		</array>
+	</dict>
+</dict>
+</plist>
