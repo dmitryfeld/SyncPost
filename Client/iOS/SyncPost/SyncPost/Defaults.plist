@@ -27,8 +27,6 @@
 	<dict>
 		<key>context</key>
 		<string>DFSPApplicationContext</string>
-		<key>accessURL</key>
-		<string>http://okhta.local:8080/syncpost</string>
 		<key>requests</key>
 		<array>
 			<dict>
@@ -59,8 +57,6 @@
 				<string>oauth/token</string>
 				<key>method</key>
 				<string>GET</string>
-				<key>simulated</key>
-				<true/>
 				<key>simulatedDataPath</key>
 				<string>token</string>
 			</dict>
