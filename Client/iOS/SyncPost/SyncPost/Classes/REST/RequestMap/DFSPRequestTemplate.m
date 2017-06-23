@@ -8,6 +8,7 @@
 
 #import "DFSPRequestTemplate.h"
 #import "DFSPSettings.h"
+#import "NSError+Rest.h"
 
 @interface DFSPRequestTemplate() {
 @private
@@ -65,8 +66,13 @@
     return result;
 }
 - (id<DFSPModel>) processResponse:(NSDictionary*)response withError:(NSError * _Nullable *)error {
-    
-    
+    id<DFSPModel> result = [self contentForType:_contentType andContent:response[@"content"]];
+    NSError* restError = [self errorForContent:response[@"error"]];
+    if (!restError && !result) {
+        restError = [NSError restErrorWithCode:kTPMGRestErrorInvalidResponseObject];
+    }
+    *error = restError;
+    return result;
 }
 - (void) resolveHeadersForRequest:(NSMutableURLRequest*)request withContext:(id)context {
     if (_parameters.count) {
@@ -113,4 +119,31 @@
     }
     return result;
 }
+
+- (id<DFSPModel>) contentForType:(NSString*)type andContent:(NSDictionary<NSString*,NSString*>*)content {
+    id<DFSPModel> result = nil;
+    if ([content isKindOfClass:[NSDictionary<NSString*,NSString*> class]]) {
+        Class loadingClass = NSClassFromString(type);
+        id<DFSPModelKVP> model = [loadingClass new];
+        if ([model conformsToProtocol:@protocol(DFSPModelKVP)]) {
+            if ([model respondsToSelector:@selector(setValuesForKeysWithDictionary:)]) {
+                [model performSelector:@selector(setValuesForKeysWithDictionary:) withObject:content];
+                result = [model immutableCopy];
+            }
+        }
+    }
+    return result;
+}
+- (NSError*) errorForContent:(NSDictionary<NSString*,NSString*>*)content {
+    NSError* result = nil;
+    if ([content isKindOfClass:[NSDictionary<NSString*,NSString*> class]]) {
+        NSUInteger code = content[@"code"].integerValue;
+        NSString* message = content[@"message"];
+        if (code) {
+            result = [NSError restErrorWithCode:code andMessage:message];
+        }
+    }
+    return result;
+}
+
 @end
