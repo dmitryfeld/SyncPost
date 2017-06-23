@@ -39,17 +39,17 @@
 - (NSURLRequest*) prepareRequestWithName:(NSString*)name {
     DFSPRequest* result = nil;
     if (_requestTemplates.count) {
-        for (DFSPRequestTemplate* template in _requestTemplates) {
-            if ([template.name isEqualToString:name]) {
-                result = [template prepareRequestWithContext:_context];
-                if (result.error) {
-                    _error = result.error;
-                }
-                break;
+        DFSPRequestTemplate* template = [self findTemplateWithName:name];
+        if (template) {
+            result = [template prepareRequestWithContext:_context];
+            if (result.error) {
+                _error = result.error;
             }
+        } else {
+            //error template not found
         }
     } else {
-        //error
+        //error empty templates list
     }
     return result.request;
 }
@@ -58,20 +58,21 @@
     DFSPResponse* result = nil;
     if (response.count) {
         NSString* name = response[@"name"];
-        for (DFSPRequestTemplate* template in _requestTemplates) {
-            if ([template.name isEqualToString:name]) {
+        if (name.length) {
+            DFSPRequestTemplate* template = [self findTemplateWithName:name];
+            if (template) {
                 result = [template processResponse:response];
                 if (result.error) {
                     _error = result.error;
                 }
-                break;
+            } else {
+                //error template not found
             }
-        }
-        if (!result) {
-            //error
+        } else {
+            //error invalid response structure
         }
     } else {
-        //error
+        //error invalid response structure
     }
     return result.model;
 }
@@ -89,7 +90,8 @@
     if (dict) {
         return [[DFSPRequestMap alloc] initWithDictionary:dict];
     }
-    return result;}
+    return result;
+}
 
 - (id) contextForClassName:(NSString*)contextClassName {
     id result = nil;
@@ -115,6 +117,16 @@
         result = [NSArray<DFSPRequestTemplate*> arrayWithArray:tempA];
     } else {
         _error = [NSError restErrorWithCode:kTPMGRestErrorInvalidTemplateList];
+    }
+    return result;
+}
+- (DFSPRequestTemplate*) findTemplateWithName:(NSString*)name {
+    DFSPRequestTemplate* result = nil;
+    for (DFSPRequestTemplate* template in _requestTemplates) {
+        if ([template.name isEqualToString:name]) {
+            result = template;
+            break;
+        }
     }
     return result;
 }
