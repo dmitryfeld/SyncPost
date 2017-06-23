@@ -10,6 +10,55 @@
 #import "DFSPSettings.h"
 #import "NSError+Rest.h"
 
+@interface DFSPRequest() {
+@private
+    __strong NSURLRequest* _request;
+    __strong NSError* _error;
+}
+@end
+
+@implementation DFSPRequest
+@synthesize request = _request;
+@synthesize error = _error;
+- (instancetype) init {
+    if (self = [self initWithRequest:nil andError:nil]) {
+    }
+    return self;
+}
+- (instancetype) initWithRequest:(NSURLRequest*) request andError:(NSError*) error {
+    if (self = [super init]) {
+        _request = request;
+        _error = error;
+    }
+    return self;
+}
+@end
+
+@interface DFSPResponse() {
+@private
+    __strong id<DFSPModel> _model;
+    __strong NSError* _error;
+}
+@end
+
+@implementation DFSPResponse
+@synthesize model = _model;
+@synthesize error = _error;
+- (instancetype) init {
+    if (self = [self initWithModel:nil andError:nil]) {
+    }
+    return self;
+}
+- (instancetype) initWithModel:(id<DFSPModel>)model andError:(NSError*) error {
+    if (self = [super init]) {
+        _model = model;
+        _error = error;
+    }
+    return self;
+}
+@end
+
+
 @interface DFSPRequestTemplate() {
 @private
     __strong NSString* _name;
@@ -51,29 +100,30 @@
     }
     return self;
 }
-- (NSURLRequest*) prepareRequestWithContext:(id)context withError:(NSError * _Nullable *)error {
+- (DFSPRequest*) prepareRequestWithContext:(id)context {
     DFSPEnvironment* environmenr = DFSPSettingsGet().environment;
     NSURL* requestURL = [environmenr.accessURL URLByAppendingPathComponent:_requestPath];
-    NSMutableURLRequest* result = [NSMutableURLRequest requestWithURL:requestURL];
-    result.HTTPMethod = @"GET";
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:requestURL];
+    NSError* error = nil;
+    request.HTTPMethod = @"GET";
     if (_method.length) {
-        result.HTTPMethod = _method;
+        request.HTTPMethod = _method;
     }
-    [self resolveHeadersForRequest:result withContext:context];
-    if ([result.HTTPMethod isEqualToString:@"POST"] || [result.HTTPMethod isEqualToString:@"PUT"]) {
-        [self resolveBodyForContext:context];
+    [self resolveHeadersForRequest:request withContext:context];
+    if ([request.HTTPMethod isEqualToString:@"POST"] || [request.HTTPMethod isEqualToString:@"PUT"]) {
+        error = [self resolveBodyForRequest:request withContext:context];
     }
-    return result;
+    return [[DFSPRequest alloc] initWithRequest:request andError:error];
 }
-- (id<DFSPModel>) processResponse:(NSDictionary*)response withError:(NSError * _Nullable *)error {
-    id<DFSPModel> result = [self contentForType:_contentType andContent:response[@"content"]];
+- (DFSPResponse*) processResponse:(NSDictionary*)response {
+    id<DFSPModel> model = [self contentForType:_contentType andContent:response[@"content"]];
     NSError* restError = [self errorForContent:response[@"error"]];
-    if (!restError && !result) {
+    if (!restError && !model) {
         restError = [NSError restErrorWithCode:kTPMGRestErrorInvalidResponseObject];
     }
-    *error = restError;
-    return result;
+    return [[DFSPResponse alloc] initWithModel:model andError:restError];
 }
+#pragma mark Resolvers
 - (void) resolveHeadersForRequest:(NSMutableURLRequest*)request withContext:(id)context {
     if (_parameters.count) {
         NSArray<NSString*>* keys = _parameters.allKeys;
@@ -88,16 +138,19 @@
                 }
             }
         }
+    } else {
+        //Error
     }
 }
-- (void) resolveBodyForRequest:(NSMutableURLRequest*)request withContext:(id)context {
+- (NSError*) resolveBodyForRequest:(NSMutableURLRequest*)request withContext:(id)context {
     NSDictionary<NSString*,NSString*>* bodyDict = [self resolveBodyForContext:context];
+    NSError* error = nil;
     if (bodyDict.count) {
-        NSError* error = nil;
         NSData* bodyData = [NSJSONSerialization dataWithJSONObject:bodyDict options:NSJSONWritingPrettyPrinted error:&error];
         NSNumber* length = [NSNumber numberWithInteger:bodyData.length];
         [request setValue:length.description forHTTPHeaderField:@"Content-Lenght"];
     }
+    return error;
 }
 - (NSDictionary<NSString*,NSString*>*) resolveBodyForContext:(id) context {
     NSDictionary<NSString*,NSString*>* result = nil;
@@ -119,7 +172,7 @@
     }
     return result;
 }
-
+#pragma mark Utility methods
 - (id<DFSPModel>) contentForType:(NSString*)type andContent:(NSDictionary<NSString*,NSString*>*)content {
     id<DFSPModel> result = nil;
     if ([content isKindOfClass:[NSDictionary<NSString*,NSString*> class]]) {

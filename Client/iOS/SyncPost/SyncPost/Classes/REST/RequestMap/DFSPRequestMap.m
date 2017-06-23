@@ -37,23 +37,43 @@
     return self;
 }
 - (NSURLRequest*) prepareRequestWithName:(NSString*)name {
-    NSURLRequest* result = nil;
+    DFSPRequest* result = nil;
     if (_requestTemplates.count) {
         for (DFSPRequestTemplate* template in _requestTemplates) {
             if ([template.name isEqualToString:name]) {
-                NSError* error;
-                result = [template prepareRequestWithContext:_context withError:&error];
-                if (error) {
-                    _error = error;
+                result = [template prepareRequestWithContext:_context];
+                if (result.error) {
+                    _error = result.error;
                 }
                 break;
             }
         }
+    } else {
+        //error
     }
-    return result;
+    return result.request;
 }
-- (id<DFSPModel>) processResponse:(NSDictionary*)response{
-    return nil;
+
+- (id<DFSPModel>) processResponse:(NSDictionary*)response {
+    DFSPResponse* result = nil;
+    if (response.count) {
+        NSString* name = response[@"name"];
+        for (DFSPRequestTemplate* template in _requestTemplates) {
+            if ([template.name isEqualToString:name]) {
+                result = [template processResponse:response];
+                if (result.error) {
+                    _error = result.error;
+                }
+                break;
+            }
+        }
+        if (!result) {
+            //error
+        }
+    } else {
+        //error
+    }
+    return result.model;
 }
 + (DFSPRequestMap*) requestMapWithContentOfURL:(NSURL*)url {
     NSDictionary* dict = [NSDictionary dictionaryWithContentsOfURL:url];
