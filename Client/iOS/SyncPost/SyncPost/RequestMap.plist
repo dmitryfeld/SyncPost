@@ -4,8 +4,14 @@
 <dict>
 	<key>requestMap</key>
 	<dict>
+		<key>name</key>
+		<string>Base Request Map</string>
+		<key>version</key>
+		<string>0.1</string>
 		<key>context</key>
 		<string>DFSPApplicationContext</string>
+		<key>isSimulated</key>
+		<true/>
 		<key>requests</key>
 		<array>
 			<dict>

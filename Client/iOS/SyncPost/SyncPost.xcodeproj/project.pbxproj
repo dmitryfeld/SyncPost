@@ -10,23 +10,13 @@
 		000985371ECF5906006E6C51 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 000985361ECF5906006E6C51 /* Defaults.plist */; };
 		001AFE4E1EFB4D3E00C9B0B5 /* DFSPRequestMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 001AFE4D1EFB4D3E00C9B0B5 /* DFSPRequestMap.m */; };
 		001AFE511EFB4F5100C9B0B5 /* DFSPRequestTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 001AFE501EFB4F5100C9B0B5 /* DFSPRequestTemplate.m */; };
-		001D0DFC1EFA42B400BFA0B8 /* DFSPGlobalMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 001D0DFB1EFA42B400BFA0B8 /* DFSPGlobalMapper.m */; };
-		001D0DFF1EFA447800BFA0B8 /* DFSPAuthorizationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 001D0DFE1EFA447800BFA0B8 /* DFSPAuthorizationService.m */; };
-		001D0E021EFA449100BFA0B8 /* DFSPAuthorizationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 001D0E011EFA449100BFA0B8 /* DFSPAuthorizationRequest.m */; };
 		003EF9241EF3964B00A8D8D6 /* SignOnController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 003EF9221EF3964B00A8D8D6 /* SignOnController.storyboard */; };
 		003EF9281EF3983200A8D8D6 /* DFSPSignOnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF9271EF3983200A8D8D6 /* DFSPSignOnViewController.m */; };
 		003EF92B1EF3993100A8D8D6 /* DFSPSignOnController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF92A1EF3993100A8D8D6 /* DFSPSignOnController.m */; };
-		003EF9301EF3A11300A8D8D6 /* DFSPSpinnerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF92F1EF3A11300A8D8D6 /* DFSPSpinnerController.m */; };
 		003EF9331EF3A60C00A8D8D6 /* SpinnerController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 003EF9311EF3A60C00A8D8D6 /* SpinnerController.storyboard */; };
-		003EF9361EF3BA2800A8D8D6 /* DFSPSpinnerTransitionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF9351EF3BA2800A8D8D6 /* DFSPSpinnerTransitionDelegate.m */; };
-		003EF9391EF3BABB00A8D8D6 /* DFSPSpnnerTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF9381EF3BABB00A8D8D6 /* DFSPSpnnerTransitioning.m */; };
 		003EF93C1EF4C8F000A8D8D6 /* UIColor+Service.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF93B1EF4C8F000A8D8D6 /* UIColor+Service.m */; };
-		003EF9411EF6F3B300A8D8D6 /* DFSPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF9401EF6F3B300A8D8D6 /* DFSPService.m */; };
 		003EF9441EF6F4EC00A8D8D6 /* DFSPRestAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF9431EF6F4EC00A8D8D6 /* DFSPRestAPI.m */; };
 		003EF9471EF6F50F00A8D8D6 /* NSError+Rest.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF9461EF6F50F00A8D8D6 /* NSError+Rest.m */; };
-		003EF94A1EF6F76200A8D8D6 /* DFSPRestMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF9491EF6F76200A8D8D6 /* DFSPRestMapper.m */; };
-		003EF94D1EF6F95200A8D8D6 /* DFSPRestRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF94C1EF6F95200A8D8D6 /* DFSPRestRequest.m */; };
-		003EF9501EF6F9F400A8D8D6 /* DFSPRestResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF94F1EF6F9F400A8D8D6 /* DFSPRestResponse.m */; };
 		0062A36F1E9773B400E8726E /* DFSPPushNotificationSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 0062A3651E9773B400E8726E /* DFSPPushNotificationSupport.m */; };
 		0062A3701E9773B400E8726E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0062A3671E9773B400E8726E /* AppDelegate.m */; };
 		0062A3721E9773B400E8726E /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0062A36C1E9773B400E8726E /* FirstViewController.m */; };
@@ -35,6 +25,13 @@
 		0062A37C1E9773C800E8726E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0062A3771E9773C800E8726E /* Localizable.strings */; };
 		0062A3821E97741D00E8726E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0062A37E1E97741D00E8726E /* LaunchScreen.storyboard */; };
 		0062A3831E97741D00E8726E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0062A3801E97741D00E8726E /* Main.storyboard */; };
+		0083981A1F019C6F00D7D6BB /* DFSPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 008398191F019C6F00D7D6BB /* DFSPService.m */; };
+		0083981D1F01A03A00D7D6BB /* DFSPGlobalRequestMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0083981C1F01A03A00D7D6BB /* DFSPGlobalRequestMap.m */; };
+		008398261F01B71E00D7D6BB /* DFSPSpinnerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 008398201F01B71E00D7D6BB /* DFSPSpinnerController.m */; };
+		008398271F01B71E00D7D6BB /* DFSPSpinnerTransitionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 008398231F01B71E00D7D6BB /* DFSPSpinnerTransitionDelegate.m */; };
+		008398281F01B71E00D7D6BB /* DFSPSpnnerTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 008398251F01B71E00D7D6BB /* DFSPSpnnerTransitioning.m */; };
+		0083982B1F01B7E400D7D6BB /* ErrorController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 008398291F01B7E400D7D6BB /* ErrorController.storyboard */; };
+		0083982E1F01BC1E00D7D6BB /* DFSPErrorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0083982D1F01BC1E00D7D6BB /* DFSPErrorController.m */; };
 		009312FC1EF9075D003247B0 /* token.json in Resources */ = {isa = PBXBuildFile; fileRef = 009312FB1EF9075D003247B0 /* token.json */; };
 		00CEBD3F1ECE31A200BF6EB4 /* NSString+Service.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEBD3E1ECE31A200BF6EB4 /* NSString+Service.m */; };
 		00CEBD481ECE508C00BF6EB4 /* DFSPMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEBD471ECE508C00BF6EB4 /* DFSPMember.m */; };
@@ -57,39 +54,19 @@
 		001AFE4D1EFB4D3E00C9B0B5 /* DFSPRequestMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPRequestMap.m; sourceTree = "<group>"; };
 		001AFE4F1EFB4F5100C9B0B5 /* DFSPRequestTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPRequestTemplate.h; sourceTree = "<group>"; };
 		001AFE501EFB4F5100C9B0B5 /* DFSPRequestTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPRequestTemplate.m; sourceTree = "<group>"; };
-		001D0DFA1EFA42B400BFA0B8 /* DFSPGlobalMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPGlobalMapper.h; sourceTree = "<group>"; };
-		001D0DFB1EFA42B400BFA0B8 /* DFSPGlobalMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPGlobalMapper.m; sourceTree = "<group>"; };
-		001D0DFD1EFA447800BFA0B8 /* DFSPAuthorizationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPAuthorizationService.h; sourceTree = "<group>"; };
-		001D0DFE1EFA447800BFA0B8 /* DFSPAuthorizationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPAuthorizationService.m; sourceTree = "<group>"; };
-		001D0E001EFA449100BFA0B8 /* DFSPAuthorizationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPAuthorizationRequest.h; sourceTree = "<group>"; };
-		001D0E011EFA449100BFA0B8 /* DFSPAuthorizationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPAuthorizationRequest.m; sourceTree = "<group>"; };
 		002FF67A1E971563000B517D /* SyncPost.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SyncPost.entitlements; sourceTree = "<group>"; };
 		003EF9231EF3964B00A8D8D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SignOnController.storyboard; sourceTree = "<group>"; };
 		003EF9261EF3983200A8D8D6 /* DFSPSignOnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSignOnViewController.h; sourceTree = "<group>"; };
 		003EF9271EF3983200A8D8D6 /* DFSPSignOnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPSignOnViewController.m; sourceTree = "<group>"; };
 		003EF9291EF3993100A8D8D6 /* DFSPSignOnController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSignOnController.h; sourceTree = "<group>"; };
 		003EF92A1EF3993100A8D8D6 /* DFSPSignOnController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPSignOnController.m; sourceTree = "<group>"; };
-		003EF92E1EF3A11300A8D8D6 /* DFSPSpinnerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSpinnerController.h; sourceTree = "<group>"; };
-		003EF92F1EF3A11300A8D8D6 /* DFSPSpinnerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPSpinnerController.m; sourceTree = "<group>"; };
 		003EF9321EF3A60C00A8D8D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SpinnerController.storyboard; sourceTree = "<group>"; };
-		003EF9341EF3BA2800A8D8D6 /* DFSPSpinnerTransitionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSpinnerTransitionDelegate.h; sourceTree = "<group>"; };
-		003EF9351EF3BA2800A8D8D6 /* DFSPSpinnerTransitionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPSpinnerTransitionDelegate.m; sourceTree = "<group>"; };
-		003EF9371EF3BABB00A8D8D6 /* DFSPSpnnerTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSpnnerTransitioning.h; sourceTree = "<group>"; };
-		003EF9381EF3BABB00A8D8D6 /* DFSPSpnnerTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPSpnnerTransitioning.m; sourceTree = "<group>"; };
 		003EF93A1EF4C8F000A8D8D6 /* UIColor+Service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Service.h"; sourceTree = "<group>"; };
 		003EF93B1EF4C8F000A8D8D6 /* UIColor+Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Service.m"; sourceTree = "<group>"; };
-		003EF93F1EF6F3B300A8D8D6 /* DFSPService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPService.h; sourceTree = "<group>"; };
-		003EF9401EF6F3B300A8D8D6 /* DFSPService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPService.m; sourceTree = "<group>"; };
 		003EF9421EF6F4EC00A8D8D6 /* DFSPRestAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPRestAPI.h; sourceTree = "<group>"; };
 		003EF9431EF6F4EC00A8D8D6 /* DFSPRestAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPRestAPI.m; sourceTree = "<group>"; };
 		003EF9451EF6F50F00A8D8D6 /* NSError+Rest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Rest.h"; sourceTree = "<group>"; };
 		003EF9461EF6F50F00A8D8D6 /* NSError+Rest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Rest.m"; sourceTree = "<group>"; };
-		003EF9481EF6F76200A8D8D6 /* DFSPRestMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPRestMapper.h; sourceTree = "<group>"; };
-		003EF9491EF6F76200A8D8D6 /* DFSPRestMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPRestMapper.m; sourceTree = "<group>"; };
-		003EF94B1EF6F95200A8D8D6 /* DFSPRestRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPRestRequest.h; sourceTree = "<group>"; };
-		003EF94C1EF6F95200A8D8D6 /* DFSPRestRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPRestRequest.m; sourceTree = "<group>"; };
-		003EF94E1EF6F9F400A8D8D6 /* DFSPRestResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPRestResponse.h; sourceTree = "<group>"; };
-		003EF94F1EF6F9F400A8D8D6 /* DFSPRestResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPRestResponse.m; sourceTree = "<group>"; };
 		0062A3641E9773B400E8726E /* DFSPPushNotificationSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPPushNotificationSupport.h; sourceTree = "<group>"; };
 		0062A3651E9773B400E8726E /* DFSPPushNotificationSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPPushNotificationSupport.m; sourceTree = "<group>"; };
 		0062A3661E9773B400E8726E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -104,6 +81,19 @@
 		0062A37A1E9773C800E8726E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0062A37F1E97741D00E8726E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0062A3811E97741D00E8726E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		008398181F019C6F00D7D6BB /* DFSPService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPService.h; sourceTree = "<group>"; };
+		008398191F019C6F00D7D6BB /* DFSPService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPService.m; sourceTree = "<group>"; };
+		0083981B1F01A03A00D7D6BB /* DFSPGlobalRequestMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPGlobalRequestMap.h; sourceTree = "<group>"; };
+		0083981C1F01A03A00D7D6BB /* DFSPGlobalRequestMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPGlobalRequestMap.m; sourceTree = "<group>"; };
+		0083981F1F01B71E00D7D6BB /* DFSPSpinnerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSpinnerController.h; sourceTree = "<group>"; };
+		008398201F01B71E00D7D6BB /* DFSPSpinnerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPSpinnerController.m; sourceTree = "<group>"; };
+		008398221F01B71E00D7D6BB /* DFSPSpinnerTransitionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSpinnerTransitionDelegate.h; sourceTree = "<group>"; };
+		008398231F01B71E00D7D6BB /* DFSPSpinnerTransitionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPSpinnerTransitionDelegate.m; sourceTree = "<group>"; };
+		008398241F01B71E00D7D6BB /* DFSPSpnnerTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSpnnerTransitioning.h; sourceTree = "<group>"; };
+		008398251F01B71E00D7D6BB /* DFSPSpnnerTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPSpnnerTransitioning.m; sourceTree = "<group>"; };
+		0083982A1F01B7E400D7D6BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ErrorController.storyboard; sourceTree = "<group>"; };
+		0083982C1F01BC1E00D7D6BB /* DFSPErrorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPErrorController.h; sourceTree = "<group>"; };
+		0083982D1F01BC1E00D7D6BB /* DFSPErrorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPErrorController.m; sourceTree = "<group>"; };
 		009312FB1EF9075D003247B0 /* token.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = token.json; sourceTree = "<group>"; };
 		00CEBD3D1ECE31A200BF6EB4 /* NSString+Service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Service.h"; sourceTree = "<group>"; };
 		00CEBD3E1ECE31A200BF6EB4 /* NSString+Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Service.m"; sourceTree = "<group>"; };
@@ -166,32 +156,12 @@
 			path = SignOn;
 			sourceTree = "<group>";
 		};
-		003EF92C1EF39EFE00A8D8D6 /* Spinner */ = {
-			isa = PBXGroup;
-			children = (
-				003EF92E1EF3A11300A8D8D6 /* DFSPSpinnerController.h */,
-				003EF92F1EF3A11300A8D8D6 /* DFSPSpinnerController.m */,
-				003EF9341EF3BA2800A8D8D6 /* DFSPSpinnerTransitionDelegate.h */,
-				003EF9351EF3BA2800A8D8D6 /* DFSPSpinnerTransitionDelegate.m */,
-				003EF9371EF3BABB00A8D8D6 /* DFSPSpnnerTransitioning.h */,
-				003EF9381EF3BABB00A8D8D6 /* DFSPSpnnerTransitioning.m */,
-			);
-			path = Spinner;
-			sourceTree = "<group>";
-		};
-		003EF92D1EF3A05100A8D8D6 /* Alert */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Alert;
-			sourceTree = "<group>";
-		};
 		003EF93D1EF6F37400A8D8D6 /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				003EF93E1EF6F39C00A8D8D6 /* AAS */,
-				003EF93F1EF6F3B300A8D8D6 /* DFSPService.h */,
-				003EF9401EF6F3B300A8D8D6 /* DFSPService.m */,
+				008398181F019C6F00D7D6BB /* DFSPService.h */,
+				008398191F019C6F00D7D6BB /* DFSPService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -200,10 +170,6 @@
 			isa = PBXGroup;
 			children = (
 				009312FA1EF9075D003247B0 /* Simulated */,
-				001D0DFD1EFA447800BFA0B8 /* DFSPAuthorizationService.h */,
-				001D0DFE1EFA447800BFA0B8 /* DFSPAuthorizationService.m */,
-				001D0E001EFA449100BFA0B8 /* DFSPAuthorizationRequest.h */,
-				001D0E011EFA449100BFA0B8 /* DFSPAuthorizationRequest.m */,
 			);
 			path = AAS;
 			sourceTree = "<group>";
@@ -236,8 +202,7 @@
 		0062A36A1E9773B400E8726E /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				003EF92D1EF3A05100A8D8D6 /* Alert */,
-				003EF92C1EF39EFE00A8D8D6 /* Spinner */,
+				0083981E1F01B71E00D7D6BB /* ModalServices */,
 				003EF9251EF3981000A8D8D6 /* SignOn */,
 				0062A36B1E9773B400E8726E /* FirstViewController.h */,
 				0062A36C1E9773B400E8726E /* FirstViewController.m */,
@@ -263,8 +228,32 @@
 				0062A3801E97741D00E8726E /* Main.storyboard */,
 				003EF9221EF3964B00A8D8D6 /* SignOnController.storyboard */,
 				003EF9311EF3A60C00A8D8D6 /* SpinnerController.storyboard */,
+				008398291F01B7E400D7D6BB /* ErrorController.storyboard */,
 			);
 			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		0083981E1F01B71E00D7D6BB /* ModalServices */ = {
+			isa = PBXGroup;
+			children = (
+				008398211F01B71E00D7D6BB /* Transitioning */,
+				0083981F1F01B71E00D7D6BB /* DFSPSpinnerController.h */,
+				008398201F01B71E00D7D6BB /* DFSPSpinnerController.m */,
+				0083982C1F01BC1E00D7D6BB /* DFSPErrorController.h */,
+				0083982D1F01BC1E00D7D6BB /* DFSPErrorController.m */,
+			);
+			path = ModalServices;
+			sourceTree = "<group>";
+		};
+		008398211F01B71E00D7D6BB /* Transitioning */ = {
+			isa = PBXGroup;
+			children = (
+				008398221F01B71E00D7D6BB /* DFSPSpinnerTransitionDelegate.h */,
+				008398231F01B71E00D7D6BB /* DFSPSpinnerTransitionDelegate.m */,
+				008398241F01B71E00D7D6BB /* DFSPSpnnerTransitioning.h */,
+				008398251F01B71E00D7D6BB /* DFSPSpnnerTransitioning.m */,
+			);
+			path = Transitioning;
 			sourceTree = "<group>";
 		};
 		009312FA1EF9075D003247B0 /* Simulated */ = {
@@ -305,12 +294,6 @@
 				003EF9431EF6F4EC00A8D8D6 /* DFSPRestAPI.m */,
 				003EF9451EF6F50F00A8D8D6 /* NSError+Rest.h */,
 				003EF9461EF6F50F00A8D8D6 /* NSError+Rest.m */,
-				003EF9481EF6F76200A8D8D6 /* DFSPRestMapper.h */,
-				003EF9491EF6F76200A8D8D6 /* DFSPRestMapper.m */,
-				003EF94B1EF6F95200A8D8D6 /* DFSPRestRequest.h */,
-				003EF94C1EF6F95200A8D8D6 /* DFSPRestRequest.m */,
-				003EF94E1EF6F9F400A8D8D6 /* DFSPRestResponse.h */,
-				003EF94F1EF6F9F400A8D8D6 /* DFSPRestResponse.m */,
 			);
 			path = REST;
 			sourceTree = "<group>";
@@ -354,8 +337,8 @@
 				00DA2B6B1EF3568500E2DAF2 /* DFSPSingleton.m */,
 				00DA2B6D1EF3599F00E2DAF2 /* DFSPApplicationData.h */,
 				00DA2B6E1EF3599F00E2DAF2 /* DFSPApplicationData.m */,
-				001D0DFA1EFA42B400BFA0B8 /* DFSPGlobalMapper.h */,
-				001D0DFB1EFA42B400BFA0B8 /* DFSPGlobalMapper.m */,
+				0083981B1F01A03A00D7D6BB /* DFSPGlobalRequestMap.h */,
+				0083981C1F01A03A00D7D6BB /* DFSPGlobalRequestMap.m */,
 			);
 			path = Singletons;
 			sourceTree = "<group>";
@@ -479,6 +462,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0083982B1F01B7E400D7D6BB /* ErrorController.storyboard in Resources */,
 				0062A3831E97741D00E8726E /* Main.storyboard in Resources */,
 				0062A37C1E9773C800E8726E /* Localizable.strings in Resources */,
 				000985371ECF5906006E6C51 /* Defaults.plist in Resources */,
@@ -499,37 +483,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				003EF9301EF3A11300A8D8D6 /* DFSPSpinnerController.m in Sources */,
 				0062A3701E9773B400E8726E /* AppDelegate.m in Sources */,
 				0062A3721E9773B400E8726E /* FirstViewController.m in Sources */,
 				0062A3731E9773B400E8726E /* SecondViewController.m in Sources */,
-				001D0E021EFA449100BFA0B8 /* DFSPAuthorizationRequest.m in Sources */,
+				0083982E1F01BC1E00D7D6BB /* DFSPErrorController.m in Sources */,
 				003EF92B1EF3993100A8D8D6 /* DFSPSignOnController.m in Sources */,
 				00DA2B6C1EF3568500E2DAF2 /* DFSPSingleton.m in Sources */,
+				008398261F01B71E00D7D6BB /* DFSPSpinnerController.m in Sources */,
 				00CEBD481ECE508C00BF6EB4 /* DFSPMember.m in Sources */,
 				003EF9441EF6F4EC00A8D8D6 /* DFSPRestAPI.m in Sources */,
 				001AFE4E1EFB4D3E00C9B0B5 /* DFSPRequestMap.m in Sources */,
-				003EF9391EF3BABB00A8D8D6 /* DFSPSpnnerTransitioning.m in Sources */,
 				00D4ED7F1EFC32F600ADF60A /* DFSPApplicationContext.m in Sources */,
-				003EF94D1EF6F95200A8D8D6 /* DFSPRestRequest.m in Sources */,
+				008398271F01B71E00D7D6BB /* DFSPSpinnerTransitionDelegate.m in Sources */,
+				008398281F01B71E00D7D6BB /* DFSPSpnnerTransitioning.m in Sources */,
 				00CEBD4C1ECE713300BF6EB4 /* DFSPAuthorization.m in Sources */,
 				00CEBD4F1ECE73D900BF6EB4 /* DFSPCredentials.m in Sources */,
-				003EF9361EF3BA2800A8D8D6 /* DFSPSpinnerTransitionDelegate.m in Sources */,
 				003EF93C1EF4C8F000A8D8D6 /* UIColor+Service.m in Sources */,
 				0062A36F1E9773B400E8726E /* DFSPPushNotificationSupport.m in Sources */,
+				0083981A1F019C6F00D7D6BB /* DFSPService.m in Sources */,
 				00DA2B791EF35ED100E2DAF2 /* DFSPEnvironment.m in Sources */,
 				00DA875D1E97069B00862BF5 /* main.m in Sources */,
 				00DA2B761EF35E6500E2DAF2 /* DFSPSettings.m in Sources */,
 				00DA2B6F1EF3599F00E2DAF2 /* DFSPApplicationData.m in Sources */,
-				001D0DFC1EFA42B400BFA0B8 /* DFSPGlobalMapper.m in Sources */,
-				003EF9411EF6F3B300A8D8D6 /* DFSPService.m in Sources */,
 				00CEBD3F1ECE31A200BF6EB4 /* NSString+Service.m in Sources */,
-				003EF94A1EF6F76200A8D8D6 /* DFSPRestMapper.m in Sources */,
 				003EF9471EF6F50F00A8D8D6 /* NSError+Rest.m in Sources */,
-				001D0DFF1EFA447800BFA0B8 /* DFSPAuthorizationService.m in Sources */,
 				001AFE511EFB4F5100C9B0B5 /* DFSPRequestTemplate.m in Sources */,
-				003EF9501EF6F9F400A8D8D6 /* DFSPRestResponse.m in Sources */,
 				00CEBD521ECE772C00BF6EB4 /* DFSPAuthorizationPoint.m in Sources */,
+				0083981D1F01A03A00D7D6BB /* DFSPGlobalRequestMap.m in Sources */,
 				003EF9281EF3983200A8D8D6 /* DFSPSignOnViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -585,6 +565,14 @@
 				0062A3811E97741D00E8726E /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		008398291F01B7E400D7D6BB /* ErrorController.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0083982A1F01B7E400D7D6BB /* Base */,
+			);
+			name = ErrorController.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

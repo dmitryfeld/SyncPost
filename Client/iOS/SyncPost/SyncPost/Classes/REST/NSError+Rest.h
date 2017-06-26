@@ -8,19 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
-extern const NSString* kTPMGRestErrorDomain;
-typedef enum __TPMGRestUnitErrorCodes__:NSUInteger {
-    kTPMGRestErrorCodeOK = 0,
-    kTPMGRestErrorGeneralFailure = 1,
-    kTPMGRestErrorNoData = 2,
-    kTPMGRestErrorInvalidTemplate = 3,
-    kTPMGRestErrorInvalidTemplateContext = 4,
-    kTPMGRestErrorInvalidTemplateList = 5,
-    kTPMGRestErrorFailureToParseJSONError = 6,
-    kTPMGRestErrorInvalidResponseObject = 7
-} TPMGRestUnitErrorCodes;
+extern const NSString* kDFSPRestErrorDomain;
+typedef enum __DFSPRestUnitErrorCodes__:NSUInteger {
+    // Internal errors
+    kDFSPRestErrorCodeOK = 0,
+    kDFSPRestErrorGeneralFailure = 1,
+    kDFSPRestErrorNoData = 2,
+    kDFSPRestErrorInvalidTemplate = 3,
+    kDFSPRestErrorInvalidTemplateContext = 4,
+    kDFSPRestErrorInvalidTemplateList = 5,
+    kDFSPRestErrorFailureToParseJSONError = 6,
+    kDFSPRestErrorInvalidResponseObject = 7,
+    
+    // Errors from server
+    kDFSPRestErrorUnauthorized
+} DFSPRestUnitErrorCodes;
 
 @interface NSError (Rest)
-+ (NSError*) restErrorWithCode:(TPMGRestUnitErrorCodes)code;
-+ (NSError*) restErrorWithCode:(TPMGRestUnitErrorCodes)code andMessage:(NSString*)message;
++ (NSError*) restErrorWithCode:(DFSPRestUnitErrorCodes)code;
++ (NSError*) restErrorWithCode:(DFSPRestUnitErrorCodes)code andMessage:(NSString*)message;
 @end

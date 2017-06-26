@@ -8,37 +8,40 @@
 
 #import "NSError+Rest.h"
 
-const NSString* kTPMGRestErrorDomain = @"kTPMGRestErrorDomain";
+const NSString* kDFSPRestErrorDomain = @"kDFSPRestErrorDomain";
 
 
 @implementation NSError(Rest)
-+ (NSString*) restStringForCode:(TPMGRestUnitErrorCodes)code {
++ (NSString*) restStringForCode:(DFSPRestUnitErrorCodes)code {
     NSString* result = nil;
     
     switch (code) {
-        case kTPMGRestErrorCodeOK:
+        case kDFSPRestErrorCodeOK:
             result = @"No Error";
             break;
-        case kTPMGRestErrorGeneralFailure:
+        case kDFSPRestErrorGeneralFailure:
             result = @"General Failure";
             break;
-        case kTPMGRestErrorNoData:
+        case kDFSPRestErrorNoData:
             result = @"No Data Returned";
             break;
-        case kTPMGRestErrorInvalidTemplate:
+        case kDFSPRestErrorInvalidTemplate:
             result = @"Invalid Template";
             break;
-        case kTPMGRestErrorInvalidTemplateContext:
+        case kDFSPRestErrorInvalidTemplateContext:
             result = @"Invalid Template Context";
             break;
-        case kTPMGRestErrorInvalidTemplateList:
+        case kDFSPRestErrorInvalidTemplateList:
             result = @"Invalid Template List";
             break;
-        case kTPMGRestErrorFailureToParseJSONError:
+        case kDFSPRestErrorFailureToParseJSONError:
             result = @"Unparsable Data Dictionary";
             break;
-        case kTPMGRestErrorInvalidResponseObject:
+        case kDFSPRestErrorInvalidResponseObject:
             result = @"Invalid Response Object";
+            break;
+        case kDFSPRestErrorUnauthorized:
+            result = @"Unauthorizaed Request";
             break;
         default:
             break;
@@ -47,16 +50,16 @@ const NSString* kTPMGRestErrorDomain = @"kTPMGRestErrorDomain";
 }
 
 
-+ (NSError*) restErrorWithCode:(TPMGRestUnitErrorCodes)code {
++ (NSError*) restErrorWithCode:(DFSPRestUnitErrorCodes)code {
     NSError* result = nil;
     NSString* message = [NSError restStringForCode:code];
     if (message.length) {
         NSDictionary* userInfo = @{NSLocalizedDescriptionKey:message};
-        result = [[NSError alloc] initWithDomain:(NSString*)kTPMGRestErrorDomain code:code userInfo:userInfo];
+        result = [[NSError alloc] initWithDomain:(NSString*)kDFSPRestErrorDomain code:code userInfo:userInfo];
     }
     return result;
 }
-+ (NSError*) restErrorWithCode:(TPMGRestUnitErrorCodes)code andMessage:(NSString*)message {
++ (NSError*) restErrorWithCode:(DFSPRestUnitErrorCodes)code andMessage:(NSString*)message {
     NSError* result = nil;
     if (!message.length) {
         if (!(message = [NSError restStringForCode:code])) {
@@ -64,7 +67,7 @@ const NSString* kTPMGRestErrorDomain = @"kTPMGRestErrorDomain";
         }
     }
     NSDictionary* userInfo = @{NSLocalizedDescriptionKey:message};
-    result = [[NSError alloc] initWithDomain:(NSString*)kTPMGRestErrorDomain code:code userInfo:userInfo];
+    result = [[NSError alloc] initWithDomain:(NSString*)kDFSPRestErrorDomain code:code userInfo:userInfo];
     return result;
 }
 @end

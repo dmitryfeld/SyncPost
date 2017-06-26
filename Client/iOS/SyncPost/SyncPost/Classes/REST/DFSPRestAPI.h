@@ -6,14 +6,13 @@
 //  Copyright © 2017 Dmitry Feld. All rights reserved.
 //
 
-#import "DFSPRestRequest.h"
-#import "DFSPRestMapper.h"
+#import "DFSPRequestMap.h"
 
 
 @interface DFSPRestAPI : NSObject
+@property (readonly,nonatomic,strong) DFSPRequestMap* requestMap;
 @property (readonly,nonatomic) BOOL isInProcess;
-@property (readonly,nonatomic,strong) DFSPRestResponse* response;
-@property (readonly,nonatomic,strong) NSError* systemError;
-- (instancetype) initWithMapper:(DFSPRestMapper*)mapper NS_DESIGNATED_INITIALIZER;
-- (void) startWithRequest:(DFSPRestRequest*)request andCompletionHandler:(void(^)(NSError*,DFSPRestResponse*))handler;
+@property (readonly,nonatomic,strong) NSError* error;
+- (instancetype) initWithRequestMap:(DFSPRequestMap*)requestMap NS_DESIGNATED_INITIALIZER;
+- (void) startWithRequestName:(NSString*)requestName andCompletionHandler:(void(^)(NSError*,id<DFSPModel>))handler;
 @end

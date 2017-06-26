@@ -119,7 +119,7 @@
     id<DFSPModel> model = [self contentForType:_contentType andContent:response[@"content"]];
     NSError* restError = [self errorForContent:response[@"error"]];
     if (!restError && !model) {
-        restError = [NSError restErrorWithCode:kTPMGRestErrorInvalidResponseObject];
+        restError = [NSError restErrorWithCode:kDFSPRestErrorInvalidResponseObject];
     }
     return [[DFSPResponse alloc] initWithModel:model andError:restError];
 }

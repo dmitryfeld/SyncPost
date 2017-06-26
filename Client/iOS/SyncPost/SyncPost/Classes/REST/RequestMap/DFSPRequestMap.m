@@ -11,16 +11,22 @@
 
 @interface DFSPRequestMap() {
 @private
+    __strong NSString* _name;
+    __strong NSString* _version;
     __strong NSError* _error;
     __strong id _context;
+    BOOL _isSimulated;
     __strong NSArray<DFSPRequestTemplate*>* _requestTemplates;
 }
 
 @end
 
 @implementation DFSPRequestMap
+@synthesize name = _name;
+@synthesize version = _version;
 @synthesize error = _error;
 @synthesize context = _context;
+@synthesize isSimulated = _isSimulated;
 @synthesize requestTemplates = _requestTemplates;
 - (instancetype) init {
     if (self = [self initWithDictionary:nil]) {
@@ -30,8 +36,11 @@
 }
 - (instancetype) initWithDictionary:(NSDictionary<NSString*,id>*)dictionary {
     if (self = [super init]) {
+        _name = dictionary[@"name"];
+        _version = dictionary[@"version"];
         _error = nil;
         _context = [self contextForClassName:dictionary[@"context"]];
+        _isSimulated = [self simulatedForValue:dictionary[@"isSimulated"]];
         _requestTemplates = [self templatesForArray:dictionary[@"requests"]];
     }
     return self;
@@ -76,19 +85,13 @@
     }
     return result.model;
 }
-+ (DFSPRequestMap*) requestMapWithContentOfURL:(NSURL*)url {
-    NSDictionary* dict = [NSDictionary dictionaryWithContentsOfURL:url];
-    DFSPRequestMap* result = nil;
-    if (dict) {
-        return [[DFSPRequestMap alloc] initWithDictionary:dict];
-    }
-    return result;
-}
-+ (DFSPRequestMap*) requestMapWithContentOfMainBundleFile:(NSString*)fileName {
-    NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"plist"]];
-    DFSPRequestMap* result = nil;
-    if (dict) {
-        return [[DFSPRequestMap alloc] initWithDictionary:dict];
+- (NSString*) simulatedDataPathWithName:(NSString*)name {
+    NSString* result = nil;
+    DFSPRequestTemplate* template = [self findTemplateWithName:name];
+    if (template) {
+        result = template.simulatedDataPath;
+    } else {
+        //error template not found
     }
     return result;
 }
@@ -99,7 +102,15 @@
         Class loadingClass = NSClassFromString(contextClassName);
         result = [loadingClass new];
     } else {
-        _error = [NSError restErrorWithCode:kTPMGRestErrorInvalidTemplateContext];
+        _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidTemplateContext];
+    }
+    return result;
+}
+- (BOOL) simulatedForValue:(NSString*)value {
+    BOOL result = NO;
+    NSString* description = value.description;
+    if (description.length) {
+        result = description.boolValue;
     }
     return result;
 }
@@ -116,7 +127,7 @@
         }
         result = [NSArray<DFSPRequestTemplate*> arrayWithArray:tempA];
     } else {
-        _error = [NSError restErrorWithCode:kTPMGRestErrorInvalidTemplateList];
+        _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidTemplateList];
     }
     return result;
 }

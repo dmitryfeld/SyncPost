@@ -9,6 +9,7 @@
 #import "DFSPSignOnController.h"
 #import "DFSPSignOnViewController.h"
 #import "DFSPSpinnerController.h"
+#import "DFSPService.h"
 
 
 @interface DFSPSignOnController ()<DFSPSignOnViewControllerDelegate> {
@@ -16,15 +17,18 @@
     __strong NSError* _error;
     __strong DFSPSpinnerController* _spinner;
     __strong UIViewController* _parentController;
+    __strong DFSPService* _service;
     BOOL _isPresented;
 }
 @property (readonly,nonatomic,strong) DFSPSpinnerController* spinner;
+@property (readonly,nonatomic,strong) DFSPService* service;
 @property (readonly,nonatomic) DFSPSignOnViewController* signonController;
 @end
 
 @implementation DFSPSignOnController
 @synthesize isPresented = _isPresented;
 @synthesize spinner = _spinner;
+@synthesize service = _service;
 @dynamic signonController;
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,15 +53,12 @@
 }
 - (void) signOnViewControllerDidTapUpdateButton:(DFSPSignOnViewController*)controller {
     [self.spinner presentForController:self withHandler:^{
-
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            
-            
+        [self.service requestWithName:@"authorization" andCompletionHandler:^(NSError *error_, id<DFSPModel>model_) {
             [self.spinner dismissWithHandler:^{
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
+                if (error_) {
+                    //alert
+                } else {
                     _isPresented = NO;
                     [_parentController dismissViewControllerAnimated:YES completion:^{
                         if (_controlHandler) {
@@ -70,20 +71,9 @@
                             }
                         }
                     }];
-                    
-                    
-                });
-
-                
-                
+                }
             }];
-            
-        });
-        
-        
-        
-        
-        
+        }];
     }];
 }
 
@@ -101,7 +91,12 @@
     }
     return _spinner;
 }
-
+- (DFSPService*) service {
+    if (!_service) {
+        _service = [DFSPService new];
+    }
+    return _service;
+}
 
 - (DFSPSignOnViewController*) signonController {
     return (DFSPSignOnViewController*)self.viewControllers.firstObject;

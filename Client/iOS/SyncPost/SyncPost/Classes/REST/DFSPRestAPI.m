@@ -12,81 +12,86 @@
 
 @interface DFSPRestAPI() {
 @private
-    __strong DFSPRestRequest* _request;
-    __strong DFSPRestResponse* _response;
-    __strong DFSPRestMapper* _mapper;
-    __strong void (^_completionHandler)(NSError*,DFSPRestResponse*);
-    __strong NSError* _systemError;
+    __strong DFSPRequestMap* _requestMap;
+    __strong void (^_completionHandler)(NSError*,id<DFSPModel>);
+    __strong NSError* _error;
     BOOL _isInProcess;
 }
-@property (strong,readonly,nonatomic) DFSPRestMapper* mapper;
 @end
 
 @implementation DFSPRestAPI
+@synthesize requestMap = _requestMap;
 @synthesize isInProcess = _isInProcess;
-@synthesize response = _response;
-@synthesize systemError = _systemError;
-@synthesize mapper = _mapper;
+@synthesize error = _error;
 - (instancetype) init {
-    if (self = [self initWithMapper:nil]) {
-        _mapper = nil;
+    if (self = [self initWithRequestMap:nil]) {
+        _requestMap = nil;
     }
     return self;
 }
-- (instancetype) initWithMapper:(DFSPRestMapper*)mapper {
+- (instancetype) initWithRequestMap:(DFSPRequestMap*)requestMap {
     if (self = [super init]) {
-        _mapper = mapper;
+        _requestMap = requestMap;
     }
     return self;
 }
-- (void) startWithRequest:(DFSPRestRequest*)request andCompletionHandler:(void(^)(NSError*,DFSPRestResponse*))handler {
+- (void) startWithRequestName:(NSString*)requestName andCompletionHandler:(void(^)(NSError*,id<DFSPModel>))handler {
     if (!_isInProcess) {
-        if (request) {
-            _request = request;
+        _isInProcess = YES;
+        if (requestName.length) {
             _completionHandler = handler;
-            _response = nil;
-            _systemError = nil;
-            if (DFSPSettingsGet().environment.isSimulated) {
-                [self processSimulated];
+            _error = nil;
+            if (_requestMap.isSimulated) {
+                [self processSimulatedWithRequestName:(NSString*)requestName];
             } else {
                 [self startAPICall];
             }
         } else {
-            
+            // error incorrect request name
         }
     }
 }
 
-- (void) processSimulated {
-    NSString *path = [[NSBundle mainBundle] pathForResource:_request.simulatedFileName ofType:@"json"];
-    if (path) {
-        NSData *_data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:path]];
-        if (_data.length) {
-            NSError* error = nil;
-            NSDictionary* _jsonDictionary = [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:&error];
-            if (error) {
-                _systemError = error;
-            } else if (!_jsonDictionary) {
-                _systemError = [NSError restErrorWithCode:kTPMGRestErrorFailureToParseJSONError];
+- (void) processSimulatedWithRequestName:(NSString*)requestName {
+    id<DFSPModel> response = nil;
+    NSString *simulatedDataName = [_requestMap simulatedDataPathWithName:requestName];
+    if (_requestMap.error) {
+        _error = _requestMap.error;
+        [self processHandleWithError:_error andResponse:response];
+    } else {
+        NSString *path = [[NSBundle mainBundle] pathForResource:simulatedDataName ofType:@"json"];
+        if (path) {
+            NSData *_data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:path]];
+            if (_data.length) {
+                NSError* error = nil;
+                NSDictionary* _jsonDictionary = [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:&error];
+                if (error) {
+                    _error = error;
+                } else if (!_jsonDictionary) {
+                    _error = [NSError restErrorWithCode:kDFSPRestErrorFailureToParseJSONError];
+                } else {
+                    response = [_requestMap processResponse:_jsonDictionary];
+                }
             } else {
-                _response = [self.mapper mapDictionaryToResponse:_jsonDictionary];
+                _error = [NSError restErrorWithCode:kDFSPRestErrorNoData];
             }
+            [self processHandleWithError:_error andResponse:response];
         } else {
-            _systemError = [NSError restErrorWithCode:kTPMGRestErrorCodeNoData];
+            //error invalid simulated data path
         }
-        [self processHandleWithSystemError:_systemError andResponse:_response];
     }
+    _isInProcess = NO;
 }
 
 - (void) startAPICall {
-    
+    _isInProcess = NO;
 }
-- (void) processHandleWithSystemError:(NSError*)systemError andResponse:(DFSPRestResponse*)response {
+- (void) processHandleWithError:(NSError*)error andResponse:(id<DFSPModel>)response {
     if ([NSThread isMainThread]) {
-        _completionHandler(systemError,response);
+        _completionHandler(error,response);
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
-            _completionHandler(systemError,response);
+            _completionHandler(error,response);
         });
     }
 }
