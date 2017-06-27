@@ -20,6 +20,7 @@
 @end
 @protocol DFSPModelKVP<DFSPMutableModel>
 @required
+@property (readonly,nonatomic,strong) NSError* error;
 - (void) setValue:(id)value forUndefinedKey:(NSString *)key;
 - (void) setValue:(id)value forKey:(NSString *)key;
 + (id<DFSPMutableModel>) fromDictionary:(NSDictionary*)dictionary;

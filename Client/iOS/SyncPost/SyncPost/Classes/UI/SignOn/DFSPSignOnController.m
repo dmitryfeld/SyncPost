@@ -135,7 +135,7 @@
 }
 - (NSError*) invalidModelError {
     if (!_invalidModelError) {
-        _invalidModelError = [NSError restErrorWithCode:kDFSPRestErrorInvalidResponseObjectFormat];
+        _invalidModelError = [NSError restErrorWithCode:kDFSPRestErrorUnexpectedResponseObjectType];
     }
     return _invalidModelError;
 }

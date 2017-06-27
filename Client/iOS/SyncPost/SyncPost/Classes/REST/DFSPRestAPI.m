@@ -25,7 +25,7 @@
 @synthesize error = _error;
 - (instancetype) init {
     if (self = [self initWithRequestMap:nil]) {
-        _requestMap = nil;
+        [NSException raise:@"DFSPRestAPI Init" format:@"Invalid Arguments"];
     }
     return self;
 }
@@ -47,7 +47,7 @@
                 [self startAPICall];
             }
         } else {
-            // error incorrect request name
+            _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRequestName];
         }
     }
 }
@@ -68,7 +68,7 @@
                 if (error) {
                     _error = error;
                 } else if (!_jsonDictionary) {
-                    _error = [NSError restErrorWithCode:kDFSPRestErrorFailureToParseJSONError];
+                    _error = [NSError restErrorWithCode:kDFSPRestErrorFailureToParseJSONE];
                 } else {
                     response = [_requestMap processResponse:_jsonDictionary];
                     if (!response) {
@@ -80,7 +80,7 @@
             }
             [self processHandleWithError:_error andResponse:response];
         } else {
-            //error invalid simulated data path
+            _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidSimulatedDataPath];
         }
     }
     _isInProcess = NO;

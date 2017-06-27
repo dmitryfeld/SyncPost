@@ -80,6 +80,7 @@
 @end
 
 @implementation DFSPCredentialsKVP
+@synthesize error = _error;
 - (void) setValue:(id)value forUndefinedKey:(NSString *)key {
     NSLog(@"UndefinedKey:%@ Value:%@ pair",key,value);
 }

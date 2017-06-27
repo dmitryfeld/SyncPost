@@ -10,54 +10,6 @@
 #import "DFSPSettings.h"
 #import "NSError+Rest.h"
 
-@interface DFSPRequest() {
-@private
-    __strong NSURLRequest* _request;
-    __strong NSError* _error;
-}
-@end
-
-@implementation DFSPRequest
-@synthesize request = _request;
-@synthesize error = _error;
-- (instancetype) init {
-    if (self = [self initWithRequest:nil andError:nil]) {
-    }
-    return self;
-}
-- (instancetype) initWithRequest:(NSURLRequest*) request andError:(NSError*) error {
-    if (self = [super init]) {
-        _request = request;
-        _error = error;
-    }
-    return self;
-}
-@end
-
-@interface DFSPResponse() {
-@private
-    __strong id<DFSPModel> _model;
-    __strong NSError* _error;
-}
-@end
-
-@implementation DFSPResponse
-@synthesize model = _model;
-@synthesize error = _error;
-- (instancetype) init {
-    if (self = [self initWithModel:nil andError:nil]) {
-    }
-    return self;
-}
-- (instancetype) initWithModel:(id<DFSPModel>)model andError:(NSError*) error {
-    if (self = [super init]) {
-        _model = model;
-        _error = error;
-    }
-    return self;
-}
-@end
-
 
 @interface DFSPRequestTemplate() {
 @private
@@ -68,6 +20,7 @@
     __strong NSString* _simulatedDataPath;
     __strong NSDictionary<NSString*,NSString*>* _parameters;
     __strong NSDictionary<NSString*,NSString*>* _body;
+    __strong NSError* _error;
 }
 
 @end
@@ -80,8 +33,10 @@
 @synthesize simulatedDataPath = _simulatedDataPath;
 @synthesize parameters = _parameters;
 @synthesize body = _body;
+@synthesize error = _error;
 - (instancetype) init {
     if (self = [self initWithDisctionary:nil]) {
+        [NSException raise:@"DFSPRequestTemplate Init" format:@"Invalid Arguments"];
     }
     return self;
 }
@@ -94,32 +49,38 @@
         _simulatedDataPath = dictionary[@"simulatedDataPath"];
         _parameters = dictionary[@"parameters"];
         _body = dictionary[@"body"];
+        _error = [self checkParameters];
     }
     return self;
 }
-- (DFSPRequest*) prepareRequestWithContext:(id)context {
-    DFSPEnvironment* environmenr = DFSPSettingsGet().environment;
-    NSURL* requestURL = [environmenr.accessURL URLByAppendingPathComponent:_requestPath];
+
+#pragma mark Prepare Request
+- (NSURLRequest*) prepareRequestWithContext:(id)context {
+    DFSPEnvironment* environment = DFSPSettingsGet().environment;
+    NSURL* requestURL = [environment.accessURL URLByAppendingPathComponent:_requestPath];
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:requestURL];
-    NSError* error = nil;
     request.HTTPMethod = @"GET";
     if (_method.length) {
         request.HTTPMethod = _method;
     }
+    _error = nil;
     [self resolveHeadersForRequest:request withContext:context];
     if ([request.HTTPMethod isEqualToString:@"POST"] || [request.HTTPMethod isEqualToString:@"PUT"]) {
-        error = [self resolveBodyForRequest:request withContext:context];
+        _error = [self resolveBodyForRequest:request withContext:context];
     }
-    return [[DFSPRequest alloc] initWithRequest:request andError:error];
+    return request;
 }
-- (DFSPResponse*) processResponse:(NSDictionary*)response {
-    id<DFSPModel> model = [self contentForType:_contentType andContent:response[@"content"]];
-    NSError* restError = [self errorForContent:response[@"error"]];
-    if (!restError && !model) {
-        restError = [NSError restErrorWithCode:kDFSPRestErrorInvalidResponseObject];
+
+#pragma mark Process Response
+- (id<DFSPModel>) processResponse:(NSDictionary*)response {
+    id<DFSPModel> model = nil;
+    _error = [self errorForContent:response[@"error"]];
+    if (!_error) {
+        model = [self contentForType:_contentType andDictionary:response[@"content"]];
     }
-    return [[DFSPResponse alloc] initWithModel:model andError:restError];
+    return model;
 }
+
 #pragma mark Resolvers
 - (void) resolveHeadersForRequest:(NSMutableURLRequest*)request withContext:(id)context {
     if (_parameters.count) {
@@ -132,11 +93,15 @@
                 value = [context valueForKeyPath:keyPath];
                 if (value) {
                     [request setValue:value forHTTPHeaderField:key];
+                } else {
+                    _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRestTemplateContent andMessage:[NSString stringWithFormat:@"Undefined Request Parameters Context Value for Key Path: %@",keyPath]];
                 }
+            } else {
+                _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRestTemplateContent andComment:@"Undefined Request Parameters Key"];
             }
         }
     } else {
-        //Error
+        _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRestTemplateContent andComment:@"Undefined Request Parameters Map"];
     }
 }
 - (NSError*) resolveBodyForRequest:(NSMutableURLRequest*)request withContext:(id)context {
@@ -144,8 +109,13 @@
     NSError* error = nil;
     if (bodyDict.count) {
         NSData* bodyData = [NSJSONSerialization dataWithJSONObject:bodyDict options:NSJSONWritingPrettyPrinted error:&error];
-        NSNumber* length = [NSNumber numberWithInteger:bodyData.length];
-        [request setValue:length.description forHTTPHeaderField:@"Content-Lenght"];
+        if (!error) {
+            NSNumber* length = [NSNumber numberWithInteger:bodyData.length];
+            [request setValue:length.description forHTTPHeaderField:@"Content-Lenght"];
+            request.HTTPBody = bodyData;
+        } else {
+            _error = error;
+        }
     }
     return error;
 }
@@ -162,29 +132,46 @@
                 value = [context valueForKeyPath:keyPath];
                 if (value) {
                     [temp setValue:value forKey:key];
+                } else {
+                    _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRestTemplateContent andMessage:[NSString stringWithFormat:@"Undefined Request Body Context Value for Key Path: %@",keyPath]];
                 }
+            } else {
+                _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRestTemplateContent andComment:@"Undefined Request Body Key"];
             }
         }
         result = [NSDictionary<NSString*,NSString*> dictionaryWithDictionary:temp];
+    } else {
+        _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRestTemplateContent andComment:@"Undefined Request Body Map"];
     }
     return result;
 }
+
 #pragma mark Utility methods
-- (id<DFSPModel>) contentForType:(NSString*)type andContent:(NSDictionary<NSString*,NSString*>*)content {
+- (id<DFSPModel>) contentForType:(NSString*)type andDictionary:(NSDictionary<NSString*,NSString*>*)content {
     id<DFSPModel> result = nil;
     if ([content isKindOfClass:[NSDictionary<NSString*,NSString*> class]]) {
-        Class loadingClass = NSClassFromString([self adjustType:type]);
-        id<DFSPModelKVP> model = [loadingClass new];
-        if ([model conformsToProtocol:@protocol(DFSPModelKVP)]) {
-            if ([model respondsToSelector:@selector(setValuesForKeysWithDictionary:)]) {
-                [model performSelector:@selector(setValuesForKeysWithDictionary:) withObject:content];
-                result = [model immutableCopy];
+        NSString* adjustedType = [self adjustType:type];
+        Class loadingClass = NSClassFromString([self adjustType:adjustedType]);
+        if (loadingClass) {
+            id<DFSPModelKVP> model = [loadingClass new];
+            if ([model conformsToProtocol:@protocol(DFSPModelKVP)]) {
+                if ([model respondsToSelector:@selector(setValuesForKeysWithDictionary:)]) {
+                    [model performSelector:@selector(setValuesForKeysWithDictionary:) withObject:content];
+                    if (model.error) {
+                        _error = model.error;
+                    }
+                    result = [model immutableCopy];
+                } else {
+                    _error = [NSError restErrorWithCode:kDFSPRestErrorRestTemplateResponseMapping andComment:[NSString stringWithFormat:@"Model Maping Class(%@) does not confirm to KVP protocol",type]];
+                }
             } else {
-                // error incorrect result mapping - type
+                _error = [NSError restErrorWithCode:kDFSPRestErrorRestTemplateResponseMapping andComment:[NSString stringWithFormat:@"Model Maping Class(%@) does not confirm to KVP protocol",type]];
             }
         } else {
-            // error incorrect result mapping - type
+            _error = [NSError restErrorWithCode:kDFSPRestErrorRestTemplateResponseMapping andComment:[NSString stringWithFormat:@"Can not load Model Maping Class(%@)",adjustedType]];
         }
+    } else {
+        _error = [NSError restErrorWithCode:kDFSPRestErrorRestTemplateResponseMapping andComment:@"Undefined Content Dictionary"];
     }
     return result;
 }
@@ -204,6 +191,21 @@
     NSRange range = [result rangeOfString:@"KVP"];
     if (range.location == NSNotFound) {
         result = [NSString stringWithFormat:@"%@KVP",result];
+    }
+    return result;
+}
+- (NSError*) checkParameters {
+    NSError* result = nil;
+    if (!_name.length) {
+        result = [NSError restErrorWithCode:kDFSPRestErrorInvalidRestTemplateParameter andComment:@"name"];
+    } else if (!_contentType.length) {
+        result = [NSError restErrorWithCode:kDFSPRestErrorInvalidRestTemplateParameter andComment:@"contentType"];
+    } else if (!_requestPath.length) {
+        result = [NSError restErrorWithCode:kDFSPRestErrorInvalidRestTemplateParameter andComment:@"requestPath"];
+    } else if (!_method.length) {
+        result = [NSError restErrorWithCode:kDFSPRestErrorInvalidRestTemplateParameter andComment:@"method"];
+    } else if (!_simulatedDataPath.length) {
+        result = [NSError restErrorWithCode:kDFSPRestErrorInvalidRestTemplateParameter andComment:@"simulatedDataPath"];
     }
     return result;
 }

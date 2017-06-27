@@ -10,16 +10,29 @@
 
 extern const NSString* kDFSPRestErrorDomain;
 typedef enum __DFSPRestUnitErrorCodes__:NSUInteger {
-    // Internal errors
+    // Internal errors cathegory
     kDFSPRestErrorCodeOK = 0,
     kDFSPRestErrorGeneralFailure = 1,
     kDFSPRestErrorNoData = 2,
-    kDFSPRestErrorInvalidTemplate = 3,
-    kDFSPRestErrorInvalidTemplateContext = 4,
-    kDFSPRestErrorInvalidTemplateList = 5,
-    kDFSPRestErrorFailureToParseJSONError = 6,
-    kDFSPRestErrorInvalidResponseObject = 7,
-    kDFSPRestErrorInvalidResponseObjectFormat = 8,
+    
+    //Template errors
+    kDFSPRestErrorInvalidRestTemplateParameter,
+    kDFSPRestErrorInvalidRestTemplateContent,
+    kDFSPRestErrorRestTemplateResponseMapping,
+    
+    //Request Map composition errors
+    kDFSPRestErrorInvalidRequestMapParameter,
+    kDFSPRestErrorInvalidRequestMapConetent,
+    kDFSPRestErrorRequestMapCanNotFindTemplate,
+    
+    //REST API process related
+    kDFSPRestErrorFailureToParseJSONE,
+    kDFSPRestErrorInvalidRequestName,
+    kDFSPRestErrorInvalidSimulatedDataPath,
+    
+    //Response related
+    kDFSPRestErrorRequestInvalidResponse,
+    kDFSPRestErrorUnexpectedResponseObjectType,
     
     // Errors from server
     kDFSPRestErrorUnauthorized
@@ -28,4 +41,5 @@ typedef enum __DFSPRestUnitErrorCodes__:NSUInteger {
 @interface NSError (Rest)
 + (NSError*) restErrorWithCode:(DFSPRestUnitErrorCodes)code;
 + (NSError*) restErrorWithCode:(DFSPRestUnitErrorCodes)code andMessage:(NSString*)message;
++ (NSError*) restErrorWithCode:(DFSPRestUnitErrorCodes)code andComment:(NSString*)comment;
 @end

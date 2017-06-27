@@ -30,7 +30,7 @@
 @synthesize requestTemplates = _requestTemplates;
 - (instancetype) init {
     if (self = [self initWithDictionary:nil]) {
-        
+        [NSException raise:@"DFSPRequestMap Init" format:@"Invalid Arguments"];
     }
     return self;
 }
@@ -38,7 +38,7 @@
     if (self = [super init]) {
         _name = dictionary[@"name"];
         _version = dictionary[@"version"];
-        _error = nil;
+        _error = [self checkParameters];
         _context = [self contextForClassName:dictionary[@"context"]];
         _isSimulated = [self simulatedForValue:dictionary[@"isSimulated"]];
         _requestTemplates = [self templatesForArray:dictionary[@"requests"]];
@@ -46,44 +46,44 @@
     return self;
 }
 - (NSURLRequest*) prepareRequestWithName:(NSString*)name {
-    DFSPRequest* result = nil;
+    NSURLRequest* result = nil;
     if (_requestTemplates.count) {
         DFSPRequestTemplate* template = [self findTemplateWithName:name];
         if (template) {
             result = [template prepareRequestWithContext:_context];
-            if (result.error) {
-                _error = result.error;
+            if (template.error) {
+                _error = template.error;
             }
         } else {
-            //error template not found
+            _error = [NSError restErrorWithCode:kDFSPRestErrorRequestMapCanNotFindTemplate andComment:[NSString stringWithFormat:@" name:%@",name]];
         }
     } else {
-        //error empty templates list
+        _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRequestMapConetent andComment:@"Empty Templates List"];
     }
-    return result.request;
+    return result;
 }
 
 - (id<DFSPModel>) processResponse:(NSDictionary*)response {
-    DFSPResponse* result = nil;
+    id<DFSPModel> result = nil;
     if (response.count) {
         NSString* name = response[@"name"];
         if (name.length) {
             DFSPRequestTemplate* template = [self findTemplateWithName:name];
             if (template) {
                 result = [template processResponse:response];
-                if (result.error) {
-                    _error = result.error;
+                if (template.error) {
+                    _error = template.error;
                 }
             } else {
-                //error template not found
+                _error = [NSError restErrorWithCode:kDFSPRestErrorRequestMapCanNotFindTemplate andComment:[NSString stringWithFormat:@" name:%@",name]];
             }
         } else {
-            //error invalid response structure
+            _error = [NSError restErrorWithCode:kDFSPRestErrorRequestInvalidResponse andComment:@"Undefined Response Type"];
         }
     } else {
-        //error invalid response structure
+        _error = [NSError restErrorWithCode:kDFSPRestErrorRequestInvalidResponse andComment:@"Empty Templates Response Data"];
     }
-    return result.model;
+    return result;
 }
 - (NSString*) simulatedDataPathWithName:(NSString*)name {
     NSString* result = nil;
@@ -91,7 +91,7 @@
     if (template) {
         result = template.simulatedDataPath;
     } else {
-        //error template not found
+        _error = [NSError restErrorWithCode:kDFSPRestErrorRequestMapCanNotFindTemplate andComment:[NSString stringWithFormat:@" name:%@",name]];
     }
     return result;
 }
@@ -100,9 +100,13 @@
     id result = nil;
     if ([contextClassName isKindOfClass:[NSString class]]) {
         Class loadingClass = NSClassFromString(contextClassName);
-        result = [loadingClass new];
+        if (loadingClass) {
+            result = [loadingClass new];
+        } else {
+            _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRequestMapConetent andComment:[NSString stringWithFormat:@"Can not load Map Context Class(%@)",contextClassName]];
+        }
     } else {
-        _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidTemplateContext];
+        _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRequestMapConetent andComment:@"Invalid Map Context Class Name"];
     }
     return result;
 }
@@ -123,11 +127,13 @@
             if ([dict isKindOfClass:[NSDictionary<NSString*,id> class]]) {
                 temp = [[DFSPRequestTemplate alloc] initWithDisctionary:dict];
                 [tempA addObject:temp];
+            } else {
+                _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRequestMapConetent andComment:@"Invalid Template"];
             }
         }
         result = [NSArray<DFSPRequestTemplate*> arrayWithArray:tempA];
     } else {
-        _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidTemplateList];
+        _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRequestMapConetent andComment:@"Invalid Templates List"];
     }
     return result;
 }
@@ -138,6 +144,15 @@
             result = template;
             break;
         }
+    }
+    return result;
+}
+- (NSError*) checkParameters {
+    NSError* result = nil;
+    if (!_name.length) {
+        result = [NSError restErrorWithCode:kDFSPRestErrorInvalidRequestMapParameter andComment:@"name"];
+    } else if (!_version.length) {
+        result = [NSError restErrorWithCode:kDFSPRestErrorInvalidRequestMapParameter andComment:@"version"];
     }
     return result;
 }
