@@ -6,10 +6,9 @@
 //  Copyright © 2017 Dmitry Feld. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DFSPModalController.h"
 
-@interface DFSPErrorController : UIViewController
-@property (readonly,nonatomic) BOOL isPresented;
-- (void) presentForController:(UIViewController*)controller withError:(NSError*)error andHandler:(void (^)())handler;
+@interface DFSPErrorController : DFSPModalController
+@property (strong,nonatomic) NSError* error;
 + (DFSPErrorController*) newController;
 @end

@@ -6,11 +6,8 @@
 //  Copyright © 2017 Dmitry Feld. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DFSPModalController.h"
 
-@interface DFSPSpinnerController : UIViewController
-@property (readonly,nonatomic) BOOL isPresented;
-- (void) presentForController:(UIViewController*)controller withHandler:(void(^)())handler;
-- (void) dismissWithHandler:(void(^)())handler;
+@interface DFSPSpinnerController : DFSPModalController
 + (DFSPSpinnerController*) newController;
 @end
