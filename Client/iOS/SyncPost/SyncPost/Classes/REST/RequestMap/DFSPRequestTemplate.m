@@ -65,7 +65,6 @@
     __strong NSString* _contentType;
     __strong NSString* _requestPath;
     __strong NSString* _method;
-    BOOL _simulated;
     __strong NSString* _simulatedDataPath;
     __strong NSDictionary<NSString*,NSString*>* _parameters;
     __strong NSDictionary<NSString*,NSString*>* _body;
@@ -78,7 +77,6 @@
 @synthesize contentType = _contentType;
 @synthesize requestPath = _requestPath;
 @synthesize method = _method;
-@synthesize simulated = _simulated;
 @synthesize simulatedDataPath = _simulatedDataPath;
 @synthesize parameters = _parameters;
 @synthesize body = _body;
@@ -94,7 +92,6 @@
         _requestPath = dictionary[@"requestPath"];
         _method = dictionary[@"method"];
         _simulatedDataPath = dictionary[@"simulatedDataPath"];
-        _simulated = [dictionary[@"simulated"] boolValue];
         _parameters = dictionary[@"parameters"];
         _body = dictionary[@"body"];
     }
@@ -176,13 +173,17 @@
 - (id<DFSPModel>) contentForType:(NSString*)type andContent:(NSDictionary<NSString*,NSString*>*)content {
     id<DFSPModel> result = nil;
     if ([content isKindOfClass:[NSDictionary<NSString*,NSString*> class]]) {
-        Class loadingClass = NSClassFromString(type);
+        Class loadingClass = NSClassFromString([self adjustType:type]);
         id<DFSPModelKVP> model = [loadingClass new];
         if ([model conformsToProtocol:@protocol(DFSPModelKVP)]) {
             if ([model respondsToSelector:@selector(setValuesForKeysWithDictionary:)]) {
                 [model performSelector:@selector(setValuesForKeysWithDictionary:) withObject:content];
                 result = [model immutableCopy];
+            } else {
+                // error incorrect result mapping - type
             }
+        } else {
+            // error incorrect result mapping - type
         }
     }
     return result;
@@ -198,5 +199,12 @@
     }
     return result;
 }
-
+- (NSString*) adjustType:(NSString*)type {
+    NSString* result = type;
+    NSRange range = [result rangeOfString:@"KVP"];
+    if (range.location == NSNotFound) {
+        result = [NSString stringWithFormat:@"%@KVP",result];
+    }
+    return result;
+}
 @end

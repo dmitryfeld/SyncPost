@@ -19,6 +19,7 @@ typedef enum __DFSPRestUnitErrorCodes__:NSUInteger {
     kDFSPRestErrorInvalidTemplateList = 5,
     kDFSPRestErrorFailureToParseJSONError = 6,
     kDFSPRestErrorInvalidResponseObject = 7,
+    kDFSPRestErrorInvalidResponseObjectFormat = 8,
     
     // Errors from server
     kDFSPRestErrorUnauthorized

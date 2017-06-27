@@ -16,7 +16,7 @@
 - (DFSPMutableAuthorizationPoint*) mutableCopy;
 @end
 
-@interface DFSPMutableAuthorizationPoint : DFSPAuthorizationPoint
+@interface DFSPMutableAuthorizationPoint : DFSPAuthorizationPoint<DFSPMutableModel>
 @property (strong,nonatomic,setter=setCredentials:) DFSPCredentials* credentials;
 @property (strong,nonatomic,setter=setAccessURL:) NSURL* accessURL;
 - (void) setCredentials:(DFSPCredentials *)credentials;
@@ -24,7 +24,7 @@
 - (DFSPAuthorizationPoint*) immutableCopy;
 @end
 
-@interface DFSPAuthorizationPointKVP : DFSPMutableAuthorizationPoint
+@interface DFSPAuthorizationPointKVP : DFSPMutableAuthorizationPoint<DFSPModelKVP>
 - (void) setValue:(id)value forUndefinedKey:(NSString *)key;
 - (void) setValue:(id)value forKey:(NSString *)key;
 + (DFSPAuthorizationPoint*) fromDictionary:(NSDictionary*)dictionary;

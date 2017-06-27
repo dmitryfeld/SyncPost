@@ -12,19 +12,22 @@
 @interface DFSPAuthorization : NSObject<DFSPModel>
 @property (readonly,nonatomic) NSString* userID;
 @property (readonly,nonatomic) NSString* authorizationToken;
+@property (readonly,nonatomic) NSTimeInterval timeToLive;
 - (instancetype) initWithTemplate:(DFSPAuthorization*)model;
 - (DFSPMutableAuthorization*) mutableCopy;
 @end
 
-@interface DFSPMutableAuthorization : DFSPAuthorization
+@interface DFSPMutableAuthorization : DFSPAuthorization<DFSPMutableModel>
 @property (strong,nonatomic,setter=setUserID:) NSString* userID;
 @property (strong,nonatomic,setter=setAuthorizationToken:) NSString* authorizationToken;
+@property (nonatomic,setter=setTimeToLive:) NSTimeInterval timeToLive;
 - (void) setUserID:(NSString*)userID;
 - (void) setAuthorizationToken:(NSString*)authorizationToken;
+- (void) setTimeToLive:(NSTimeInterval)timeToLive;
 - (DFSPAuthorization*) immutableCopy;
 @end
 
-@interface DFSPAuthorizationKVP : DFSPMutableAuthorization
+@interface DFSPAuthorizationKVP : DFSPMutableAuthorization<DFSPModelKVP>
 - (void) setValue:(id)value forUndefinedKey:(NSString *)key;
 - (void) setValue:(id)value forKey:(NSString *)key;
 + (DFSPAuthorization*) fromDictionary:(NSDictionary*)dictionary;

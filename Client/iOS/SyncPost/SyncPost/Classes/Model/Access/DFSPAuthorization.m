@@ -12,16 +12,19 @@
 @protected
     NSString* _userID;
     NSString* _authorizationToken;
+    NSTimeInterval _timeToLive;
 }
 @end
 
 @implementation DFSPAuthorization
 @synthesize userID = _userID;
 @synthesize authorizationToken = _authorizationToken;
+@synthesize timeToLive = _timeToLive;
 - (instancetype) init {
     if (self = [super init]) {
         _userID = @"";
         _authorizationToken = @"";
+        _timeToLive = 3600.;
     }
     return self;
 }
@@ -29,6 +32,7 @@
     if (self = [self init]) {
         _userID = [model.userID copy];
         _authorizationToken = [model.authorizationToken copy];
+        _timeToLive = model.timeToLive;
     }
     return self;
     
@@ -37,6 +41,7 @@
     if (self = [self init]) {
         _userID = [aDecoder decodeObjectForKey:@"memberID"];
         _authorizationToken = [aDecoder decodeObjectForKey:@"authorizationToken"];
+        _timeToLive = [aDecoder decodeFloatForKey:@"timeToLive"];
     }
     return self;
 }
@@ -46,6 +51,7 @@
 - (void) encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:_userID forKey:@"memberID"];
     [aCoder encodeObject:_authorizationToken forKey:@"authorizationToken"];
+    [aCoder encodeFloat:_timeToLive forKey:@"timeToLive"];
 }
 - (BOOL) isEqual:(id)object {
     if (![object isKindOfClass:[DFSPAuthorization class]]) {
@@ -55,7 +61,10 @@
     if (![_userID isEqualToString:obj.userID]) {
         return NO;
     }
-    return [_authorizationToken isEqualToString:obj.authorizationToken];
+    if (![_authorizationToken isEqualToString:obj.authorizationToken]) {
+        
+    }
+    return _timeToLive == obj.timeToLive;
 }
 -(NSUInteger)hash {
     return [self.userID hash] ^ [self.authorizationToken hash];
@@ -68,11 +77,15 @@
 @implementation DFSPMutableAuthorization
 @dynamic userID;
 @dynamic authorizationToken;
+@dynamic timeToLive;
 - (void) setUserID:(NSString*)userID {
     _userID = [userID copy];
 }
 - (void) setAuthorizationToken:(NSString *)authorizationToken {
     _authorizationToken = [authorizationToken copy];
+}
+- (void) setTimeToLive:(NSTimeInterval)timeToLive {
+    _timeToLive = timeToLive;
 }
 - (DFSPAuthorization*) immutableCopy {
     return [[DFSPAuthorization alloc] initWithTemplate:self];
@@ -84,7 +97,12 @@
     NSLog(@"UndefinedKey:%@ Value:%@ pair",key,value);
 }
 - (void) setValue:(id)value forKey:(NSString *)key {
-    [super setValue:value forKey:key];
+    if ([key isEqualToString:@"timeToLive"]) {
+        NSString* ttlS = [value description];
+        _timeToLive = ttlS.floatValue;
+    } else {
+        [super setValue:value forKey:key];
+    }
 }
 + (DFSPAuthorization*) fromDictionary:(NSDictionary*)dictionary {
     DFSPAuthorizationKVP* result = [DFSPAuthorizationKVP new];

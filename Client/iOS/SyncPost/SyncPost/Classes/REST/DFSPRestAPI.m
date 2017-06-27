@@ -71,6 +71,9 @@
                     _error = [NSError restErrorWithCode:kDFSPRestErrorFailureToParseJSONError];
                 } else {
                     response = [_requestMap processResponse:_jsonDictionary];
+                    if (!response) {
+                        _error = _requestMap.error;
+                    }
                 }
             } else {
                 _error = [NSError restErrorWithCode:kDFSPRestErrorNoData];

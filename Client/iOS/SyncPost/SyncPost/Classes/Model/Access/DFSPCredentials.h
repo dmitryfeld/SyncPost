@@ -16,7 +16,7 @@
 - (DFSPMutableCredentials*) mutableCopy;
 @end
 
-@interface DFSPMutableCredentials : DFSPCredentials
+@interface DFSPMutableCredentials : DFSPCredentials<DFSPMutableModel>
 @property (strong,nonatomic,setter=setUserName:) NSString* userName;
 @property (strong,nonatomic,setter=setPassword:) NSString* password;
 - (void) setUserName:(NSString*)userName;
@@ -24,7 +24,7 @@
 - (DFSPCredentials*) immutableCopy;
 @end
 
-@interface DFSPCredentialsKVP : DFSPMutableCredentials
+@interface DFSPCredentialsKVP : DFSPMutableCredentials<DFSPModelKVP>
 - (void) setValue:(id)value forUndefinedKey:(NSString *)key;
 - (void) setValue:(id)value forKey:(NSString *)key;
 + (DFSPCredentials*) fromDictionary:(NSDictionary*)dictionary;

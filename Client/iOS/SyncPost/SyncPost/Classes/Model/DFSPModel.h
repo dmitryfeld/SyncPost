@@ -28,7 +28,3 @@
 @protocol DFSPModelAUX<DFSPMutableModel>
 @end
 
-@protocol DFSPModelMapper<NSObject>
-@required
-- (id<DFSPModelKVP>) newModelForName:(NSString*)name;
-@end

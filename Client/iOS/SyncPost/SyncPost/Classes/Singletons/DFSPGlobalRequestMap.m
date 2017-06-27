@@ -24,7 +24,10 @@ const static NSString *__kDFSPGlobalRequestMapTag = @"__kDFSPGlobalRequestMapTag
     NSDictionary* dict = [NSDictionary dictionaryWithContentsOfURL:url];
     DFSPGlobalRequestMap* result = nil;
     if (dict) {
-        return [[DFSPGlobalRequestMap alloc] initWithDictionary:dict];
+        dict = dict[@"requestMap"];
+        if (dict.count) {
+            result = [[DFSPGlobalRequestMap alloc] initWithDictionary:dict];
+        }
     }
     return result;
 }
@@ -32,7 +35,10 @@ const static NSString *__kDFSPGlobalRequestMapTag = @"__kDFSPGlobalRequestMapTag
     NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"plist"]];
     DFSPGlobalRequestMap* result = nil;
     if (dict) {
-        return [[DFSPGlobalRequestMap alloc] initWithDictionary:dict];
+        dict = dict[@"requestMap"];
+        if (dict.count) {
+            result = [[DFSPGlobalRequestMap alloc] initWithDictionary:dict];
+        }
     }
     return result;
 }

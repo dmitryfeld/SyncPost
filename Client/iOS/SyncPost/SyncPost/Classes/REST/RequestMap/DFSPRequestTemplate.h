@@ -26,7 +26,6 @@
 @property (readonly,nonatomic,strong) NSString* contentType;
 @property (readonly,nonatomic,strong) NSString* requestPath;
 @property (readonly,nonatomic,strong) NSString* method;
-@property (readonly,nonatomic) BOOL simulated;
 @property (readonly,nonatomic,strong) NSString* simulatedDataPath;
 @property (readonly,nonatomic,strong) NSDictionary<NSString*,NSString*>* parameters;
 @property (readonly,nonatomic,strong) NSDictionary<NSString*,NSString*>* body;
