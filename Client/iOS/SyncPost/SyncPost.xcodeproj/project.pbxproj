@@ -10,6 +10,7 @@
 		000985371ECF5906006E6C51 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 000985361ECF5906006E6C51 /* Defaults.plist */; };
 		001AFE4E1EFB4D3E00C9B0B5 /* DFSPRequestMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 001AFE4D1EFB4D3E00C9B0B5 /* DFSPRequestMap.m */; };
 		001AFE511EFB4F5100C9B0B5 /* DFSPRequestTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 001AFE501EFB4F5100C9B0B5 /* DFSPRequestTemplate.m */; };
+		003B5F471F02022200873108 /* DFSPModalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003B5F461F02022200873108 /* DFSPModalController.m */; };
 		003EF9241EF3964B00A8D8D6 /* SignOnController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 003EF9221EF3964B00A8D8D6 /* SignOnController.storyboard */; };
 		003EF9281EF3983200A8D8D6 /* DFSPSignOnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF9271EF3983200A8D8D6 /* DFSPSignOnViewController.m */; };
 		003EF92B1EF3993100A8D8D6 /* DFSPSignOnController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF92A1EF3993100A8D8D6 /* DFSPSignOnController.m */; };
@@ -28,8 +29,8 @@
 		0083981A1F019C6F00D7D6BB /* DFSPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 008398191F019C6F00D7D6BB /* DFSPService.m */; };
 		0083981D1F01A03A00D7D6BB /* DFSPGlobalRequestMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0083981C1F01A03A00D7D6BB /* DFSPGlobalRequestMap.m */; };
 		008398261F01B71E00D7D6BB /* DFSPSpinnerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 008398201F01B71E00D7D6BB /* DFSPSpinnerController.m */; };
-		008398271F01B71E00D7D6BB /* DFSPSpinnerTransitionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 008398231F01B71E00D7D6BB /* DFSPSpinnerTransitionDelegate.m */; };
-		008398281F01B71E00D7D6BB /* DFSPSpnnerTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 008398251F01B71E00D7D6BB /* DFSPSpnnerTransitioning.m */; };
+		008398271F01B71E00D7D6BB /* DFSPModalTransitionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 008398231F01B71E00D7D6BB /* DFSPModalTransitionDelegate.m */; };
+		008398281F01B71E00D7D6BB /* DFSPModalTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 008398251F01B71E00D7D6BB /* DFSPModalTransitioning.m */; };
 		0083982B1F01B7E400D7D6BB /* ErrorController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 008398291F01B7E400D7D6BB /* ErrorController.storyboard */; };
 		0083982E1F01BC1E00D7D6BB /* DFSPErrorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0083982D1F01BC1E00D7D6BB /* DFSPErrorController.m */; };
 		009312FC1EF9075D003247B0 /* token.json in Resources */ = {isa = PBXBuildFile; fileRef = 009312FB1EF9075D003247B0 /* token.json */; };
@@ -55,6 +56,8 @@
 		001AFE4F1EFB4F5100C9B0B5 /* DFSPRequestTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPRequestTemplate.h; sourceTree = "<group>"; };
 		001AFE501EFB4F5100C9B0B5 /* DFSPRequestTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPRequestTemplate.m; sourceTree = "<group>"; };
 		002FF67A1E971563000B517D /* SyncPost.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SyncPost.entitlements; sourceTree = "<group>"; };
+		003B5F451F02022200873108 /* DFSPModalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPModalController.h; sourceTree = "<group>"; };
+		003B5F461F02022200873108 /* DFSPModalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPModalController.m; sourceTree = "<group>"; };
 		003EF9231EF3964B00A8D8D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SignOnController.storyboard; sourceTree = "<group>"; };
 		003EF9261EF3983200A8D8D6 /* DFSPSignOnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSignOnViewController.h; sourceTree = "<group>"; };
 		003EF9271EF3983200A8D8D6 /* DFSPSignOnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPSignOnViewController.m; sourceTree = "<group>"; };
@@ -87,10 +90,10 @@
 		0083981C1F01A03A00D7D6BB /* DFSPGlobalRequestMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPGlobalRequestMap.m; sourceTree = "<group>"; };
 		0083981F1F01B71E00D7D6BB /* DFSPSpinnerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSpinnerController.h; sourceTree = "<group>"; };
 		008398201F01B71E00D7D6BB /* DFSPSpinnerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPSpinnerController.m; sourceTree = "<group>"; };
-		008398221F01B71E00D7D6BB /* DFSPSpinnerTransitionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSpinnerTransitionDelegate.h; sourceTree = "<group>"; };
-		008398231F01B71E00D7D6BB /* DFSPSpinnerTransitionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPSpinnerTransitionDelegate.m; sourceTree = "<group>"; };
-		008398241F01B71E00D7D6BB /* DFSPSpnnerTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSpnnerTransitioning.h; sourceTree = "<group>"; };
-		008398251F01B71E00D7D6BB /* DFSPSpnnerTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPSpnnerTransitioning.m; sourceTree = "<group>"; };
+		008398221F01B71E00D7D6BB /* DFSPModalTransitionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPModalTransitionDelegate.h; sourceTree = "<group>"; };
+		008398231F01B71E00D7D6BB /* DFSPModalTransitionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPModalTransitionDelegate.m; sourceTree = "<group>"; };
+		008398241F01B71E00D7D6BB /* DFSPModalTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPModalTransitioning.h; sourceTree = "<group>"; };
+		008398251F01B71E00D7D6BB /* DFSPModalTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPModalTransitioning.m; sourceTree = "<group>"; };
 		0083982A1F01B7E400D7D6BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ErrorController.storyboard; sourceTree = "<group>"; };
 		0083982C1F01BC1E00D7D6BB /* DFSPErrorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPErrorController.h; sourceTree = "<group>"; };
 		0083982D1F01BC1E00D7D6BB /* DFSPErrorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPErrorController.m; sourceTree = "<group>"; };
@@ -241,6 +244,8 @@
 				008398201F01B71E00D7D6BB /* DFSPSpinnerController.m */,
 				0083982C1F01BC1E00D7D6BB /* DFSPErrorController.h */,
 				0083982D1F01BC1E00D7D6BB /* DFSPErrorController.m */,
+				003B5F451F02022200873108 /* DFSPModalController.h */,
+				003B5F461F02022200873108 /* DFSPModalController.m */,
 			);
 			path = ModalServices;
 			sourceTree = "<group>";
@@ -248,10 +253,10 @@
 		008398211F01B71E00D7D6BB /* Transitioning */ = {
 			isa = PBXGroup;
 			children = (
-				008398221F01B71E00D7D6BB /* DFSPSpinnerTransitionDelegate.h */,
-				008398231F01B71E00D7D6BB /* DFSPSpinnerTransitionDelegate.m */,
-				008398241F01B71E00D7D6BB /* DFSPSpnnerTransitioning.h */,
-				008398251F01B71E00D7D6BB /* DFSPSpnnerTransitioning.m */,
+				008398221F01B71E00D7D6BB /* DFSPModalTransitionDelegate.h */,
+				008398231F01B71E00D7D6BB /* DFSPModalTransitionDelegate.m */,
+				008398241F01B71E00D7D6BB /* DFSPModalTransitioning.h */,
+				008398251F01B71E00D7D6BB /* DFSPModalTransitioning.m */,
 			);
 			path = Transitioning;
 			sourceTree = "<group>";
@@ -494,8 +499,8 @@
 				003EF9441EF6F4EC00A8D8D6 /* DFSPRestAPI.m in Sources */,
 				001AFE4E1EFB4D3E00C9B0B5 /* DFSPRequestMap.m in Sources */,
 				00D4ED7F1EFC32F600ADF60A /* DFSPApplicationContext.m in Sources */,
-				008398271F01B71E00D7D6BB /* DFSPSpinnerTransitionDelegate.m in Sources */,
-				008398281F01B71E00D7D6BB /* DFSPSpnnerTransitioning.m in Sources */,
+				008398271F01B71E00D7D6BB /* DFSPModalTransitionDelegate.m in Sources */,
+				008398281F01B71E00D7D6BB /* DFSPModalTransitioning.m in Sources */,
 				00CEBD4C1ECE713300BF6EB4 /* DFSPAuthorization.m in Sources */,
 				00CEBD4F1ECE73D900BF6EB4 /* DFSPCredentials.m in Sources */,
 				003EF93C1EF4C8F000A8D8D6 /* UIColor+Service.m in Sources */,
@@ -508,6 +513,7 @@
 				00CEBD3F1ECE31A200BF6EB4 /* NSString+Service.m in Sources */,
 				003EF9471EF6F50F00A8D8D6 /* NSError+Rest.m in Sources */,
 				001AFE511EFB4F5100C9B0B5 /* DFSPRequestTemplate.m in Sources */,
+				003B5F471F02022200873108 /* DFSPModalController.m in Sources */,
 				00CEBD521ECE772C00BF6EB4 /* DFSPAuthorizationPoint.m in Sources */,
 				0083981D1F01A03A00D7D6BB /* DFSPGlobalRequestMap.m in Sources */,
 				003EF9281EF3983200A8D8D6 /* DFSPSignOnViewController.m in Sources */,
