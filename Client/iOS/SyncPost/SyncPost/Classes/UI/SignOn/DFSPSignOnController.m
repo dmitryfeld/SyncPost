@@ -10,17 +10,23 @@
 #import "DFSPSignOnViewController.h"
 #import "DFSPSpinnerController.h"
 #import "DFSPService.h"
-
+#import "DFSPErrorController.h"
+#import "DFSPApplicationData.h"
+#import "NSError+Rest.h"
 
 @interface DFSPSignOnController ()<DFSPSignOnViewControllerDelegate> {
     __strong void(^_controlHandler)(NSError*);
     __strong NSError* _error;
     __strong DFSPSpinnerController* _spinner;
     __strong UIViewController* _parentController;
+    __strong DFSPErrorController* _errorController;
+    __strong NSError* _invalidModelError;
     __strong DFSPService* _service;
     BOOL _isPresented;
 }
 @property (readonly,nonatomic,strong) DFSPSpinnerController* spinner;
+@property (readonly,nonatomic,strong) DFSPErrorController* errorController;
+@property (readonly,nonatomic,strong) NSError* invalidModelError;
 @property (readonly,nonatomic,strong) DFSPService* service;
 @property (readonly,nonatomic) DFSPSignOnViewController* signonController;
 @end
@@ -28,6 +34,8 @@
 @implementation DFSPSignOnController
 @synthesize isPresented = _isPresented;
 @synthesize spinner = _spinner;
+@synthesize errorController = _errorController;
+@synthesize invalidModelError = _invalidModelError;
 @synthesize service = _service;
 @dynamic signonController;
 - (void)viewDidLoad {
@@ -57,9 +65,20 @@
         [self.service requestWithName:@"authorization" andCompletionHandler:^(NSError *error_, id<DFSPModel>model_) {
             [self.spinner dismissWithHandler:^{
                 if (error_) {
-                    //alert
+                    self.errorController.error = error_;
+                    [self.errorController presentForController:self withHandler:^{
+                        
+                    }];
                 } else {
                     _isPresented = NO;
+                    if ([self checkAuthorization:model_]) {
+                        DFSPApplicationDataGet().authorization = (DFSPAuthorization*)model_;
+                    } else {
+                        self.errorController.error = self.invalidModelError;
+                        [self.errorController presentForController:self withHandler:^{
+                            
+                        }];
+                    }
                     [_parentController dismissViewControllerAnimated:YES completion:^{
                         if (_controlHandler) {
                             if ([NSThread isMainThread]) {
@@ -77,6 +96,23 @@
     }];
 }
 
+- (BOOL) checkAuthorization:(id<DFSPModel>)authorization {
+    BOOL result = YES;
+    DFSPAuthorization* auth = (DFSPAuthorization*)authorization;
+    if (![auth isKindOfClass:[DFSPAuthorization class]]) {
+        result = NO;
+    }
+    if (!auth.authorizationToken.length) {
+        result = NO;
+    }
+    if (!auth.userID.length) {
+        result = NO;
+    }
+    if (!auth.timeToLive) {
+        result = NO;
+    }
+    return result;
+}
 
 
 + (DFSPSignOnController*) newController {
@@ -91,13 +127,24 @@
     }
     return _spinner;
 }
+- (DFSPErrorController*) errorController {
+    if (!_errorController) {
+        _errorController = [DFSPErrorController newController];
+    }
+    return _errorController;
+}
+- (NSError*) invalidModelError {
+    if (!_invalidModelError) {
+        _invalidModelError = [NSError restErrorWithCode:kDFSPRestErrorInvalidResponseObjectFormat];
+    }
+    return _invalidModelError;
+}
 - (DFSPService*) service {
     if (!_service) {
         _service = [DFSPService new];
     }
     return _service;
 }
-
 - (DFSPSignOnViewController*) signonController {
     return (DFSPSignOnViewController*)self.viewControllers.firstObject;
 }
