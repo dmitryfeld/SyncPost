@@ -10,6 +10,10 @@
 		000985371ECF5906006E6C51 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 000985361ECF5906006E6C51 /* Defaults.plist */; };
 		001AFE4E1EFB4D3E00C9B0B5 /* DFSPRequestMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 001AFE4D1EFB4D3E00C9B0B5 /* DFSPRequestMap.m */; };
 		001AFE511EFB4F5100C9B0B5 /* DFSPRequestTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 001AFE501EFB4F5100C9B0B5 /* DFSPRequestTemplate.m */; };
+		0038EBE41F0357D7009777DE /* signoff.json in Resources */ = {isa = PBXBuildFile; fileRef = 0038EBE21F0357D7009777DE /* signoff.json */; };
+		0038EBE51F0357D7009777DE /* signon.json in Resources */ = {isa = PBXBuildFile; fileRef = 0038EBE31F0357D7009777DE /* signon.json */; };
+		0038EBE81F035E2A009777DE /* DFSPRESTService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0038EBE71F035E2A009777DE /* DFSPRESTService.m */; };
+		0038EBEB1F035EA9009777DE /* DFSPAuthorizationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0038EBEA1F035EA9009777DE /* DFSPAuthorizationService.m */; };
 		003B5F471F02022200873108 /* DFSPModalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003B5F461F02022200873108 /* DFSPModalController.m */; };
 		003EF9241EF3964B00A8D8D6 /* SignOnController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 003EF9221EF3964B00A8D8D6 /* SignOnController.storyboard */; };
 		003EF9281EF3983200A8D8D6 /* DFSPSignOnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 003EF9271EF3983200A8D8D6 /* DFSPSignOnViewController.m */; };
@@ -26,14 +30,12 @@
 		0062A37C1E9773C800E8726E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0062A3771E9773C800E8726E /* Localizable.strings */; };
 		0062A3821E97741D00E8726E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0062A37E1E97741D00E8726E /* LaunchScreen.storyboard */; };
 		0062A3831E97741D00E8726E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0062A3801E97741D00E8726E /* Main.storyboard */; };
-		0083981A1F019C6F00D7D6BB /* DFSPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 008398191F019C6F00D7D6BB /* DFSPService.m */; };
 		0083981D1F01A03A00D7D6BB /* DFSPGlobalRequestMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 0083981C1F01A03A00D7D6BB /* DFSPGlobalRequestMap.m */; };
 		008398261F01B71E00D7D6BB /* DFSPSpinnerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 008398201F01B71E00D7D6BB /* DFSPSpinnerController.m */; };
 		008398271F01B71E00D7D6BB /* DFSPModalTransitionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 008398231F01B71E00D7D6BB /* DFSPModalTransitionDelegate.m */; };
 		008398281F01B71E00D7D6BB /* DFSPModalTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 008398251F01B71E00D7D6BB /* DFSPModalTransitioning.m */; };
 		0083982B1F01B7E400D7D6BB /* ErrorController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 008398291F01B7E400D7D6BB /* ErrorController.storyboard */; };
 		0083982E1F01BC1E00D7D6BB /* DFSPErrorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0083982D1F01BC1E00D7D6BB /* DFSPErrorController.m */; };
-		009312FC1EF9075D003247B0 /* token.json in Resources */ = {isa = PBXBuildFile; fileRef = 009312FB1EF9075D003247B0 /* token.json */; };
 		00CEBD3F1ECE31A200BF6EB4 /* NSString+Service.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEBD3E1ECE31A200BF6EB4 /* NSString+Service.m */; };
 		00CEBD481ECE508C00BF6EB4 /* DFSPMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEBD471ECE508C00BF6EB4 /* DFSPMember.m */; };
 		00CEBD4C1ECE713300BF6EB4 /* DFSPAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEBD4B1ECE713300BF6EB4 /* DFSPAuthorization.m */; };
@@ -56,6 +58,12 @@
 		001AFE4F1EFB4F5100C9B0B5 /* DFSPRequestTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPRequestTemplate.h; sourceTree = "<group>"; };
 		001AFE501EFB4F5100C9B0B5 /* DFSPRequestTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPRequestTemplate.m; sourceTree = "<group>"; };
 		002FF67A1E971563000B517D /* SyncPost.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SyncPost.entitlements; sourceTree = "<group>"; };
+		0038EBE21F0357D7009777DE /* signoff.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = signoff.json; sourceTree = "<group>"; };
+		0038EBE31F0357D7009777DE /* signon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = signon.json; sourceTree = "<group>"; };
+		0038EBE61F035E2A009777DE /* DFSPRESTService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPRESTService.h; sourceTree = "<group>"; };
+		0038EBE71F035E2A009777DE /* DFSPRESTService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPRESTService.m; sourceTree = "<group>"; };
+		0038EBE91F035EA9009777DE /* DFSPAuthorizationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPAuthorizationService.h; sourceTree = "<group>"; };
+		0038EBEA1F035EA9009777DE /* DFSPAuthorizationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPAuthorizationService.m; sourceTree = "<group>"; };
 		003B5F451F02022200873108 /* DFSPModalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPModalController.h; sourceTree = "<group>"; };
 		003B5F461F02022200873108 /* DFSPModalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPModalController.m; sourceTree = "<group>"; };
 		003EF9231EF3964B00A8D8D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SignOnController.storyboard; sourceTree = "<group>"; };
@@ -84,8 +92,6 @@
 		0062A37A1E9773C800E8726E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0062A37F1E97741D00E8726E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0062A3811E97741D00E8726E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
-		008398181F019C6F00D7D6BB /* DFSPService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPService.h; sourceTree = "<group>"; };
-		008398191F019C6F00D7D6BB /* DFSPService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPService.m; sourceTree = "<group>"; };
 		0083981B1F01A03A00D7D6BB /* DFSPGlobalRequestMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPGlobalRequestMap.h; sourceTree = "<group>"; };
 		0083981C1F01A03A00D7D6BB /* DFSPGlobalRequestMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPGlobalRequestMap.m; sourceTree = "<group>"; };
 		0083981F1F01B71E00D7D6BB /* DFSPSpinnerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPSpinnerController.h; sourceTree = "<group>"; };
@@ -97,7 +103,6 @@
 		0083982A1F01B7E400D7D6BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ErrorController.storyboard; sourceTree = "<group>"; };
 		0083982C1F01BC1E00D7D6BB /* DFSPErrorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPErrorController.h; sourceTree = "<group>"; };
 		0083982D1F01BC1E00D7D6BB /* DFSPErrorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPErrorController.m; sourceTree = "<group>"; };
-		009312FB1EF9075D003247B0 /* token.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = token.json; sourceTree = "<group>"; };
 		00CEBD3D1ECE31A200BF6EB4 /* NSString+Service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Service.h"; sourceTree = "<group>"; };
 		00CEBD3E1ECE31A200BF6EB4 /* NSString+Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Service.m"; sourceTree = "<group>"; };
 		00CEBD421ECE34FA00BF6EB4 /* DFSPModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPModel.h; sourceTree = "<group>"; };
@@ -163,8 +168,6 @@
 			isa = PBXGroup;
 			children = (
 				003EF93E1EF6F39C00A8D8D6 /* AAS */,
-				008398181F019C6F00D7D6BB /* DFSPService.h */,
-				008398191F019C6F00D7D6BB /* DFSPService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -173,6 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				009312FA1EF9075D003247B0 /* Simulated */,
+				0038EBE91F035EA9009777DE /* DFSPAuthorizationService.h */,
+				0038EBEA1F035EA9009777DE /* DFSPAuthorizationService.m */,
 			);
 			path = AAS;
 			sourceTree = "<group>";
@@ -264,7 +269,8 @@
 		009312FA1EF9075D003247B0 /* Simulated */ = {
 			isa = PBXGroup;
 			children = (
-				009312FB1EF9075D003247B0 /* token.json */,
+				0038EBE21F0357D7009777DE /* signoff.json */,
+				0038EBE31F0357D7009777DE /* signon.json */,
 			);
 			path = Simulated;
 			sourceTree = "<group>";
@@ -297,6 +303,8 @@
 				001AFE4B1EFB4CE500C9B0B5 /* RequestMap */,
 				003EF9421EF6F4EC00A8D8D6 /* DFSPRestAPI.h */,
 				003EF9431EF6F4EC00A8D8D6 /* DFSPRestAPI.m */,
+				0038EBE61F035E2A009777DE /* DFSPRESTService.h */,
+				0038EBE71F035E2A009777DE /* DFSPRESTService.m */,
 				003EF9451EF6F50F00A8D8D6 /* NSError+Rest.h */,
 				003EF9461EF6F50F00A8D8D6 /* NSError+Rest.m */,
 			);
@@ -467,14 +475,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0038EBE51F0357D7009777DE /* signon.json in Resources */,
 				0083982B1F01B7E400D7D6BB /* ErrorController.storyboard in Resources */,
 				0062A3831E97741D00E8726E /* Main.storyboard in Resources */,
 				0062A37C1E9773C800E8726E /* Localizable.strings in Resources */,
 				000985371ECF5906006E6C51 /* Defaults.plist in Resources */,
 				0062A37B1E9773C800E8726E /* InfoPlist.strings in Resources */,
 				003EF9241EF3964B00A8D8D6 /* SignOnController.storyboard in Resources */,
-				009312FC1EF9075D003247B0 /* token.json in Resources */,
 				0062A3821E97741D00E8726E /* LaunchScreen.storyboard in Resources */,
+				0038EBE41F0357D7009777DE /* signoff.json in Resources */,
 				003EF9331EF3A60C00A8D8D6 /* SpinnerController.storyboard in Resources */,
 				00D4ED811EFC4FAB00ADF60A /* RequestMap.plist in Resources */,
 				00DA876B1E97069B00862BF5 /* Assets.xcassets in Resources */,
@@ -505,11 +514,12 @@
 				00CEBD4F1ECE73D900BF6EB4 /* DFSPCredentials.m in Sources */,
 				003EF93C1EF4C8F000A8D8D6 /* UIColor+Service.m in Sources */,
 				0062A36F1E9773B400E8726E /* DFSPPushNotificationSupport.m in Sources */,
-				0083981A1F019C6F00D7D6BB /* DFSPService.m in Sources */,
 				00DA2B791EF35ED100E2DAF2 /* DFSPEnvironment.m in Sources */,
 				00DA875D1E97069B00862BF5 /* main.m in Sources */,
 				00DA2B761EF35E6500E2DAF2 /* DFSPSettings.m in Sources */,
+				0038EBEB1F035EA9009777DE /* DFSPAuthorizationService.m in Sources */,
 				00DA2B6F1EF3599F00E2DAF2 /* DFSPApplicationData.m in Sources */,
+				0038EBE81F035E2A009777DE /* DFSPRESTService.m in Sources */,
 				00CEBD3F1ECE31A200BF6EB4 /* NSString+Service.m in Sources */,
 				003EF9471EF6F50F00A8D8D6 /* NSError+Rest.m in Sources */,
 				001AFE511EFB4F5100C9B0B5 /* DFSPRequestTemplate.m in Sources */,
