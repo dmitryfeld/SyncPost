@@ -44,7 +44,7 @@ const static NSString *__kDFSPSettingsTag = @"__kDFSPSettingsTag";
         _bundleIdentifier = bundleIdentifier;
         
         if (!userDefaults.length) {
-            userDefaults = @"UserDefaults";
+            userDefaults = @"Defaults";
         }
 
         [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:userDefaults ofType:@"plist"]]];

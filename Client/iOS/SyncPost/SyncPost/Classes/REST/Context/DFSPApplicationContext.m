@@ -29,6 +29,9 @@
 - (DFSPAuthorization*) authorization {
     return DFSPApplicationDataGet().authorization;
 }
+- (NSString*) appVersion {
+    return DFSPSettingsGet().appVersionString;
+}
 - (NSString*) appName {
     return DFSPSettingsGet().applicationName;
 }
@@ -43,5 +46,8 @@
 }
 - (NSString*) voipPushToken {
     return DFSPApplicationDataGet().voipPushToken;
+}
+- (id) valueForUndefinedKey:(NSString *)key {
+    return nil;
 }
 @end

@@ -30,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addGestureRecognizer:self.tapGesture];
+    self.errorLabel.text = _error.localizedDescription;
 }
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -45,10 +46,8 @@
     }
 }
 - (void) whenPresented {
-    self.errorLabel.text = self.error.localizedDescription;
 }
 - (void) whenDismissed {
-    self.errorLabel.text = @"";
 }
 
 - (UIColor*) backgroundColor {
@@ -66,7 +65,15 @@
 - (void) onTapGesture:(UIGestureRecognizer*)gesture {
     [self dismissWithHandler:_completionHandler];
 }
-
+- (NSError*) error {
+    return _error;
+}
+- (void) setError:(NSError *)error {
+    if (![_error isEqual:error]) {
+        _error = error;
+        self.errorLabel.text = _error.localizedDescription;
+    }
+}
 + (DFSPErrorController*) newController {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ErrorController" bundle:nil];
     NSString* identifier = @"DFSPErrorController";

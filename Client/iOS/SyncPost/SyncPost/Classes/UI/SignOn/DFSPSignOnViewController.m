@@ -47,12 +47,12 @@
 
 - (IBAction) onSignOnButton:(id)sender {
     [self hideKeyboard];
-    if ([self.delegate respondsToSelector:@selector(signOnViewControllerDidTapUpdateButton:)]) {
+    if ([self.delegate respondsToSelector:@selector(signOnViewControllerDidTapSignonButton:)]) {
         if ([NSThread isMainThread]) {
-            [self.delegate signOnViewControllerDidTapUpdateButton:self];
+            [self.delegate signOnViewControllerDidTapSignonButton:self];
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate signOnViewControllerDidTapUpdateButton:self];
+                [self.delegate signOnViewControllerDidTapSignonButton:self];
             });
         }
     }

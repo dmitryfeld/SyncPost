@@ -55,7 +55,7 @@
                 _error = template.error;
             }
         } else {
-            _error = [NSError restErrorWithCode:kDFSPRestErrorRequestMapCanNotFindTemplate andComment:[NSString stringWithFormat:@" name:%@",name]];
+            _error = [NSError restErrorWithCode:kDFSPRestErrorRequestMapCanNotFindTemplate andComment:[NSString stringWithFormat:@" request: %@",name]];
         }
     } else {
         _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRequestMapConetent andComment:@"Empty Templates List"];
@@ -75,7 +75,7 @@
                     _error = template.error;
                 }
             } else {
-                _error = [NSError restErrorWithCode:kDFSPRestErrorRequestMapCanNotFindTemplate andComment:[NSString stringWithFormat:@" name:%@",name]];
+                _error = [NSError restErrorWithCode:kDFSPRestErrorRequestMapCanNotFindTemplate andComment:[NSString stringWithFormat:@" response: %@",name]];
             }
         } else {
             _error = [NSError restErrorWithCode:kDFSPRestErrorRequestInvalidResponse andComment:@"Undefined Response Type"];

@@ -9,23 +9,27 @@
 #import "SecondViewController.h"
 #import "DFSPSignOnController.h"
 #import "DFSPApplicationData.h"
+#import "DFSPAuthorizationService.h"
 
 @interface SecondViewController () {
 @private
     __strong DFSPSignOnController* _signOnController;
+    __strong DFSPAuthorizationService* _authorizationService;
 }
 @property (readonly,nonatomic,strong) DFSPSignOnController* signOnController;
+@property (readonly,nonatomic,strong) DFSPAuthorizationService* authorizationService;
 @end
 
 @implementation SecondViewController
 @synthesize signOnController = _signOnController;
+@synthesize authorizationService = _authorizationService;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if (!DFSPApplicationDataGet().authorization) {
+    if (!DFSPApplicationDataGet().isAuthorized) {
         [self.signOnController presentForController:self withHandler:^(NSError *error_) {
             
         }];
@@ -43,6 +47,20 @@
         _signOnController = [DFSPSignOnController newController];
     }
     return _signOnController;
+}
+- (DFSPAuthorizationService*) authorizationService {
+    if (!_authorizationService) {
+        _authorizationService = [[DFSPAuthorizationService alloc] initWithController:self];
+    }
+    return _authorizationService;
+}
+
+- (IBAction)onSignOut:(id)sender {
+    [self.authorizationService signOffWithHandler:^{
+        [self.signOnController presentForController:self withHandler:^(NSError *error_) {
+            
+        }];
+    }];
 }
 
 @end

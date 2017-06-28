@@ -93,8 +93,6 @@
                 value = [context valueForKeyPath:keyPath];
                 if (value) {
                     [request setValue:value forHTTPHeaderField:key];
-                } else {
-                    _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRestTemplateContent andMessage:[NSString stringWithFormat:@"Undefined Request Parameters Context Value for Key Path: %@",keyPath]];
                 }
             } else {
                 _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRestTemplateContent andComment:@"Undefined Request Parameters Key"];
@@ -132,8 +130,6 @@
                 value = [context valueForKeyPath:keyPath];
                 if (value) {
                     [temp setValue:value forKey:key];
-                } else {
-                    _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRestTemplateContent andMessage:[NSString stringWithFormat:@"Undefined Request Body Context Value for Key Path: %@",keyPath]];
                 }
             } else {
                 _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRestTemplateContent andComment:@"Undefined Request Body Key"];

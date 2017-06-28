@@ -13,6 +13,7 @@
 @property (readonly,nonatomic) NSString* userID;
 @property (readonly,nonatomic) NSString* authorizationToken;
 @property (readonly,nonatomic) NSTimeInterval timeToLive;
+@property (readonly,nonatomic) NSDate* received;
 - (instancetype) initWithTemplate:(DFSPAuthorization*)model;
 - (DFSPMutableAuthorization*) mutableCopy;
 @end
@@ -21,9 +22,11 @@
 @property (strong,nonatomic,setter=setUserID:) NSString* userID;
 @property (strong,nonatomic,setter=setAuthorizationToken:) NSString* authorizationToken;
 @property (nonatomic,setter=setTimeToLive:) NSTimeInterval timeToLive;
+@property (nonatomic,setter=setReceived:) NSDate* received;
 - (void) setUserID:(NSString*)userID;
 - (void) setAuthorizationToken:(NSString*)authorizationToken;
 - (void) setTimeToLive:(NSTimeInterval)timeToLive;
+- (void) setReceived:(NSDate *)received;
 - (DFSPAuthorization*) immutableCopy;
 @end
 

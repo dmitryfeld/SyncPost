@@ -8,35 +8,23 @@
 
 #import "DFSPSignOnController.h"
 #import "DFSPSignOnViewController.h"
-#import "DFSPSpinnerController.h"
-#import "DFSPService.h"
-#import "DFSPErrorController.h"
 #import "DFSPApplicationData.h"
-#import "NSError+Rest.h"
+#import "DFSPAuthorizationService.h"
 
 @interface DFSPSignOnController ()<DFSPSignOnViewControllerDelegate> {
     __strong void(^_controlHandler)(NSError*);
     __strong NSError* _error;
-    __strong DFSPSpinnerController* _spinner;
     __strong UIViewController* _parentController;
-    __strong DFSPErrorController* _errorController;
-    __strong NSError* _invalidModelError;
-    __strong DFSPService* _service;
+    __strong DFSPAuthorizationService* _authorizationService;
     BOOL _isPresented;
 }
-@property (readonly,nonatomic,strong) DFSPSpinnerController* spinner;
-@property (readonly,nonatomic,strong) DFSPErrorController* errorController;
-@property (readonly,nonatomic,strong) NSError* invalidModelError;
-@property (readonly,nonatomic,strong) DFSPService* service;
+@property (readonly,nonatomic,strong) DFSPAuthorizationService* authorizationService;
 @property (readonly,nonatomic) DFSPSignOnViewController* signonController;
 @end
 
 @implementation DFSPSignOnController
 @synthesize isPresented = _isPresented;
-@synthesize spinner = _spinner;
-@synthesize errorController = _errorController;
-@synthesize invalidModelError = _invalidModelError;
-@synthesize service = _service;
+@synthesize authorizationService = _authorizationService;
 @dynamic signonController;
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,60 +47,26 @@
         }];
     }
 }
-- (void) signOnViewControllerDidTapUpdateButton:(DFSPSignOnViewController*)controller {
-    [self.spinner presentForController:self withHandler:^{
-        
-        [self.service requestWithName:@"authorization" andCompletionHandler:^(NSError *error_, id<DFSPModel>model_) {
-            [self.spinner dismissWithHandler:^{
-                if (error_) {
-                    self.errorController.error = error_;
-                    [self.errorController presentForController:self withHandler:^{
-                        
-                    }];
+- (void) signOnViewControllerDidTapSignonButton:(DFSPSignOnViewController*)controller {
+    
+    DFSPApplicationDataGet().credentials = controller.credentials;
+    
+    [self.authorizationService signOnWithHandler:^{
+        _isPresented = NO;
+        [_parentController dismissViewControllerAnimated:YES completion:^{
+            if (_controlHandler) {
+                if ([NSThread isMainThread]) {
+                    _controlHandler(_error);
                 } else {
-                    _isPresented = NO;
-                    if ([self checkAuthorization:model_]) {
-                        DFSPApplicationDataGet().authorization = (DFSPAuthorization*)model_;
-                    } else {
-                        self.errorController.error = self.invalidModelError;
-                        [self.errorController presentForController:self withHandler:^{
-                            
-                        }];
-                    }
-                    [_parentController dismissViewControllerAnimated:YES completion:^{
-                        if (_controlHandler) {
-                            if ([NSThread isMainThread]) {
-                                _controlHandler(_error);
-                            } else {
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                    _controlHandler(_error);
-                                });
-                            }
-                        }
-                    }];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        _controlHandler(_error);
+                    });
                 }
-            }];
+            }
         }];
     }];
 }
 
-- (BOOL) checkAuthorization:(id<DFSPModel>)authorization {
-    BOOL result = YES;
-    DFSPAuthorization* auth = (DFSPAuthorization*)authorization;
-    if (![auth isKindOfClass:[DFSPAuthorization class]]) {
-        result = NO;
-    }
-    if (!auth.authorizationToken.length) {
-        result = NO;
-    }
-    if (!auth.userID.length) {
-        result = NO;
-    }
-    if (!auth.timeToLive) {
-        result = NO;
-    }
-    return result;
-}
 
 
 + (DFSPSignOnController*) newController {
@@ -121,29 +75,11 @@
     return (DFSPSignOnController*)[storyboard instantiateViewControllerWithIdentifier:identifier];
 }
 
-- (DFSPSpinnerController*) spinner {
-    if (!_spinner) {
-        _spinner = [DFSPSpinnerController newController];
+- (DFSPAuthorizationService*) authorizationService {
+    if (!_authorizationService) {
+        _authorizationService = [[DFSPAuthorizationService alloc] initWithController:self];
     }
-    return _spinner;
-}
-- (DFSPErrorController*) errorController {
-    if (!_errorController) {
-        _errorController = [DFSPErrorController newController];
-    }
-    return _errorController;
-}
-- (NSError*) invalidModelError {
-    if (!_invalidModelError) {
-        _invalidModelError = [NSError restErrorWithCode:kDFSPRestErrorUnexpectedResponseObjectType];
-    }
-    return _invalidModelError;
-}
-- (DFSPService*) service {
-    if (!_service) {
-        _service = [DFSPService new];
-    }
-    return _service;
+    return _authorizationService;
 }
 - (DFSPSignOnViewController*) signonController {
     return (DFSPSignOnViewController*)self.viewControllers.firstObject;

@@ -13,6 +13,7 @@
     NSString* _userID;
     NSString* _authorizationToken;
     NSTimeInterval _timeToLive;
+    NSDate* _received;
 }
 @end
 
@@ -20,11 +21,13 @@
 @synthesize userID = _userID;
 @synthesize authorizationToken = _authorizationToken;
 @synthesize timeToLive = _timeToLive;
+@synthesize received = _received;
 - (instancetype) init {
     if (self = [super init]) {
         _userID = @"";
         _authorizationToken = @"";
         _timeToLive = 3600.;
+        _received = [NSDate new];
     }
     return self;
 }
@@ -33,6 +36,7 @@
         _userID = [model.userID copy];
         _authorizationToken = [model.authorizationToken copy];
         _timeToLive = model.timeToLive;
+        _received = [model.received copy];
     }
     return self;
     
@@ -42,6 +46,7 @@
         _userID = [aDecoder decodeObjectForKey:@"memberID"];
         _authorizationToken = [aDecoder decodeObjectForKey:@"authorizationToken"];
         _timeToLive = [aDecoder decodeFloatForKey:@"timeToLive"];
+        _received = [aDecoder decodeObjectForKey:@"received"];
     }
     return self;
 }
@@ -52,6 +57,7 @@
     [aCoder encodeObject:_userID forKey:@"memberID"];
     [aCoder encodeObject:_authorizationToken forKey:@"authorizationToken"];
     [aCoder encodeFloat:_timeToLive forKey:@"timeToLive"];
+    [aCoder encodeObject:_received forKey:@"received"];
 }
 - (BOOL) isEqual:(id)object {
     if (![object isKindOfClass:[DFSPAuthorization class]]) {
@@ -62,7 +68,10 @@
         return NO;
     }
     if (![_authorizationToken isEqualToString:obj.authorizationToken]) {
-        
+        return NO;
+    }
+    if (![_received isEqual:obj.received]) {
+        return NO;
     }
     return _timeToLive == obj.timeToLive;
 }
@@ -78,6 +87,7 @@
 @dynamic userID;
 @dynamic authorizationToken;
 @dynamic timeToLive;
+@dynamic received;
 - (void) setUserID:(NSString*)userID {
     _userID = [userID copy];
 }
@@ -86,6 +96,9 @@
 }
 - (void) setTimeToLive:(NSTimeInterval)timeToLive {
     _timeToLive = timeToLive;
+}
+- (void) setReceived:(NSDate *)received {
+    _received = received;
 }
 - (DFSPAuthorization*) immutableCopy {
     return [[DFSPAuthorization alloc] initWithTemplate:self];

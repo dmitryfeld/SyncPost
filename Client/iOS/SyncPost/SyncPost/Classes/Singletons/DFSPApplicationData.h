@@ -14,6 +14,7 @@
 @property (strong,nonatomic) DFSPAuthorization* authorization;
 @property (strong,nonatomic) NSString* apnsPushToken;
 @property (strong,nonatomic) NSString* voipPushToken;
+@property (readonly,nonatomic) BOOL isAuthorized;
 - (instancetype) init NS_DESIGNATED_INITIALIZER;
 @end
 

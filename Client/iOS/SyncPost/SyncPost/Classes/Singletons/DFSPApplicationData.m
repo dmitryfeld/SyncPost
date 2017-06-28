@@ -21,6 +21,7 @@ const static NSString *__kDFSPApplicationDataTag = @"__kDFSPApplicationDataTag";
 @synthesize authorization = _authorization;
 @synthesize apnsPushToken = _apnsPushToken;
 @synthesize voipPushToken = _voipPushToken;
+@dynamic isAuthorized;
 - (instancetype) init {
     if (self = [super init]) {
         
@@ -29,6 +30,17 @@ const static NSString *__kDFSPApplicationDataTag = @"__kDFSPApplicationDataTag";
 }
 - (id) tag {
     return __kDFSPApplicationDataTag;
+}
+- (BOOL) isAuthorized {
+    BOOL result = NO;
+    if (_authorization.authorizationToken.length) {
+        NSDate* now = [NSDate new];
+        NSDate* expire = [NSDate dateWithTimeInterval:_authorization.timeToLive sinceDate:_authorization.received];
+        if ([expire compare:now] == NSOrderedDescending) {
+            return YES;
+        }
+    }
+    return result;
 }
 @end
 DFSPApplicationData* DFSPApplicationDataGet() {

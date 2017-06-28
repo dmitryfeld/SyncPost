@@ -12,7 +12,7 @@
 @class DFSPSignOnViewController;
 @protocol DFSPSignOnViewControllerDelegate <NSObject>
 @required
-- (void) signOnViewControllerDidTapUpdateButton:(DFSPSignOnViewController*)controller;
+- (void) signOnViewControllerDidTapSignonButton:(DFSPSignOnViewController*)controller;
 @end
 
 @interface DFSPSignOnViewController : UIViewController

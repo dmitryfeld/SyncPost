@@ -55,22 +55,25 @@
 - (void) processSimulatedWithRequestName:(NSString*)requestName {
     id<DFSPModel> response = nil;
     NSString *simulatedDataName = [_requestMap simulatedDataPathWithName:requestName];
+    NSURLRequest* request = [_requestMap prepareRequestWithName:requestName];
+    [self debugRequest:request];
     if (_requestMap.error) {
         _error = _requestMap.error;
         [self processHandleWithError:_error andResponse:response];
     } else {
         NSString *path = [[NSBundle mainBundle] pathForResource:simulatedDataName ofType:@"json"];
         if (path) {
-            NSData *_data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:path]];
-            if (_data.length) {
+            NSData *data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:path]];
+            [self debugResponse:data];
+            if (data.length) {
                 NSError* error = nil;
-                NSDictionary* _jsonDictionary = [NSJSONSerialization JSONObjectWithData:_data options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:&error];
+                NSDictionary* jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:&error];
                 if (error) {
                     _error = error;
-                } else if (!_jsonDictionary) {
+                } else if (!jsonDictionary) {
                     _error = [NSError restErrorWithCode:kDFSPRestErrorFailureToParseJSONE];
                 } else {
-                    response = [_requestMap processResponse:_jsonDictionary];
+                    response = [_requestMap processResponse:jsonDictionary];
                     if (!response) {
                         _error = _requestMap.error;
                     }
@@ -97,5 +100,21 @@
             _completionHandler(error,response);
         });
     }
+}
+- (void) debugRequest:(NSURLRequest*)request {
+    NSData* data = request.HTTPBody;
+    NSString* body = @"";
+    if (data) {
+        body = [[NSString alloc] initWithBytes: data.bytes length:data.length encoding:NSUTF8StringEncoding];
+    }
+    NSLog(@"REST REQUEST:\n>>>>%@<<<<<", request.URL.description);
+    NSLog(@"REST  METHOD:\n>>>>%@<<<<<", request.HTTPMethod);
+    NSLog(@"REST    BODY:\n>>>>%@<<<<<", body);
+    NSLog(@"REST HEADERS:\n>>>>%@<<<<<", request.allHTTPHeaderFields);
+}
+- (void) debugResponse:(NSData*)response {
+    NSLog(@"DONE. Received Bytes: %lu", (unsigned long)response.length);
+    NSString __unused *json = [[NSString alloc] initWithBytes: response.bytes length:response.length encoding:NSUTF8StringEncoding];
+    NSLog(@">>>>>%@<<<<<<", json);
 }
 @end
