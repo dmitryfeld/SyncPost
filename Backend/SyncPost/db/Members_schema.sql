@@ -1,3 +1,15 @@
+CONNECT 'jdbc:derby:service;create=true';
+AUTOCOMMIT OFF;
+CREATE TABLE SEEDS (
+	SEED_ID INTEGER NOT NULL
+);
+ALTER TABLE SEEDS ADD CONSTRAINT SEEDS_PK Primary Key (SEED_ID);
+INSERT INTO SEEDS VALUES (1);
+COMMIT;
+
+
+
+
 
 CONNECT 'jdbc:derby:people;create=true';
 AUTOCOMMIT OFF;
@@ -13,9 +25,19 @@ CREATE TABLE MEMBERS (
 
 ALTER TABLE MEMBERS ADD CONSTRAINT MEMBERS_PK Primary Key (MEMBER_ID);
 
+INSERT INTO MEMBERS VALUES (1,'John','Hopkins','John Hopkins','Ministre de delicte');
+INSERT INTO MEMBERS VALUES (2,'Gerard','Ruleta','Gerard Ruleta','Ministre de seguretat i intelligencia');
+INSERT INTO MEMBERS VALUES (3,'Iori','Nakamura','Iori Nakamura','Coordinador');
+INSERT INTO MEMBERS VALUES (4,'Grndal','Vlkoff','Iori Nakamura','Jutge suprem triat');
+
 COMMIT;
 
-//------------------------------------
+
+
+
+
+
+
 CONNECT 'jdbc:derby:auth;create=true';
 
 AUTOCOMMIT OFF;
@@ -28,6 +50,11 @@ CREATE TABLE CREDENTIALS (
 );
 ALTER TABLE CREDENTIALS ADD CONSTRAINT CREDENTIALS_PK Primary Key (CREDENTIAL_ID);
 ALTER TABLE CREDENTIALS ADD CONSTRAINT MEMBER_ID_UNK Unique (MEMBER_ID);
+
+INSERT INTO CREDENTIALS VALUES (1,1,'Hopkins');
+INSERT INTO CREDENTIALS VALUES (2,2,'Ruleta');
+INSERT INTO CREDENTIALS VALUES (3,3,'Nakamura');
+INSERT INTO CREDENTIALS VALUES (4,4,'Vlkoff');
 
 
 CREATE TABLE AUTHORIZATIONS (
