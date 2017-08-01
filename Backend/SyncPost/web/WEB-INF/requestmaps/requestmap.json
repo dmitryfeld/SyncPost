@@ -1,0 +1,45 @@
+{
+    "name":"requestmap",
+    "error":{"code":"0","message":""},
+    "content":{
+        "name":"Base Request Map",
+        "version":"0.1",
+        "context":"DFSPApplicationContext",
+        "isSimulated":"true",
+        "requests": [
+            {
+                "name":"signon",
+                "parameters": {
+                    "userName":"credentials.userName",
+                    "password":"credentials.password",
+                    "oldToken":"authorization.authorizationToken",
+                    "appVersion":"appVersion",
+                    "appName":"appName",
+                    "deviceType":"deviceType",
+                    "osVersion":"osVersion"
+                },
+                "body": {},
+                "contentType":"DFSPAuthorization",
+                "requestPath":"oauth/signon",
+                "method":"GET",
+                "simulatedDataPath":"signon"
+            },
+            {
+                "name":"signoff",
+                "parameters": {
+                    "userID":"authorization.userID",
+                    "currentToken":"authorization.authorizationToken",
+                    "appVersion":"appVersion",
+                    "appName":"appName",
+                    "deviceType":"deviceType",
+                    "osVersion":"osVersion"
+                },
+                "body": {},
+                "contentType":"DFSPAuthorization",
+                "requestPath":"oauth/signoff",
+                "method":"GET",
+                "simulatedDataPath":"signoff"
+            }
+        ]
+    }
+}
