@@ -99,6 +99,12 @@
 }
 
 - (void) startAPICall {
+    id<DFSPModel> response = nil;
+    if (_requestMap.error) {
+        _error = _requestMap.error;
+        [self processHandleWithError:_error andResponse:response];
+    } else {
+    }
     _isInProcess = NO;
 }
 - (void) processHandleWithError:(NSError*)error andResponse:(id<DFSPModel>)response {
