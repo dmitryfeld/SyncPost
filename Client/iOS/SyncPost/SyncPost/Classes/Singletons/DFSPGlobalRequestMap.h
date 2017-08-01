@@ -9,6 +9,7 @@
 #import "DFSPRequestMap.h"
 
 @interface DFSPGlobalRequestMap : DFSPRequestMap
++ (DFSPGlobalRequestMap*) requestMapFromCurrentEnvironment;
 + (DFSPGlobalRequestMap*) requestMapWithContentOfURL:(NSURL*)url;
 + (DFSPGlobalRequestMap*) requestMapWithContentOfMainBundleFile:(NSString*)fileName;
 @end

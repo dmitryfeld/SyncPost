@@ -156,4 +156,7 @@
     }
     return result;
 }
+- (void) setError:(NSError *)error {
+    _error = error;
+}
 @end

@@ -38,16 +38,25 @@
 - (void) startWithRequestName:(NSString*)requestName andCompletionHandler:(void(^)(NSError*,id<DFSPModel>))handler {
     if (!_isInProcess) {
         _isInProcess = YES;
-        if (requestName.length) {
-            _completionHandler = handler;
-            _error = nil;
+        _error = nil;
+        _completionHandler = handler;
+        if (!requestName.length) {
+            _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRequestName];
+        }
+        if (!_error) {
+            if (!_requestMap) {
+                _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRequestMapConetent];
+            }
+        }
+        if (!_error) {
             if (_requestMap.isSimulated) {
                 [self processSimulatedWithRequestName:(NSString*)requestName];
             } else {
                 [self startAPICall];
             }
         } else {
-            _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRequestName];
+            _isInProcess = NO;
+            [self processHandleWithError:_error andResponse:nil];
         }
     }
 }

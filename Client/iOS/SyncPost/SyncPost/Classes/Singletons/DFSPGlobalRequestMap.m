@@ -8,46 +8,64 @@
 
 #import "DFSPGlobalRequestMap.h"
 #import "DFSPSingleton.h"
+#import "DFSPSettings.h"
 
 const static NSString *__kDFSPGlobalRequestMapTag = @"__kDFSPGlobalRequestMapTag";
-
-
 @interface DFSPGlobalRequestMap()<DFSPTagged>
-
 @end
 
 @implementation DFSPGlobalRequestMap
 - (id) tag {
     return __kDFSPGlobalRequestMapTag;
 }
-+ (DFSPGlobalRequestMap*) requestMapWithContentOfURL:(NSURL*)url {
-    NSDictionary* dict = [NSDictionary dictionaryWithContentsOfURL:url];
++ (DFSPGlobalRequestMap*) requestMapFromCurrentEnvironment {
     DFSPGlobalRequestMap* result = nil;
-    if (dict) {
-        dict = dict[@"requestMap"];
+    DFSPEnvironment* environment = DFSPSettingsGet().environment;
+    if (environment.isSimulated) {
+        result = [DFSPGlobalRequestMap requestMapWithContentOfMainBundleFile:@"RequestMap"];
+    } else {
+        NSURL* url = [environment.accessURL URLByAppendingPathComponent:@"requestmap"];
+        result = [DFSPGlobalRequestMap requestMapWithContentOfURL:url];
+    }
+    return result;
+}
++ (DFSPGlobalRequestMap*) requestMapWithContentOfURL:(NSURL*)url {
+    NSData* data = [NSData dataWithContentsOfURL:url];
+    DFSPGlobalRequestMap* result = nil;
+    if (data.length) {
+        NSError* error = nil;
+        NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:&error];
         if (dict.count) {
-            result = [[DFSPGlobalRequestMap alloc] initWithDictionary:dict];
+            dict = dict[@"content"];
+            if (dict.count) {
+                result = [[DFSPGlobalRequestMap alloc] initWithDictionary:dict];
+            }
         }
     }
     return result;
 }
 + (DFSPGlobalRequestMap*) requestMapWithContentOfMainBundleFile:(NSString*)fileName {
-    NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"plist"]];
+    NSData* data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"json"]];
     DFSPGlobalRequestMap* result = nil;
-    if (dict) {
-        dict = dict[@"requestMap"];
+    if (data.length) {
+        NSError* error = nil;
+        NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:&error];
         if (dict.count) {
-            result = [[DFSPGlobalRequestMap alloc] initWithDictionary:dict];
+            dict = dict[@"content"];
+            if (dict.count) {
+                result = [[DFSPGlobalRequestMap alloc] initWithDictionary:dict];
+            }
         }
     }
     return result;
 }
+
 @end
 
 DFSPGlobalRequestMap* DFSPGlobalRequestMapGet() {
     DFSPGlobalRequestMap* result = [DFSPSingleton objectForTag:__kDFSPGlobalRequestMapTag];
     if (!result) {
-        result = [DFSPGlobalRequestMap requestMapWithContentOfMainBundleFile:@"RequestMap"];
+        result = [DFSPGlobalRequestMap requestMapFromCurrentEnvironment];
         [DFSPSingleton addObject:(DFSPGlobalRequestMap*)result];
     }
     return result;
