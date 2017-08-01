@@ -14,6 +14,10 @@ const static NSString *__kDFSPGlobalRequestMapTag = @"__kDFSPGlobalRequestMapTag
 @interface DFSPGlobalRequestMap()<DFSPTagged>
 @end
 
+@interface DFSPRequestMap(Error)
+- (void) setError:(NSError*)error;
+@end
+
 @implementation DFSPGlobalRequestMap
 - (id) tag {
     return __kDFSPGlobalRequestMapTag;
@@ -37,7 +41,10 @@ const static NSString *__kDFSPGlobalRequestMapTag = @"__kDFSPGlobalRequestMapTag
     if (data.length) {
         dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:&error];
     }
-    result = [[DFSPGlobalRequestMap alloc] initWithDictionary:dict[@"content"] underlyingError:error];
+    result = [[DFSPGlobalRequestMap alloc] initWithDictionary:dict[@"content"]];
+    if (error) {
+        [result setError:error];
+    }
     return result;
 }
 + (DFSPGlobalRequestMap*) requestMapWithContentOfMainBundleFile:(NSString*)fileName {
@@ -48,7 +55,10 @@ const static NSString *__kDFSPGlobalRequestMapTag = @"__kDFSPGlobalRequestMapTag
     if (data.length) {
         dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:&error];
     }
-    result = [[DFSPGlobalRequestMap alloc] initWithDictionary:dict[@"content"] underlyingError:error];
+    result = [[DFSPGlobalRequestMap alloc] initWithDictionary:dict[@"content"]];
+    if (error) {
+        [result setError:error];
+    }
     return result;
 }
 @end
