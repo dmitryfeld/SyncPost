@@ -16,7 +16,8 @@
 @property (readonly,nonatomic,strong) id context;
 @property (readonly,nonatomic) BOOL isSimulated;
 @property (readonly,nonatomic,strong) NSArray<DFSPRequestTemplate*>* requestTemplates;
-- (instancetype) initWithDictionary:(NSDictionary<NSString*,id>*)dictionary NS_DESIGNATED_INITIALIZER;
+- (instancetype) initWithDictionary:(NSDictionary<NSString*,id>*)dictionary;
+- (instancetype) initWithDictionary:(NSDictionary<NSString*,id>*)dictionary underlyingError:(NSError*)error NS_DESIGNATED_INITIALIZER;
 - (NSURLRequest*) prepareRequestWithName:(NSString*)name;
 - (id<DFSPModel>) processResponse:(NSDictionary*)response;
 - (NSString*) simulatedDataPathWithName:(NSString*)name;

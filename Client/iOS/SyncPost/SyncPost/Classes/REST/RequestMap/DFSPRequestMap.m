@@ -35,6 +35,17 @@
     return self;
 }
 - (instancetype) initWithDictionary:(NSDictionary<NSString*,id>*)dictionary {
+    if (self = [self initWithDictionary:dictionary underlyingError:nil]) {
+        _name = dictionary[@"name"];
+        _version = dictionary[@"version"];
+        _error = [self checkParameters];
+        _context = [self contextForClassName:dictionary[@"context"]];
+        _isSimulated = [self simulatedForValue:dictionary[@"isSimulated"]];
+        _requestTemplates = [self templatesForArray:dictionary[@"requests"]];
+    }
+    return self;
+}
+- (instancetype) initWithDictionary:(NSDictionary<NSString*,id>*)dictionary underlyingError:(NSError*)error {
     if (self = [super init]) {
         _name = dictionary[@"name"];
         _version = dictionary[@"version"];
@@ -42,6 +53,9 @@
         _context = [self contextForClassName:dictionary[@"context"]];
         _isSimulated = [self simulatedForValue:dictionary[@"isSimulated"]];
         _requestTemplates = [self templatesForArray:dictionary[@"requests"]];
+        if (error) {
+            _error = error;
+        }
     }
     return self;
 }
@@ -155,8 +169,5 @@
         result = [NSError restErrorWithCode:kDFSPRestErrorInvalidRequestMapParameter andComment:@"version"];
     }
     return result;
-}
-- (void) setError:(NSError *)error {
-    _error = error;
 }
 @end

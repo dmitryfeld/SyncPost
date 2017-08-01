@@ -30,36 +30,27 @@ const static NSString *__kDFSPGlobalRequestMapTag = @"__kDFSPGlobalRequestMapTag
     return result;
 }
 + (DFSPGlobalRequestMap*) requestMapWithContentOfURL:(NSURL*)url {
-    NSData* data = [NSData dataWithContentsOfURL:url];
+    NSError* error = nil;
     DFSPGlobalRequestMap* result = nil;
+    NSDictionary* dict = nil;
+    NSData* data = [NSData dataWithContentsOfURL:url options:NSDataReadingUncached error:&error];
     if (data.length) {
-        NSError* error = nil;
-        NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:&error];
-        if (dict.count) {
-            dict = dict[@"content"];
-            if (dict.count) {
-                result = [[DFSPGlobalRequestMap alloc] initWithDictionary:dict];
-            }
-        }
+        dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:&error];
     }
+    result = [[DFSPGlobalRequestMap alloc] initWithDictionary:dict[@"content"] underlyingError:error];
     return result;
 }
 + (DFSPGlobalRequestMap*) requestMapWithContentOfMainBundleFile:(NSString*)fileName {
-    NSData* data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"json"]];
+    NSError* error = nil;
     DFSPGlobalRequestMap* result = nil;
+    NSDictionary* dict = nil;
+    NSData* data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"json"]];
     if (data.length) {
-        NSError* error = nil;
-        NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:&error];
-        if (dict.count) {
-            dict = dict[@"content"];
-            if (dict.count) {
-                result = [[DFSPGlobalRequestMap alloc] initWithDictionary:dict];
-            }
-        }
+        dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:&error];
     }
+    result = [[DFSPGlobalRequestMap alloc] initWithDictionary:dict[@"content"] underlyingError:error];
     return result;
 }
-
 @end
 
 DFSPGlobalRequestMap* DFSPGlobalRequestMapGet() {
