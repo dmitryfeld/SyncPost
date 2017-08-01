@@ -6,6 +6,14 @@
 	<array>
 		<dict>
 			<key>name</key>
+			<string>Localhost</string>
+			<key>accessURL</key>
+			<string>http://localhost:8080/syncpost</string>
+			<key>simulated</key>
+			<string>NO</string>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>Okhta</string>
 			<key>accessURL</key>
 			<string>http://okhta.local:8080/syncpost</string>
