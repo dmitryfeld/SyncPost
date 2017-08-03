@@ -10,6 +10,7 @@
 		000985371ECF5906006E6C51 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 000985361ECF5906006E6C51 /* Defaults.plist */; };
 		001AFE4E1EFB4D3E00C9B0B5 /* DFSPRequestMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 001AFE4D1EFB4D3E00C9B0B5 /* DFSPRequestMap.m */; };
 		001AFE511EFB4F5100C9B0B5 /* DFSPRequestTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 001AFE501EFB4F5100C9B0B5 /* DFSPRequestTemplate.m */; };
+		00326ED71F3251010002AED4 /* DFSPRestProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 00326ED61F3251010002AED4 /* DFSPRestProcessor.m */; };
 		0038EBE41F0357D7009777DE /* signoff.json in Resources */ = {isa = PBXBuildFile; fileRef = 0038EBE21F0357D7009777DE /* signoff.json */; };
 		0038EBE51F0357D7009777DE /* signon.json in Resources */ = {isa = PBXBuildFile; fileRef = 0038EBE31F0357D7009777DE /* signon.json */; };
 		0038EBE81F035E2A009777DE /* DFSPRESTService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0038EBE71F035E2A009777DE /* DFSPRESTService.m */; };
@@ -58,6 +59,8 @@
 		001AFE4F1EFB4F5100C9B0B5 /* DFSPRequestTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPRequestTemplate.h; sourceTree = "<group>"; };
 		001AFE501EFB4F5100C9B0B5 /* DFSPRequestTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPRequestTemplate.m; sourceTree = "<group>"; };
 		002FF67A1E971563000B517D /* SyncPost.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SyncPost.entitlements; sourceTree = "<group>"; };
+		00326ED51F3251010002AED4 /* DFSPRestProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPRestProcessor.h; sourceTree = "<group>"; };
+		00326ED61F3251010002AED4 /* DFSPRestProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPRestProcessor.m; sourceTree = "<group>"; };
 		0038EBE21F0357D7009777DE /* signoff.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = signoff.json; sourceTree = "<group>"; };
 		0038EBE31F0357D7009777DE /* signon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = signon.json; sourceTree = "<group>"; };
 		0038EBE61F035E2A009777DE /* DFSPRESTService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPRESTService.h; sourceTree = "<group>"; };
@@ -307,6 +310,8 @@
 				0038EBE71F035E2A009777DE /* DFSPRESTService.m */,
 				003EF9451EF6F50F00A8D8D6 /* NSError+Rest.h */,
 				003EF9461EF6F50F00A8D8D6 /* NSError+Rest.m */,
+				00326ED51F3251010002AED4 /* DFSPRestProcessor.h */,
+				00326ED61F3251010002AED4 /* DFSPRestProcessor.m */,
 			);
 			path = REST;
 			sourceTree = "<group>";
@@ -509,6 +514,7 @@
 				001AFE4E1EFB4D3E00C9B0B5 /* DFSPRequestMap.m in Sources */,
 				00D4ED7F1EFC32F600ADF60A /* DFSPApplicationContext.m in Sources */,
 				008398271F01B71E00D7D6BB /* DFSPModalTransitionDelegate.m in Sources */,
+				00326ED71F3251010002AED4 /* DFSPRestProcessor.m in Sources */,
 				008398281F01B71E00D7D6BB /* DFSPModalTransitioning.m in Sources */,
 				00CEBD4C1ECE713300BF6EB4 /* DFSPAuthorization.m in Sources */,
 				00CEBD4F1ECE73D900BF6EB4 /* DFSPCredentials.m in Sources */,

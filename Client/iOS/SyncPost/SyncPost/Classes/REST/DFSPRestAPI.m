@@ -9,12 +9,12 @@
 #import "DFSPRestAPI.h"
 #import "DFSPSettings.h"
 #import "NSError+Rest.h"
+#import "DFSPRestProcessor.h"
 
 @interface DFSPRestAPI() {
 @private
     __strong DFSPRequestMap* _requestMap;
     __strong void (^_completionHandler)(NSError*,id<DFSPModel>);
-    __strong NSError* _error;
     BOOL _isInProcess;
 }
 @end
@@ -22,7 +22,6 @@
 @implementation DFSPRestAPI
 @synthesize requestMap = _requestMap;
 @synthesize isInProcess = _isInProcess;
-@synthesize error = _error;
 - (instancetype) init {
     if (self = [self initWithRequestMap:nil]) {
         [NSException raise:@"DFSPRestAPI Init" format:@"Invalid Arguments"];
@@ -37,38 +36,38 @@
 }
 - (void) startWithRequestName:(NSString*)requestName andCompletionHandler:(void(^)(NSError*,id<DFSPModel>))handler {
     if (!_isInProcess) {
+        NSError* error = nil;
         _isInProcess = YES;
-        _error = nil;
         _completionHandler = handler;
         if (!requestName.length) {
-            _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRequestName];
+            error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRequestName];
         }
-        if (!_error) {
+        if (!error) {
             if (!_requestMap) {
-                _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRequestMapConetent];
+                error = [NSError restErrorWithCode:kDFSPRestErrorInvalidRequestMapConetent];
             }
         }
-        if (!_error) {
+        if (!error) {
             if (_requestMap.isSimulated) {
-                [self processSimulatedWithRequestName:(NSString*)requestName];
+                [self processSimulatedWithRequestName:requestName];
             } else {
-                [self startAPICall];
+                [self startAPICallWithRequestName:requestName];
             }
         } else {
             _isInProcess = NO;
-            [self processHandleWithError:_error andResponse:nil];
+            [self processHandleWithError:error andResponse:nil];
         }
     }
 }
 
 - (void) processSimulatedWithRequestName:(NSString*)requestName {
     id<DFSPModel> response = nil;
+    NSError* error = nil;
     NSString *simulatedDataName = [_requestMap simulatedDataPathWithName:requestName];
     NSURLRequest* request = [_requestMap prepareRequestWithName:requestName];
     [self debugRequest:request];
     if (_requestMap.error) {
-        _error = _requestMap.error;
-        [self processHandleWithError:_error andResponse:response];
+        error = _requestMap.error;
     } else {
         NSString *path = [[NSBundle mainBundle] pathForResource:simulatedDataName ofType:@"json"];
         if (path) {
@@ -78,34 +77,63 @@
                 NSError* error = nil;
                 NSDictionary* jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:&error];
                 if (error) {
-                    _error = error;
+                    error = error;
                 } else if (!jsonDictionary) {
-                    _error = [NSError restErrorWithCode:kDFSPRestErrorFailureToParseJSONE];
+                    error = [NSError restErrorWithCode:kDFSPRestErrorFailureToParseJSONE];
                 } else {
                     response = [_requestMap processResponse:jsonDictionary];
                     if (!response) {
-                        _error = _requestMap.error;
+                        error = _requestMap.error;
                     }
                 }
             } else {
-                _error = [NSError restErrorWithCode:kDFSPRestErrorNoData];
+                error = [NSError restErrorWithCode:kDFSPRestErrorNoData];
             }
-            [self processHandleWithError:_error andResponse:response];
+            
         } else {
-            _error = [NSError restErrorWithCode:kDFSPRestErrorInvalidSimulatedDataPath];
+            error = [NSError restErrorWithCode:kDFSPRestErrorInvalidSimulatedDataPath];
         }
     }
+    [self processHandleWithError:error andResponse:response];
     _isInProcess = NO;
 }
 
-- (void) startAPICall {
+- (void) startAPICallWithRequestName:(NSString*)requestName {
     id<DFSPModel> response = nil;
     if (_requestMap.error) {
-        _error = _requestMap.error;
-        [self processHandleWithError:_error andResponse:response];
+        [self processHandleWithError:_requestMap.error andResponse:response];
+        _isInProcess = NO;
     } else {
+        NSError* error = nil;
+        NSURLRequest* request = [_requestMap prepareRequestWithName:requestName];
+        [self debugRequest:request];
+        if (request) {
+            DFSPRestProcessor* processor = [[DFSPRestProcessor alloc] initWithRequest:request andCompletionHandler:^(NSError *error_, NSData *data_) {
+                NSError* error = nil;
+                id<DFSPModel> response = nil;
+                [self debugResponse:data_];
+                if (error_) {
+                    error = error_;
+                } else {
+                    NSDictionary* jsonDictionary = [NSJSONSerialization JSONObjectWithData:data_ options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:&error];
+                    if (!error) {
+                        response = [_requestMap processResponse:jsonDictionary];
+                        if (!response) {
+                            error = _requestMap.error;
+                        }
+                    }
+                }
+                [self processHandleWithError:error andResponse:response];
+                _isInProcess = NO;
+            }];
+            [processor start];
+        } else {
+            error = [NSError restErrorWithCode:kDFSPRestErrorInvalidURLRequest];
+            [self processHandleWithError:error andResponse:response];
+            _isInProcess = NO;
+        }
     }
-    _isInProcess = NO;
+    
 }
 - (void) processHandleWithError:(NSError*)error andResponse:(id<DFSPModel>)response {
     if ([NSThread isMainThread]) {

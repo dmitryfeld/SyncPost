@@ -52,6 +52,12 @@ const NSString* kDFSPRestErrorDomain = @"kDFSPRestErrorDomain";
         case kDFSPRestErrorInvalidSimulatedDataPath:
             result = @"Invalid REST Simulated Data Path";
             break;
+        case kDFSPRestErrorInvalidURLRequest:
+            result = @"Invalid REST URL Request";
+            break;
+        case kDFSPRestErrorFailureToStartURLSession:
+            result = @"Can not start URL Session";
+            break;
         case kDFSPRestErrorRequestInvalidResponse:
             result = @"Invalid Response Object";
             break;

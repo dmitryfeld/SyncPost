@@ -29,6 +29,8 @@ typedef enum __DFSPRestUnitErrorCodes__:NSUInteger {
     kDFSPRestErrorFailureToParseJSONE,
     kDFSPRestErrorInvalidRequestName,
     kDFSPRestErrorInvalidSimulatedDataPath,
+    kDFSPRestErrorInvalidURLRequest,
+    kDFSPRestErrorFailureToStartURLSession,
     
     //Response related
     kDFSPRestErrorRequestInvalidResponse,

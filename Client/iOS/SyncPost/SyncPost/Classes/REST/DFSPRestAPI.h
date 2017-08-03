@@ -12,7 +12,6 @@
 @interface DFSPRestAPI : NSObject
 @property (readonly,nonatomic,strong) DFSPRequestMap* requestMap;
 @property (readonly,nonatomic) BOOL isInProcess;
-@property (readonly,nonatomic,strong) NSError* error;
 - (instancetype) initWithRequestMap:(DFSPRequestMap*)requestMap NS_DESIGNATED_INITIALIZER;
 - (void) startWithRequestName:(NSString*)requestName andCompletionHandler:(void(^)(NSError*,id<DFSPModel>))handler;
 @end
