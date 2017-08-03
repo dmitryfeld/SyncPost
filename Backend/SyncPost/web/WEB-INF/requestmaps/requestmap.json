@@ -5,7 +5,7 @@
         "name":"Base Request Map",
         "version":"0.1",
         "context":"DFSPApplicationContext",
-        "isSimulated":"true",
+        "isSimulated":"false",
         "requests": [
             {
                 "name":"signon",
@@ -20,7 +20,7 @@
                 },
                 "body": {},
                 "contentType":"DFSPAuthorization",
-                "requestPath":"oauth/signon",
+                "requestPath":"aas/signon",
                 "method":"GET",
                 "simulatedDataPath":"signon"
             },
@@ -36,7 +36,7 @@
                 },
                 "body": {},
                 "contentType":"DFSPAuthorization",
-                "requestPath":"oauth/signoff",
+                "requestPath":"aas/signoff",
                 "method":"GET",
                 "simulatedDataPath":"signoff"
             }

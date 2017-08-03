@@ -8,6 +8,14 @@
         <servlet-name>syncpost</servlet-name>
         <url-pattern>/requestmap</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>syncpost</servlet-name>
+        <url-pattern>/aas/signon</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>syncpost</servlet-name>
+        <url-pattern>/aas/signoff</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
