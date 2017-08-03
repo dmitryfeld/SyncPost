@@ -6,7 +6,7 @@ import java.nio.ByteBuffer;
 
 public class simplepush {
 
-    private static String token = "2874fb555f27e2475d1d166579b3e1d54b7dcf55045feb2ed41e73edc0dd3938";
+    private static String token = "701172dc0cbc497c7ade065fc3069fda55fafe1d0e4c52807c257bfd13a75961";
     private static String host = "gateway.sandbox.push.apple.com";
     private static int port = 2195;
     private static String passphrase = "syncpost";
