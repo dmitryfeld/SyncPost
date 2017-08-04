@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author dmitryfeld
  */
 public class DFSPRequestMapProcessor {
-    public static Boolean process(HttpServletRequest request,HttpServletResponse response) {
+    public static Boolean process(HttpServletRequest request,HttpServletResponse response) throws IOException {
         Boolean result = false;
         String requestURI = request.getRequestURI();
         if(requestURI.contains("requestmap")) {
@@ -27,7 +27,7 @@ public class DFSPRequestMapProcessor {
         }
         return result;
     }
-    public Boolean processRequestWithResponse(HttpServletRequest request,HttpServletResponse response) {
+    public Boolean processRequestWithResponse(HttpServletRequest request,HttpServletResponse response) throws IOException {
         Boolean result = false;
         String requestURI = request.getRequestURI();
         if(requestURI.contains("requestmap")) {
@@ -37,28 +37,22 @@ public class DFSPRequestMapProcessor {
             if (null == mime) {
                 response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             } else {
+                File file = new File(filename);
+                response.setContentLength((int)file.length());
+                response.setContentType(mime);
+                FileInputStream in = new FileInputStream(file);
+                OutputStream out = response.getOutputStream();
                 try {
-                    File file = new File(filename);
-                    response.setContentLength((int)file.length());
-                    response.setContentType(mime);
-
-                    FileInputStream in = new FileInputStream(file);
-                    OutputStream out = response.getOutputStream();
-
                     // Copy the contents of the file to the output stream
                     byte[] buf = new byte[1024];
                     int count = 0;
                     while ((count = in.read(buf)) >= 0) {
                         out.write(buf, 0, count);
                     }
+                    result = true;
+                } finally {
                     out.close();
                     in.close();
-                    
-                    result = true;
-                } catch (IOException ex) {
-                    
-                } finally {
-                    
                 }
             }
         }

@@ -5,20 +5,30 @@
  */
 package org.df.syncpost.processors;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import javax.servlet.ServletContext;
+import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.df.syncpost.dbservice.DFSPDBPersister;
+import org.df.syncpost.dbservice.DFSPDBSeed;
+import org.df.syncpost.model.DFSPAuthorization;
+import org.df.syncpost.model.DFSPCredentials;
+import org.df.syncpost.model.DFSPModel;
 
 /**
  *
  * @author dmitryfeld
  */
 public class DFSPSignonProcessor {
-    public static Boolean process(HttpServletRequest request,HttpServletResponse response) {
+    private final DFSPDBSeed seed;
+    private final DFSPDBPersister persister;
+    public DFSPSignonProcessor () {
+        super();
+        this.seed = new DFSPDBSeed();
+        this.persister = new DFSPDBPersister("auth");
+    }
+    public static Boolean process(HttpServletRequest request,HttpServletResponse response) throws IOException {
         Boolean result = false;
         String requestURI = request.getRequestURI();
         if(requestURI.contains("aas/signon")) {
@@ -27,41 +37,79 @@ public class DFSPSignonProcessor {
         }
         return result;
     }
-    public Boolean processRequestWithResponse(HttpServletRequest request,HttpServletResponse response) {
+    public Boolean processRequestWithResponse(HttpServletRequest request,HttpServletResponse response) throws IOException {
         Boolean result = false;
         String requestURI = request.getRequestURI();
-        if(requestURI.contains("requestmap")) {
-            ServletContext cntx= request.getServletContext();
-            String filename = cntx.getRealPath("WEB-INF/requestmaps/requestmap.json");
-            String mime = cntx.getMimeType(filename);
-            if (null == mime) {
-                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            } else {
-                try {
-                    File file = new File(filename);
-                    response.setContentLength((int)file.length());
-                    response.setContentType(mime);
-
-                    FileInputStream in = new FileInputStream(file);
-                    OutputStream out = response.getOutputStream();
-
-                    // Copy the contents of the file to the output stream
-                    byte[] buf = new byte[1024];
-                    int count = 0;
-                    while ((count = in.read(buf)) >= 0) {
-                        out.write(buf, 0, count);
+        if(requestURI.contains("aas/signon")) {
+            
+            DFSPCredentials template = new DFSPCredentials(request);
+            List<DFSPModel> credentials = persister.members("select * from CREDENTIALS where MEMBER_NAME is " + template.getMemberName());
+            if (1 == credentials.size()) {
+                DFSPModel model = (DFSPCredentials)credentials.get(0);
+                if (model.getClass().isInstance(DFSPCredentials.class)) {
+                    DFSPCredentials cred = (DFSPCredentials)model;
+                    if (cred.getPassword().equalsIgnoreCase(template.getPassword())) {
+                        this.closeAllAuthorizations(cred);
+                        {
+                            DFSPAuthorization auth = this.createAuthorization(cred);
+                            this.persister.addModel(auth);
+                            
+                            this.marshalAuthorization(auth, response);
+                        }
+                    } else {
+                        //invalid credentials
                     }
-                    out.close();
-                    in.close();
-                    
-                    result = true;
-                } catch (IOException ex) {
-                    
-                } finally {
-                    
+                } else {
+                    //invalid request
                 }
+            } else {
+                //invalid member name
             }
         }
         return result;
+    }
+    private DFSPAuthorization closeAllAuthorizations(DFSPCredentials cred) {
+        DFSPAuthorization result = null;
+        List<DFSPModel> authorizations = this.persister.members("select * from AUTHORIZATIONS where CREDENTIAL_ID = " + cred.getCredentialsId() + "and IS_CURRENT = true");
+        for (DFSPModel model : authorizations) {
+            if (model.getClass().isInstance(DFSPAuthorization.class)) {
+                DFSPAuthorization auth = (DFSPAuthorization)model;
+                auth.discard();
+            }
+        }
+        for (DFSPModel model : authorizations) {
+            this.persister.saveModel(model);
+        }
+        return result;
+    } 
+    private DFSPAuthorization createAuthorization(DFSPCredentials cred) {
+        String nextSeed = "" + this.seed.nextSeed();
+        return new DFSPAuthorization(nextSeed,cred.getCredentialsId());
+    }
+    private void marshalAuthorization(DFSPAuthorization auth,HttpServletResponse response) throws IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+            //{"name":"signon","error":{"code":"0","message":""},"content":{"userID":"AUROBINDO","authorizationToken":"--TOKEN_TEST__","ttl":"3600"}}
+           String body = "{\"name\":\"signon\",\"error\":{\"code\":\"0\",\"message\":\"\"},\"content\":";
+           body += auth.toJSON();
+           body += "}";
+
+           out.println(body);
+
+        } finally {
+            out.close();
+        }
+    }
+    private void marshalError(String code,String message,HttpServletResponse response) throws IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+            //{"name":"signon","error":{"code":"111","message":"abiabi"},"content":{}}
+            String body = "{\"name\":\"signon\",\"error\":{\"code\":\"" + code + ",\"message\":\"" + message + "\"},\"content\":{}}";
+            out.println(body);
+        } finally {
+            out.close();
+        }
     }
 }
