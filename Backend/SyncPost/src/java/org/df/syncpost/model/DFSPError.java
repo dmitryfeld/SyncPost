@@ -25,4 +25,11 @@ public class DFSPError extends DFSPModel {
     public String getMessage() {
         return this.getValue("message");
     }
+    @Override 
+    public void injectPK(String pk) {
+    }
+    @Override
+    public String getTableName() {
+        return "";
+    }
 }

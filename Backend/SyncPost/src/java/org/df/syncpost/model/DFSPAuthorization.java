@@ -6,6 +6,8 @@
 package org.df.syncpost.model;
 
 import java.sql.ResultSet;
+import java.util.Date;
+import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -13,6 +15,15 @@ import javax.servlet.http.HttpServletRequest;
  * @author dmitryfeld
  */
 public class DFSPAuthorization extends DFSPModel {
+    public DFSPAuthorization(String authorizationId, String credentialsId) {
+        super();
+        Date now = new Date();
+        super.setValueForKey(authorizationId, "authorizationId");
+        super.setValueForKey(credentialsId, "credentialsId");
+        super.setValueForKey(UUID.randomUUID().toString(), "token");
+        super.setValueForKey("" + now.getTime(), "createdTime");
+        super.setValueForKey("true", "isCurrent");
+    }
     public DFSPAuthorization(HttpServletRequest request) {
         super(request,new String[] {"authorizationId","credentialsId","token","createdTime","removedTime","isCurrent"});
     }
@@ -36,5 +47,18 @@ public class DFSPAuthorization extends DFSPModel {
     }
     public String isCurrent() {
         return super.getValue("isCurrent");
+    }
+    @Override 
+    public void injectPK(String pk) {
+        super.setValueForKey(pk,"authorizationId");
+    }
+    @Override
+    public String getTableName() {
+        return "AUTHORIZATIONS";
+    }
+    public void discard() {
+        Date now = new Date();
+         super.setValueForKey("" + now.getTime(), "removedTime");
+        super.setValueForKey("false", "isCurrent");
     }
 }

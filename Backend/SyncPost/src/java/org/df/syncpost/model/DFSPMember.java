@@ -37,4 +37,12 @@ public class DFSPMember extends DFSPModel {
     public String getDescription() {
         return this.getValue("description");
     }
+    @Override 
+    public void injectPK(String pk) {
+        super.setValueForKey(pk,"memberId");
+    }
+    @Override
+    public String getTableName() {
+        return "MEMBERS";
+    }
 }

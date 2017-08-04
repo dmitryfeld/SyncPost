@@ -28,4 +28,12 @@ public class DFSPCredentials extends DFSPModel {
     public String getPassword() {
         return super.getValue("password");
     }
+    @Override 
+    public void injectPK(String pk) {
+        super.setValueForKey(pk,"credentialsId");
+    }
+    @Override
+    public String getTableName() {
+        return "CREDENTIALS";
+    }
 }
