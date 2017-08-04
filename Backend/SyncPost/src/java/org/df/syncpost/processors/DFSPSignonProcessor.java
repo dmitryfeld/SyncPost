@@ -53,23 +53,21 @@ public class DFSPSignonProcessor {
                         {
                             DFSPAuthorization auth = this.createAuthorization(cred);
                             this.persister.addModel(auth);
-                            
                             this.marshalAuthorization(auth, response);
                         }
                     } else {
-                        //invalid credentials
+                        this.marshalError(DFSPError.ERRORS.INVALID_CREDENTIALS, response);
                     }
                 } else {
-                    //invalid request
+                    this.marshalError(DFSPError.ERRORS.INVALID_REQUEST, response);
                 }
             } else {
-                //invalid member name
+                this.marshalError(DFSPError.ERRORS.MEMBER_NOT_FOUND, response);
             }
         }
         return result;
     }
-    private DFSPAuthorization closeAllAuthorizations(DFSPCredentials cred) {
-        DFSPAuthorization result = null;
+    private void closeAllAuthorizations(DFSPCredentials cred) {
         List<DFSPModel> authorizations = this.persister.members("select * from AUTHORIZATIONS where CREDENTIAL_ID = " + cred.getCredentialsId() + "and IS_CURRENT = true");
         for (DFSPModel model : authorizations) {
             if (model.getClass().isInstance(DFSPAuthorization.class)) {
@@ -80,7 +78,6 @@ public class DFSPSignonProcessor {
         for (DFSPModel model : authorizations) {
             this.persister.saveModel(model);
         }
-        return result;
     } 
     private DFSPAuthorization createAuthorization(DFSPCredentials cred) {
         String nextSeed = "" + this.seed.nextSeed();
@@ -101,12 +98,12 @@ public class DFSPSignonProcessor {
             out.close();
         }
     }
-    private void marshalError(String code,String message,HttpServletResponse response) throws IOException {
+    private void marshalError(DFSPError.ERRORS error,HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             //{"name":"signon","error":{"code":"111","message":"abiabi"},"content":{}}
-            String body = "{\"name\":\"signon\",\"error\":{\"code\":\"" + code + ",\"message\":\"" + message + "\"},\"content\":{}}";
+            String body = "{\"name\":\"signon\",\"error\":" + error.toJSON() + "\"content\":{}}";
             out.println(body);
         } finally {
             out.close();

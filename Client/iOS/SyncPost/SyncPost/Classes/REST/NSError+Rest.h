@@ -16,28 +16,33 @@ typedef enum __DFSPRestUnitErrorCodes__:NSUInteger {
     kDFSPRestErrorNoData = 2,
     
     //Template errors
-    kDFSPRestErrorInvalidRestTemplateParameter,
-    kDFSPRestErrorInvalidRestTemplateContent,
-    kDFSPRestErrorRestTemplateResponseMapping,
+    kDFSPRestErrorInvalidRestTemplateParameter = 3,
+    kDFSPRestErrorInvalidRestTemplateContent = 4,
+    kDFSPRestErrorRestTemplateResponseMapping = 5,
     
     //Request Map composition errors
-    kDFSPRestErrorInvalidRequestMapParameter,
-    kDFSPRestErrorInvalidRequestMapConetent,
-    kDFSPRestErrorRequestMapCanNotFindTemplate,
+    kDFSPRestErrorInvalidRequestMapParameter = 6,
+    kDFSPRestErrorInvalidRequestMapConetent = 7,
+    kDFSPRestErrorRequestMapCanNotFindTemplate = 8,
     
     //REST API process related
-    kDFSPRestErrorFailureToParseJSONE,
-    kDFSPRestErrorInvalidRequestName,
-    kDFSPRestErrorInvalidSimulatedDataPath,
-    kDFSPRestErrorInvalidURLRequest,
-    kDFSPRestErrorFailureToStartURLSession,
+    kDFSPRestErrorFailureToParseJSONE = 9,
+    kDFSPRestErrorInvalidRequestName = 10,
+    kDFSPRestErrorInvalidSimulatedDataPath = 11,
+    kDFSPRestErrorInvalidURLRequest = 12,
+    kDFSPRestErrorFailureToStartURLSession = 13,
     
     //Response related
-    kDFSPRestErrorRequestInvalidResponse,
-    kDFSPRestErrorUnexpectedResponseObjectType,
+    kDFSPRestErrorRequestInvalidResponse = 14,
+    kDFSPRestErrorUnexpectedResponseObjectType = 15,
     
     // Errors from server
-    kDFSPRestErrorUnauthorized
+    kDFSPRestErrorInvalidRequest = 3000,
+    
+    // Errors from Services
+    kDFSPRestErrorInvalidCredentials = 3001,
+    kDFSPRestErrorMemberNotFound = 3002
+    
 } DFSPRestUnitErrorCodes;
 
 @interface NSError (Rest)

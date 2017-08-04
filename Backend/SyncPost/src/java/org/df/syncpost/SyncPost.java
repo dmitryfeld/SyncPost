@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.df.syncpost.processors.DFSPRequestMapProcessor;
+import org.df.syncpost.processors.DFSPSignonProcessor;
 
 /**
  *
@@ -31,7 +32,8 @@ public class SyncPost extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        if (!DFSPRequestMapProcessor.process(request, response)) {
+        if (!DFSPRequestMapProcessor.process(request, response)) 
+            /*if (!DFSPSignonProcessor.process(request, response))*/ {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             try {

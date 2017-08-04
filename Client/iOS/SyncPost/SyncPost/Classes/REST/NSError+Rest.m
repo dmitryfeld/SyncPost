@@ -64,9 +64,16 @@ const NSString* kDFSPRestErrorDomain = @"kDFSPRestErrorDomain";
         case kDFSPRestErrorUnexpectedResponseObjectType:
             result = @"Unexpected Response Object Type";
             break;
-        case kDFSPRestErrorUnauthorized:
-            result = @"Unauthorizaed Request";
+        case kDFSPRestErrorInvalidRequest:
+            result = @"Invalid Request format";
             break;
+        case kDFSPRestErrorInvalidCredentials:
+            result = @"Invalid Credentials";
+            break;
+        case kDFSPRestErrorMemberNotFound:
+            result = @"Member not found";
+            break;
+
         default:
             break;
     }
