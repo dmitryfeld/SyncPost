@@ -10,24 +10,24 @@
 
 @interface DFSPCredentials() {
 @protected
-    NSString* _userName;
+    NSString* _memberName;
     NSString* _password;
 }
 @end
 
 @implementation DFSPCredentials
-@synthesize userName = _userName;
+@synthesize memberName = _memberName;
 @synthesize password = _password;
 - (instancetype) init {
     if (self = [super init]) {
-        _userName = @"";
+        _memberName = @"";
         _password = @"";
     }
     return self;
 }
 - (instancetype) initWithTemplate:(DFSPCredentials*)model {
     if (self = [self init]) {
-        _userName = [model.userName copy];
+        _memberName = [model.memberName copy];
         _password = [model.password copy];
     }
     return self;
@@ -35,7 +35,7 @@
 }
 - (instancetype) initWithCoder:(NSCoder *)aDecoder {
     if (self = [self init]) {
-        _userName = [aDecoder decodeObjectForKey:@"userName"];
+        _memberName = [aDecoder decodeObjectForKey:@"memberName"];
         _password = [aDecoder decodeObjectForKey:@"password"];
     }
     return self;
@@ -44,7 +44,7 @@
     return [[DFSPCredentials allocWithZone:zone] initWithTemplate:self];
 }
 - (void) encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:_userName forKey:@"userName"];
+    [aCoder encodeObject:_memberName forKey:@"memberName"];
     [aCoder encodeObject:_password forKey:@"password"];
 }
 - (BOOL) isEqual:(id)object {
@@ -52,13 +52,13 @@
         return NO;
     }
     DFSPCredentials* obj = (DFSPCredentials*)object;
-    if (![_userName isEqualToString:obj.userName]) {
+    if (![_memberName isEqualToString:obj.memberName]) {
         return NO;
     }
     return [_password isEqualToString:obj.password];
 }
 -(NSUInteger)hash {
-    return [self.userName hash] ^ [self.password hash];
+    return [self.memberName hash] ^ [self.password hash];
 }
 - (DFSPMutableCredentials*) mutableCopy {
     return [[DFSPMutableCredentials alloc] initWithTemplate:self];
@@ -66,10 +66,10 @@
 @end
 
 @implementation DFSPMutableCredentials
-@dynamic userName;
+@dynamic memberName;
 @dynamic password;
-- (void) setUserName:(NSString *)userName {
-    _userName = [userName copy];
+- (void) setUserName:(NSString *)memberName {
+    _memberName = [memberName copy];
 }
 - (void) setPassword:(NSString *)password {
     _password = [password copy];

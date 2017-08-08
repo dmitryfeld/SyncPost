@@ -10,16 +10,16 @@
 
 @class DFSPMutableCredentials;
 @interface DFSPCredentials : NSObject<DFSPModel>
-@property (readonly,nonatomic) NSString* userName;
+@property (readonly,nonatomic) NSString* memberName;
 @property (readonly,nonatomic) NSString* password;
 - (instancetype) initWithTemplate:(DFSPCredentials*)model;
 - (DFSPMutableCredentials*) mutableCopy;
 @end
 
 @interface DFSPMutableCredentials : DFSPCredentials<DFSPMutableModel>
-@property (strong,nonatomic,setter=setUserName:) NSString* userName;
+@property (strong,nonatomic,setter=setMemberName:) NSString* memberName;
 @property (strong,nonatomic,setter=setPassword:) NSString* password;
-- (void) setUserName:(NSString*)userName;
+- (void) setUserName:(NSString*)memberName;
 - (void) setPassword:(NSString*)password;
 - (DFSPCredentials*) immutableCopy;
 @end

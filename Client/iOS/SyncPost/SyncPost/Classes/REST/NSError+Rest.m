@@ -67,6 +67,9 @@ const NSString* kDFSPRestErrorDomain = @"kDFSPRestErrorDomain";
         case kDFSPRestErrorInvalidRequest:
             result = @"Invalid Request format";
             break;
+        case kDFSPRestErrorInvalidMemberName:
+            result = @"Invalid Member Name";
+            break;
         case kDFSPRestErrorInvalidCredentials:
             result = @"Invalid Credentials";
             break;
