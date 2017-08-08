@@ -10,7 +10,7 @@
             {
                 "name":"signon",
                 "parameters": {
-                    "userName":"credentials.userName",
+                    "userName":"credentials.memberName",
                     "password":"credentials.password",
                     "oldToken":"authorization.authorizationToken",
                     "appVersion":"appVersion",

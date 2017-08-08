@@ -32,8 +32,8 @@ public class DFSPSignonProcessor {
         Boolean result = false;
         String requestURI = request.getRequestURI();
         if(requestURI.contains("aas/signon")) {
-            DFSPSignonProcessor mapper = new DFSPSignonProcessor();
-            result = mapper.processRequestWithResponse(request, response);
+            DFSPSignonProcessor processor = new DFSPSignonProcessor();
+            result = processor.processRequestWithResponse(request, response);
         }
         return result;
     }
@@ -41,29 +41,36 @@ public class DFSPSignonProcessor {
         Boolean result = false;
         String requestURI = request.getRequestURI();
         if(requestURI.contains("aas/signon")) {
-            
             DFSPCredentials template = new DFSPCredentials(request);
-            List<DFSPModel> credentials = persister.members("select * from CREDENTIALS where MEMBER_NAME is " + template.getMemberName());
-            if (1 == credentials.size()) {
-                DFSPModel model = (DFSPCredentials)credentials.get(0);
-                if (model.getClass().isInstance(DFSPCredentials.class)) {
-                    DFSPCredentials cred = (DFSPCredentials)model;
-                    if (cred.getPassword().equalsIgnoreCase(template.getPassword())) {
-                        this.closeAllAuthorizations(cred);
-                        {
-                            DFSPAuthorization auth = this.createAuthorization(cred);
-                            this.persister.addModel(auth);
-                            this.marshalAuthorization(auth, response);
+            String memberName = template.getMemberName();
+            String password = template.getPassword();
+            if ((null != memberName) && (3 >= memberName.length())) {
+                List<DFSPModel> credentials = persister.members("select * from CREDENTIALS where MEMBER_NAME is " + template.getMemberName());
+                if (1 == credentials.size()) {
+                    DFSPModel model = (DFSPCredentials)credentials.get(0);
+                    if (model.getClass().isInstance(DFSPCredentials.class)) {
+                        DFSPCredentials cred = (DFSPCredentials)model;
+                        if (cred.getPassword().equalsIgnoreCase(password)) {
+                            this.closeAllAuthorizations(cred);
+                            {
+                                DFSPAuthorization auth = this.createAuthorization(cred);
+                                this.persister.addModel(auth);
+                                this.marshalAuthorization(auth, response);
+                            }
+                        } else {
+                            this.marshalError(DFSPError.ERRORS.INVALID_CREDENTIALS, response);
                         }
                     } else {
-                        this.marshalError(DFSPError.ERRORS.INVALID_CREDENTIALS, response);
+                        this.marshalError(DFSPError.ERRORS.INVALID_REQUEST, response);
                     }
                 } else {
-                    this.marshalError(DFSPError.ERRORS.INVALID_REQUEST, response);
+                    this.marshalError(DFSPError.ERRORS.MEMBER_NOT_FOUND, response);
                 }
             } else {
-                this.marshalError(DFSPError.ERRORS.MEMBER_NOT_FOUND, response);
+                this.marshalError(DFSPError.ERRORS.INVALID_MEMBER_NAME, response);
             }
+        } else {
+            this.marshalError(DFSPError.ERRORS.INVALID_REQUEST, response);
         }
         return result;
     }
@@ -103,7 +110,7 @@ public class DFSPSignonProcessor {
         PrintWriter out = response.getWriter();
         try {
             //{"name":"signon","error":{"code":"111","message":"abiabi"},"content":{}}
-            String body = "{\"name\":\"signon\",\"error\":" + error.toJSON() + "\"content\":{}}";
+            String body = "{\"name\":\"signon\",\"error\":" + error.toJSON() + ",\"content\":{}}";
             out.println(body);
         } finally {
             out.close();

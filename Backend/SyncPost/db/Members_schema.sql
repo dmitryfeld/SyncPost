@@ -27,10 +27,10 @@ CREATE TABLE MEMBERS (
 ALTER TABLE MEMBERS ADD CONSTRAINT MEMBERS_PK Primary Key (MEMBER_ID);
 ALTER TABLE MEMBERS ADD CONSTRAINT MEMBER_NAME_UNQ Unique (MEMBER_NAME);
 
-INSERT INTO MEMBERS VALUES (1,'johnhoppa','John','Hopkins','John Hopkins','Ministre de delicte');
-INSERT INTO MEMBERS VALUES (2,'roulette','Gerard','Ruleta','Gerard Ruleta','Ministre de seguretat i intelligencia');
-INSERT INTO MEMBERS VALUES (3,'japjap','Iori','Nakamura','Iori Nakamura','Coordinador');
-INSERT INTO MEMBERS VALUES (4,'madwolfe','Grndal','Vlkoff','Iori Nakamura','Jutge suprem triat');
+INSERT INTO MEMBERS VALUES (1,'jhop','John','Hopkins','John Hopkins','Ministre de delicte');
+INSERT INTO MEMBERS VALUES (2,'groul','Gerard','Ruleta','Gerard Ruleta','Ministre de seguretat i intelligencia');
+INSERT INTO MEMBERS VALUES (3,'inaka','Iori','Nakamura','Iori Nakamura','Coordinador');
+INSERT INTO MEMBERS VALUES (4,'gvlk','Grndal','Vlkoff','Grndal Vlkoff','Jutge suprem triat');
 
 COMMIT;
 
@@ -47,16 +47,16 @@ AUTOCOMMIT OFF;
 
 CREATE TABLE CREDENTIALS (
 	CREDENTIAL_ID INTEGER NOT NULL,
-	MEMBER_ID INTEGER NOT NULL,
+	MEMBER_NAME VARCHAR(256) NOT NULL,
 	PASSWORD VARCHAR(256) NOT NULL
 );
 ALTER TABLE CREDENTIALS ADD CONSTRAINT CREDENTIALS_PK Primary Key (CREDENTIAL_ID);
-ALTER TABLE CREDENTIALS ADD CONSTRAINT MEMBER_ID_UNQ Unique (MEMBER_ID);
+ALTER TABLE CREDENTIALS ADD CONSTRAINT MEMBER_NAME_UNQ Unique (MEMBER_NAME);
 
-INSERT INTO CREDENTIALS VALUES (1,1,'Hopkins');
-INSERT INTO CREDENTIALS VALUES (2,2,'Ruleta');
-INSERT INTO CREDENTIALS VALUES (3,3,'Nakamura');
-INSERT INTO CREDENTIALS VALUES (4,4,'Vlkoff');
+INSERT INTO CREDENTIALS VALUES (1,'jhop','Hopkins');
+INSERT INTO CREDENTIALS VALUES (2,'groul','Ruleta');
+INSERT INTO CREDENTIALS VALUES (3,'inaka','Nakamura');
+INSERT INTO CREDENTIALS VALUES (4,'gvlk','Vlkoff');
 
 
 CREATE TABLE AUTHORIZATIONS (

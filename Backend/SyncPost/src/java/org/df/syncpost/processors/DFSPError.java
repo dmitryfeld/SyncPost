@@ -12,8 +12,9 @@ package org.df.syncpost.processors;
 public class DFSPError {
     public enum ERRORS {
         INVALID_REQUEST("3000","Invalid request format"),
-        INVALID_CREDENTIALS("3001","Invalid Credentials"),
-        MEMBER_NOT_FOUND("3002","Member is not found");
+        INVALID_MEMBER_NAME("3001","Invalid Member Name"),
+        INVALID_CREDENTIALS("3002","Invalid Credentials"),
+        MEMBER_NOT_FOUND("3003","Member is not found");
         private final String code;
         private final String message;
         ERRORS(String code,String message) {
@@ -27,7 +28,7 @@ public class DFSPError {
             return this.message;
         }
         public String toJSON() {
-            return "{\"code\":\"" + this.code + ",\"message\":\"" + this.message + "\"}";
+            return "{\"code\":\"" + this.code + "\",\"message\":\"" + this.message + "\"}";
         }
     }
 }
