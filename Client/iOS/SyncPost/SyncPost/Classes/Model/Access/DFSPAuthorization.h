@@ -10,8 +10,9 @@
 
 @class DFSPMutableAuthorization;
 @interface DFSPAuthorization : NSObject<DFSPModel>
-@property (readonly,nonatomic) NSString* userID;
-@property (readonly,nonatomic) NSString* authorizationToken;
+@property (readonly,nonatomic) NSString* authorizationId;
+@property (readonly,nonatomic) NSString* credentialsId;
+@property (readonly,nonatomic) NSString* token;
 @property (readonly,nonatomic) NSTimeInterval createdTime;
 @property (readonly,nonatomic) NSTimeInterval expiredTime;
 @property (readonly,nonatomic) NSTimeInterval timeToLive;
@@ -20,13 +21,14 @@
 @end
 
 @interface DFSPMutableAuthorization : DFSPAuthorization<DFSPMutableModel>
-@property (strong,nonatomic,setter=setUserID:) NSString* userID;
-@property (strong,nonatomic,setter=setAuthorizationToken:) NSString* authorizationToken;
+@property (strong,nonatomic,setter=setAuthorizationId:) NSString* authorizationId;
+@property (strong,nonatomic,setter=setCredentialsId:) NSString* credentialsId;
+@property (strong,nonatomic,setter=setToken:) NSString* token;
 @property (nonatomic,setter=setCreatedTime:) NSTimeInterval createdTime;
 @property (nonatomic,setter=setExpiredTime:) NSTimeInterval expiredTime;
 @property (nonatomic,setter=setTimeToLive:) NSTimeInterval timeToLive;
-- (void) setUserID:(NSString*)userID;
-- (void) setAuthorizationToken:(NSString*)authorizationToken;
+- (void) setAuthorizationId:(NSString*)authorizationId;
+- (void) setToken:(NSString*)token;
 - (void) setCreatedTime:(NSTimeInterval)createdTime;
 - (void) setExpiredTime:(NSTimeInterval)removedTime;
 - (void) setTimeToLive:(NSTimeInterval)timeToLive;

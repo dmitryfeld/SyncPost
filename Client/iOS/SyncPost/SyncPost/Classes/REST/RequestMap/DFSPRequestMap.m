@@ -74,7 +74,7 @@
     return result;
 }
 
-- (id<DFSPModel>) processResponse:(NSDictionary*)response {
+- (id<DFSPModel>) processResponse:(NSDictionary*)response withError:(NSError **)error {
     id<DFSPModel> result = nil;
     if (response.count) {
         NSString* name = response[@"name"];
@@ -83,16 +83,16 @@
             if (template) {
                 result = [template processResponse:response];
                 if (template.error) {
-                    _error = template.error;
+                    *error = template.error;
                 }
             } else {
-                _error = [NSError restErrorWithCode:kDFSPRestErrorRequestMapCanNotFindTemplate andComment:[NSString stringWithFormat:@" response: %@",name]];
+                *error = [NSError restErrorWithCode:kDFSPRestErrorRequestMapCanNotFindTemplate andComment:[NSString stringWithFormat:@" response: %@",name]];
             }
         } else {
-            _error = [NSError restErrorWithCode:kDFSPRestErrorRequestInvalidResponse andComment:@"Undefined Response Type"];
+            *error = [NSError restErrorWithCode:kDFSPRestErrorRequestInvalidResponse andComment:@"Undefined Response Type"];
         }
     } else {
-        _error = [NSError restErrorWithCode:kDFSPRestErrorRequestInvalidResponse andComment:@"Empty Templates Response Data"];
+        *error = [NSError restErrorWithCode:kDFSPRestErrorRequestInvalidResponse andComment:@"Empty Templates Response Data"];
     }
     return result;
 }

@@ -33,7 +33,7 @@ const static NSString *__kDFSPApplicationDataTag = @"__kDFSPApplicationDataTag";
 }
 - (BOOL) isAuthorized {
     BOOL result = NO;
-    if (_authorization.authorizationToken.length) {
+    if (_authorization.token.length) {
         NSDate* now = [NSDate new];
         NSDate* created = [NSDate dateWithTimeIntervalSince1970:_authorization.createdTime];
         NSDate* expire = [NSDate dateWithTimeInterval:_authorization.timeToLive sinceDate:created];

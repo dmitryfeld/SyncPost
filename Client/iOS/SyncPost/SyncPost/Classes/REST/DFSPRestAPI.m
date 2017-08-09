@@ -81,10 +81,7 @@
                 } else if (!jsonDictionary) {
                     error = [NSError restErrorWithCode:kDFSPRestErrorFailureToParseJSONE];
                 } else {
-                    response = [_requestMap processResponse:jsonDictionary];
-                    if (!response) {
-                        error = _requestMap.error;
-                    }
+                    response = [_requestMap processResponse:jsonDictionary withError:&error];
                 }
             } else {
                 error = [NSError restErrorWithCode:kDFSPRestErrorNoData];
@@ -117,10 +114,7 @@
                 } else {
                     NSDictionary* jsonDictionary = [NSJSONSerialization JSONObjectWithData:data_ options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:&error];
                     if (!error) {
-                        response = [_requestMap processResponse:jsonDictionary];
-                        if (!response) {
-                            error = _requestMap.error;
-                        }
+                        response = [_requestMap processResponse:jsonDictionary withError:&error];
                     }
                 }
                 [self processHandleWithError:error andResponse:response];

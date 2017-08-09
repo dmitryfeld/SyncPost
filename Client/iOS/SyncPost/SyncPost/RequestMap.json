@@ -27,8 +27,8 @@
             {
                 "name":"signoff",
                 "parameters": {
-                    "userID":"authorization.userID",
-                    "currentToken":"authorization.authorizationToken",
+                    "userID":"authorization.authorizationId",
+                    "currentToken":"authorization.token",
                     "appVersion":"appVersion",
                     "appName":"appName",
                     "deviceType":"deviceType",

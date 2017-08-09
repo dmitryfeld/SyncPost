@@ -10,8 +10,9 @@
 
 @interface DFSPAuthorization() {
 @protected
-    NSString* _userID;
-    NSString* _authorizationToken;
+    NSString* _authorizationId;
+    NSString* _credentialsId;
+    NSString* _token;
     NSTimeInterval _createdTime;
     NSTimeInterval _expiredTime;
     NSTimeInterval _timeToLive;
@@ -19,25 +20,28 @@
 @end
 
 @implementation DFSPAuthorization
-@synthesize userID = _userID;
-@synthesize authorizationToken = _authorizationToken;
+@synthesize authorizationId = _authorizationId;
+@synthesize credentialsId = _credentialsId;
+@synthesize token = _token;
 @synthesize createdTime = _createdTime;
 @synthesize expiredTime = _expiredTime;
 @synthesize timeToLive = _timeToLive;
 - (instancetype) init {
     if (self = [super init]) {
-        _userID = @"";
-        _authorizationToken = @"";
+        _authorizationId = @"";
+        _credentialsId = @"";
+        _token = @"";
         _createdTime = [NSDate new].timeIntervalSince1970;
-        _expiredTime = [NSDate new].timeIntervalSince1970;
+        _expiredTime = 0;
         _timeToLive = 3600;
     }
     return self;
 }
 - (instancetype) initWithTemplate:(DFSPAuthorization*)model {
     if (self = [self init]) {
-        _userID = [model.userID copy];
-        _authorizationToken = [model.authorizationToken copy];
+        _authorizationId = [model.authorizationId copy];
+        _credentialsId = [model.credentialsId copy];
+        _token = [model.token copy];
         _createdTime = model.createdTime;
         _expiredTime = model.expiredTime;
         _timeToLive = model.timeToLive;
@@ -47,8 +51,9 @@
 }
 - (instancetype) initWithCoder:(NSCoder *)aDecoder {
     if (self = [self init]) {
-        _userID = [aDecoder decodeObjectForKey:@"memberID"];
-        _authorizationToken = [aDecoder decodeObjectForKey:@"authorizationToken"];
+        _authorizationId = [aDecoder decodeObjectForKey:@"authorizationId"];
+        _credentialsId = [aDecoder decodeObjectForKey:@"credentialsId"];
+        _token = [aDecoder decodeObjectForKey:@"token"];
         _createdTime = [aDecoder decodeFloatForKey:@"createdTime"];
         _expiredTime = [aDecoder decodeFloatForKey:@"expiredTime"];
         _timeToLive = [aDecoder decodeFloatForKey:@"timeToLive"];
@@ -59,8 +64,9 @@
     return [[DFSPAuthorization allocWithZone:zone] initWithTemplate:self];
 }
 - (void) encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:_userID forKey:@"memberID"];
-    [aCoder encodeObject:_authorizationToken forKey:@"authorizationToken"];
+    [aCoder encodeObject:_authorizationId forKey:@"authorizationId"];
+    [aCoder encodeObject:_credentialsId forKey:@"credentialsId"];
+    [aCoder encodeObject:_token forKey:@"token"];
     [aCoder encodeFloat:_createdTime forKey:@"createdTime"];
     [aCoder encodeFloat:_expiredTime forKey:@"expiredTime"];
     [aCoder encodeFloat:_timeToLive forKey:@"timeToLive"];
@@ -70,10 +76,13 @@
         return NO;
     }
     DFSPAuthorization* obj = (DFSPAuthorization*)object;
-    if (![_userID isEqualToString:obj.userID]) {
+    if (![_authorizationId isEqualToString:obj.authorizationId]) {
         return NO;
     }
-    if (![_authorizationToken isEqualToString:obj.authorizationToken]) {
+    if (![_credentialsId isEqualToString:obj.credentialsId]) {
+        return NO;
+    }
+    if (![_token isEqualToString:obj.token]) {
         return NO;
     }
     
@@ -86,7 +95,7 @@
     return _timeToLive == obj.timeToLive;
 }
 -(NSUInteger)hash {
-    return [self.userID hash] ^ [self.authorizationToken hash];
+    return [self.authorizationId hash] ^ [self.token hash];
 }
 - (DFSPMutableAuthorization*) mutableCopy {
     return [[DFSPMutableAuthorization alloc] initWithTemplate:self];
@@ -94,16 +103,20 @@
 @end
 
 @implementation DFSPMutableAuthorization
-@dynamic userID;
-@dynamic authorizationToken;
+@dynamic authorizationId;
+@dynamic credentialsId;
+@dynamic token;
 @dynamic createdTime;
 @dynamic expiredTime;
 @dynamic timeToLive;
-- (void) setUserID:(NSString*)userID {
-    _userID = [userID copy];
+- (void) setAuthorizationId:(NSString *)authorizationId {
+    _authorizationId = [authorizationId copy];
 }
-- (void) setAuthorizationToken:(NSString *)authorizationToken {
-    _authorizationToken = [authorizationToken copy];
+- (void) setCredentialsId:(NSString *)credentialsId {
+    _credentialsId = credentialsId;
+}
+- (void) setToken:(NSString *)token {
+    _token = [token copy];
 }
 - (void) setCreatedTime:(NSTimeInterval)createdTime {
     _createdTime = createdTime;

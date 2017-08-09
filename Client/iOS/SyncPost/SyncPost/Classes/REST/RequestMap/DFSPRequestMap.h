@@ -18,6 +18,6 @@
 @property (readonly,nonatomic,strong) NSArray<DFSPRequestTemplate*>* requestTemplates;
 - (instancetype) initWithDictionary:(NSDictionary<NSString*,id>*)dictionary NS_DESIGNATED_INITIALIZER;
 - (NSURLRequest*) prepareRequestWithName:(NSString*)name;
-- (id<DFSPModel>) processResponse:(NSDictionary*)response;
+- (id<DFSPModel>) processResponse:(NSDictionary*)response withError:(NSError **)error;
 - (NSString*) simulatedDataPathWithName:(NSString*)name;
 @end

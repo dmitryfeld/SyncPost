@@ -65,7 +65,6 @@
                     } else {
                         self.errorController.error = self.invalidModelError;
                         [self.errorController presentForController:_controller withHandler:^{
-                            [self performHandler:handler];
                         }];
                     }
                 }
@@ -104,10 +103,10 @@
     if (![auth isKindOfClass:[DFSPAuthorization class]]) {
         result = NO;
     }
-    if (!auth.authorizationToken.length) {
+    if (!auth.token.length) {
         result = NO;
     }
-    if (!auth.userID.length) {
+    if (!auth.authorizationId.length) {
         result = NO;
     }
     if (!auth.timeToLive) {
@@ -121,7 +120,7 @@
     if (![auth isKindOfClass:[DFSPAuthorization class]]) {
         result = NO;
     }
-    if (!auth.userID.length) {
+    if (!auth.authorizationId.length) {
         result = NO;
     }
     return result;
