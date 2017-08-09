@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class DFSPMember extends DFSPModel {
     public DFSPMember(HttpServletRequest request) {
-        super(request,new String[]{"memberId","memberName","firstName","lastName","displayName","description"});
+        super(request,new String[]{"memberId","memberName","firstName","lastName","displayName","comment"});
     }
     public DFSPMember(ResultSet resultSet) {
-        super(resultSet,new String[]{"memberId","memberName","firstName","lastName","displayName","description"});
+        super(resultSet,new String[]{"memberId","memberName","firstName","lastName","displayName","comment"});
     }
     public String getMemberId() {
         return this.getValue("memberId");
@@ -34,8 +34,8 @@ public class DFSPMember extends DFSPModel {
     public String getDisplayName() {
         return this.getValue("displayName");
     }
-    public String getDescription() {
-        return this.getValue("description");
+    public String getComment() {
+        return this.getValue("comment");
     }
     @Override 
     public void injectPK(String pk) {

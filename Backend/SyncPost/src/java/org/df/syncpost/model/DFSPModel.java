@@ -9,8 +9,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import org.df.syncpost.dbservice.DFSPDAOMap;
+import org.df.syncpost.dbservice.DFSPDBSeed;
 
 /**
  *
@@ -29,17 +32,18 @@ public abstract class DFSPModel {
     }
     public DFSPModel(HttpServletRequest request,String[] names) {
         this.content = new HashMap<String,String>();
+        this.map = new DFSPDAOMap();
         for (String name : names) {
             String value = request.getHeader(name);
             if (null != value) {
                 this.content.put(name, value);
             }
         }
-        this.map = new DFSPDAOMap();
     }
     public DFSPModel(ResultSet resultSet,String[] names) {
-        this.content = new HashMap<String,String>();
         String nT;
+        this.content = new HashMap<String,String>();
+        this.map = new DFSPDAOMap();
         for (String name : names) {
             try {
                 if (null != (nT = this.map.mapP2T(name))) {
@@ -49,12 +53,11 @@ public abstract class DFSPModel {
                     }
                 }
             } catch (SQLException exception) {
-                
+                Logger.getLogger(DFSPDBSeed.class.getName()).log(Level.SEVERE, null, exception);
             } finally {
                 
             }
         }
-        this.map = new DFSPDAOMap();
     }
     public String getValue(String key) {
         return this.content.get(key);

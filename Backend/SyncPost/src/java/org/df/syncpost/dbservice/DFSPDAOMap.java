@@ -17,14 +17,13 @@ import java.util.Set;
 public class DFSPDAOMap {
     protected static Map<String,String> MAP;
     public DFSPDAOMap() {
-        if (null != DFSPDAOMap.MAP) {
+        if (null == DFSPDAOMap.MAP) {
             Map<String, String> result = new HashMap<String,String>();
             result.put("authorizationId","AUTHORIZATION_ID");
             result.put("credentialsId","CREDENTIALS_ID");
             result.put("token","TOKEN");
             result.put("createdTime","CREATED_TIME");
-            result.put("removedTime","REMOVED_TIME");
-            result.put("isCurrent","IS_CURRENT");
+            result.put("expiredTime","EXPIRED_TIME");
 
             result.put("credentialsId","CREDENTIALS_ID");
             result.put("memberName","MEMBER_NAME");

@@ -32,19 +32,23 @@ public class DFSPDBSeed {
             Connection connection = this.dao.open();
             connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
             Statement select = connection.createStatement();
-            ResultSet seeds = select.executeQuery("select * from SEED");
+            ResultSet seeds = select.executeQuery("select * from SEEDS");
             PreparedStatement update = null;
             while (seeds.next()) {
-                result = seeds.getInt(0);
+                result = seeds.getInt(1);
             }
             if (-1 != result) {
                 Integer next = result + 1;
-                update = connection.prepareStatement("update SEED set SEED_ID = " + next);
+                update = connection.prepareStatement("update SEEDS set SEED_ID = " + next);
+                update.execute();
+                result = next;
             }
             connection.commit();
             this.dao.close(connection);
         } catch (SQLException ex) {
             Logger.getLogger(DFSPDBSeed.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            
         }
         return result;
     }

@@ -82,7 +82,8 @@ public class DFSPDBPersister {
             Connection connection = this.dao.open();
             connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
             PreparedStatement update = null;
-            update = connection.prepareStatement("insert into "+ model.getTableName() + " " + model.toSQL_INSERT());
+            String query = "insert into "+ model.getTableName() + " " + model.toSQL_INSERT();
+            update = connection.prepareStatement(query);
             update.execute();
             connection.commit();
             this.dao.close(connection);

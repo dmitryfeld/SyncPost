@@ -44,11 +44,11 @@ public class DFSPSignonProcessor {
             DFSPCredentials template = new DFSPCredentials(request);
             String memberName = template.getMemberName();
             String password = template.getPassword();
-            if ((null != memberName) && (3 >= memberName.length())) {
-                List<DFSPModel> credentials = persister.members("select * from CREDENTIALS where MEMBER_NAME is " + template.getMemberName());
+            if ((null != memberName) && (3 < memberName.length())) {
+                List<DFSPModel> credentials = persister.members("select * from CREDENTIALS where MEMBER_NAME = '" + template.getMemberName() + "'");
                 if (1 == credentials.size()) {
                     DFSPModel model = (DFSPCredentials)credentials.get(0);
-                    if (model.getClass().isInstance(DFSPCredentials.class)) {
+                    if (model instanceof DFSPCredentials) {
                         DFSPCredentials cred = (DFSPCredentials)model;
                         if (cred.getPassword().equalsIgnoreCase(password)) {
                             this.closeAllAuthorizations(cred);
@@ -75,11 +75,11 @@ public class DFSPSignonProcessor {
         return result;
     }
     private void closeAllAuthorizations(DFSPCredentials cred) {
-        List<DFSPModel> authorizations = this.persister.members("select * from AUTHORIZATIONS where CREDENTIAL_ID = " + cred.getCredentialsId() + "and IS_CURRENT = true");
+        List<DFSPModel> authorizations = this.persister.members("select * from AUTHORIZATIONS where CREDENTIALS_ID = " + cred.getCredentialsId());
         for (DFSPModel model : authorizations) {
             if (model.getClass().isInstance(DFSPAuthorization.class)) {
                 DFSPAuthorization auth = (DFSPAuthorization)model;
-                auth.discard();
+                auth.setExpired();
             }
         }
         for (DFSPModel model : authorizations) {

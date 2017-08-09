@@ -21,14 +21,15 @@ public class DFSPAuthorization extends DFSPModel {
         super.setValueForKey(authorizationId, "authorizationId");
         super.setValueForKey(credentialsId, "credentialsId");
         super.setValueForKey(UUID.randomUUID().toString(), "token");
-        super.setValueForKey("" + now.getTime(), "createdTime");
-        super.setValueForKey("true", "isCurrent");
+        super.setValueForKey("" + (now.getTime() / 1000), "createdTime");
+        super.setValueForKey("0", "expiredTime");
+        super.setValueForKey("3600","timeToLive");
     }
     public DFSPAuthorization(HttpServletRequest request) {
-        super(request,new String[] {"authorizationId","credentialsId","token","createdTime","removedTime","isCurrent"});
+        super(request,new String[] {"authorizationId","credentialsId","token","createdTime","expiredTime","timeToLive"});
     }
     public DFSPAuthorization(ResultSet resultSet) {
-        super(resultSet,new String[] {"authorizationId","credentialsId","token","createdTime","removedTime","isCurrent"});
+        super(resultSet,new String[] {"authorizationId","credentialsId","token","createdTime","expiredTime","timeToLive"});
     }
     public String getAuthorizationId() {
         return super.getValue("authorizationId");
@@ -42,11 +43,30 @@ public class DFSPAuthorization extends DFSPModel {
     public String getCreatedTime() {
         return super.getValue("createdTime");
     }
-    public String getRemovedTime() {
-        return super.getValue("removedTime");
+    public String getExpiredTime() {
+        return super.getValue("expiredTime");
+    }
+    public String getTimeToLive() {
+        return super.getValue("timeToLive");
     }
     public String isCurrent() {
-        return super.getValue("isCurrent");
+        String result = "true";
+        String created = this.getCreatedTime();
+        String expired = this.getExpiredTime();
+        if (null != created) {
+            if (null != expired) {
+                long cT = Long.valueOf(created);
+                long rT = Long.valueOf(expired);
+                if (rT > cT) {
+                    result = "true";
+                }
+            }
+        }
+        return result;
+    }
+    public void setExpired() {
+        Date now = new Date();
+        super.setValueForKey("" + (now.getTime() / 1000), "removedTime");
     }
     @Override 
     public void injectPK(String pk) {
@@ -55,10 +75,5 @@ public class DFSPAuthorization extends DFSPModel {
     @Override
     public String getTableName() {
         return "AUTHORIZATIONS";
-    }
-    public void discard() {
-        Date now = new Date();
-         super.setValueForKey("" + now.getTime(), "removedTime");
-        super.setValueForKey("false", "isCurrent");
     }
 }
