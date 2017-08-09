@@ -91,30 +91,38 @@ public abstract class DFSPModel {
             key = iter.next();
             value = this.content.get(key);
             if (null != value) {
-                result += "\"" + key + "\":" + value;
+                result += "\"" + key + "\":\"" + value + "\"";
                 if (iter.hasNext()) {
                     result += ",";
                 }   
             }
         }
-        result = "}";        
+        result += "}";        
         return result;
     }
     public String toSQL_UPDATE() {
         String result = "";
         Iterator<String> iter = this.content.keySet().iterator();
         String propertyName,columnName,value;
+        String primaryKey = null;
         while (iter.hasNext()) {
             propertyName = iter.next();
             if (null != (columnName = this.map.mapP2T(propertyName))) {
                 if (null != (value = this.content.get(propertyName))) {
-                    result += (columnName + "=" + value);
+                    if (columnName.equalsIgnoreCase(this.getPrimaryKeyName())) {
+                        primaryKey = value;
+                        continue;
+                    }
+                    result += (columnName + "=" + this.dressAsLiteral(value, columnName));
                     if (iter.hasNext()) {
                         result += ",";
                     } 
                 }
             }
         }       
+        if ( null != primaryKey) {
+            result += " where " + this.getPrimaryKeyName() + " = " + primaryKey;
+        }
         return result;
     }
     
@@ -130,7 +138,7 @@ public abstract class DFSPModel {
             if (null != (columnName = this.map.mapP2T(propertyName))) {
                 if (null != (value = this.content.get(propertyName))) {
                     columns += columnName;
-                    values += value;
+                    values += this.dressAsLiteral(value, columnName);
                     if (iter.hasNext()) {
                         columns += ",";
                         values += ",";
@@ -146,6 +154,7 @@ public abstract class DFSPModel {
     }
     
     public abstract String getTableName();
+    public abstract String getPrimaryKeyName();
     
     protected final String string(String string) {
         if (null == string) {
@@ -153,5 +162,11 @@ public abstract class DFSPModel {
         }
         return string;
     }
-    
+    protected final String dressAsLiteral(String value,String columnName) {
+        String result = value;
+        if (this.map.isLiteral(columnName)) {
+            result = "'"+result+"'";
+        }
+        return result;
+    }
 }

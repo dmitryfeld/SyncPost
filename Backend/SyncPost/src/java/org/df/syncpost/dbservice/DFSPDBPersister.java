@@ -67,7 +67,8 @@ public class DFSPDBPersister {
             Connection connection = this.dao.open();
             connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
             PreparedStatement update = null;
-            update = connection.prepareStatement("update " + model.getTableName() + " set " + model.toSQL_UPDATE());
+            String query = "update " + model.getTableName() + " set " + model.toSQL_UPDATE();
+            update = connection.prepareStatement(query);
             update.execute();
             connection.commit();
             this.dao.close(connection);

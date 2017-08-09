@@ -7,6 +7,8 @@ package org.df.syncpost.dbservice;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,6 +18,7 @@ import java.util.Set;
  */
 public class DFSPDAOMap {
     protected static Map<String,String> MAP;
+    protected static List<String> LITERALS;
     public DFSPDAOMap() {
         if (null == DFSPDAOMap.MAP) {
             Map<String, String> result = new HashMap<String,String>();
@@ -34,10 +37,21 @@ public class DFSPDAOMap {
             result.put("firstName","FIRST_NAME");
             result.put("lastName","LAST_NAME");
             result.put("displayName","DISPLAY_NAME");
-            result.put("description","DESCRIPTION");
+            result.put("comment","COMMENT");
 
-            result.put("description","DESCRIPTION");
             DFSPDAOMap.MAP = Collections.unmodifiableMap(result);
+        }
+        if (null == DFSPDAOMap.LITERALS) {
+            List<String> result = new LinkedList<String>();
+            result.add("MEMBER_NAME");
+            result.add("FIRST_NAME");
+            result.add("LAST_NAME");
+            result.add("DISPLAY_NAME");
+            result.add("COMMENT");
+            result.add("PASSWORD");
+            result.add("TOKEN");
+            
+            DFSPDAOMap.LITERALS = Collections.unmodifiableList(result);
         }
     }
     public String mapP2T(String propertyName) {
@@ -61,6 +75,13 @@ public class DFSPDAOMap {
                     }
                 }
             }
+        }
+        return result;
+    }
+    public boolean isLiteral(String columnName) {
+        boolean result = false;
+        if (null != columnName) {
+            result = DFSPDAOMap.LITERALS.contains(columnName);
         }
         return result;
     }

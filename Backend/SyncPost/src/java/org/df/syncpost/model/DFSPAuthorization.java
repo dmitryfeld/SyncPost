@@ -49,8 +49,8 @@ public class DFSPAuthorization extends DFSPModel {
     public String getTimeToLive() {
         return super.getValue("timeToLive");
     }
-    public String isCurrent() {
-        String result = "true";
+    public Boolean isCurrent() {
+        Boolean result = true;
         String created = this.getCreatedTime();
         String expired = this.getExpiredTime();
         if (null != created) {
@@ -58,7 +58,7 @@ public class DFSPAuthorization extends DFSPModel {
                 long cT = Long.valueOf(created);
                 long rT = Long.valueOf(expired);
                 if (rT > cT) {
-                    result = "true";
+                    result = false;
                 }
             }
         }
@@ -66,7 +66,7 @@ public class DFSPAuthorization extends DFSPModel {
     }
     public void setExpired() {
         Date now = new Date();
-        super.setValueForKey("" + (now.getTime() / 1000), "removedTime");
+        super.setValueForKey("" + (now.getTime() / 1000), "expiredTime");
     }
     @Override 
     public void injectPK(String pk) {
@@ -75,5 +75,9 @@ public class DFSPAuthorization extends DFSPModel {
     @Override
     public String getTableName() {
         return "AUTHORIZATIONS";
+    }
+    @Override 
+    public String getPrimaryKeyName() {
+        return "AUTHORIZATION_ID";
     }
 }

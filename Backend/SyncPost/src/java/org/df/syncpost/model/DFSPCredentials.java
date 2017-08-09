@@ -36,4 +36,8 @@ public class DFSPCredentials extends DFSPModel {
     public String getTableName() {
         return "CREDENTIALS";
     }
+    @Override 
+    public String getPrimaryKeyName() {
+        return "CREDENTIALS_ID";
+    }
 }

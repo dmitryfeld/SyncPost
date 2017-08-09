@@ -77,9 +77,11 @@ public class DFSPSignonProcessor {
     private void closeAllAuthorizations(DFSPCredentials cred) {
         List<DFSPModel> authorizations = this.persister.members("select * from AUTHORIZATIONS where CREDENTIALS_ID = " + cred.getCredentialsId());
         for (DFSPModel model : authorizations) {
-            if (model.getClass().isInstance(DFSPAuthorization.class)) {
+            if (model instanceof DFSPAuthorization) {
                 DFSPAuthorization auth = (DFSPAuthorization)model;
-                auth.setExpired();
+                if (true == auth.isCurrent()) {
+                    auth.setExpired();
+                }
             }
         }
         for (DFSPModel model : authorizations) {

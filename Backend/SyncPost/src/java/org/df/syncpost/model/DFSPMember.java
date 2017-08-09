@@ -45,4 +45,8 @@ public class DFSPMember extends DFSPModel {
     public String getTableName() {
         return "MEMBERS";
     }
+    @Override 
+    public String getPrimaryKeyName() {
+        return "MEMBER_ID";
+    }
 }
