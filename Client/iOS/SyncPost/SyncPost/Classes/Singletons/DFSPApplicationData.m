@@ -35,7 +35,8 @@ const static NSString *__kDFSPApplicationDataTag = @"__kDFSPApplicationDataTag";
     BOOL result = NO;
     if (_authorization.authorizationToken.length) {
         NSDate* now = [NSDate new];
-        NSDate* expire = [NSDate dateWithTimeInterval:_authorization.timeToLive sinceDate:_authorization.received];
+        NSDate* created = [NSDate dateWithTimeIntervalSince1970:_authorization.createdTime];
+        NSDate* expire = [NSDate dateWithTimeInterval:_authorization.timeToLive sinceDate:created];
         if ([expire compare:now] == NSOrderedDescending) {
             return YES;
         }

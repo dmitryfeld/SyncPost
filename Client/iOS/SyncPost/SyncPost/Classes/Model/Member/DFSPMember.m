@@ -2,7 +2,7 @@
 //  DFSPMember.m
 //  SyncPost
 //
-//  Created by Dmitry Feld on 5/18/17.
+//  Created by Dmitry Feld on 8/8/17.
 //  Copyright © 2017 Dmitry Feld. All rights reserved.
 //
 
@@ -10,38 +10,48 @@
 
 @interface DFSPMember() {
 @protected
-    NSString* _memberID;
-    NSString* _deviceID;
-    NSString* _pushToken;
+    NSString* _memberName;
+    NSString* _firstName;
+    NSString* _lastName;
+    NSString* _displayName;
+    NSString* _comment;
 }
 @end
 
 @implementation DFSPMember
-@synthesize memberID = _memberID;
-@synthesize deviceID = _deviceID;
-@synthesize pushToken = _pushToken;
+@synthesize memberName = _memberName;
+@synthesize firstName = _firstName;
+@synthesize lastName = _lastName;
+@synthesize displayName = _displayName;
+@synthesize comment = _comment;
 - (instancetype) init {
     if (self = [super init]) {
-        _memberID = @"";
-        _deviceID = @"";
-        _pushToken = @"";
+        _memberName = @"";
+        _firstName = @"";
+        _lastName = @"";
+        _displayName = @"";
+        _comment = @"";
     }
     return self;
 }
 - (instancetype) initWithTemplate:(DFSPMember*)model {
     if (self = [self init]) {
-        _memberID = [model.memberID copy];
-        _deviceID = [model.deviceID copy];
-        _pushToken = [model.pushToken copy];
+        _memberName = [model.memberName copy];
+        _firstName = [model.firstName copy];
+        _lastName = [model.lastName copy];
+        _displayName = [model.displayName copy];
+        _comment = [model.comment copy];
     }
     return self;
     
 }
 - (instancetype) initWithCoder:(NSCoder *)aDecoder {
     if (self = [self init]) {
-        _memberID = [aDecoder decodeObjectForKey:@"memberID"];
-        _deviceID = [aDecoder decodeObjectForKey:@"deviceID"];
-        _pushToken = [aDecoder decodeObjectForKey:@"pushToken"];
+        _memberName = [aDecoder decodeObjectForKey:@"memberName"];
+        _firstName = [aDecoder decodeObjectForKey:@"firstName"];
+        _lastName = [aDecoder decodeObjectForKey:@"lastName"];
+        _displayName = [aDecoder decodeObjectForKey:@"displayName"];
+        _comment = [aDecoder decodeObjectForKey:@"comment"];
     }
     return self;
 }
@@ -49,25 +59,33 @@
     return [[DFSPMember allocWithZone:zone] initWithTemplate:self];
 }
 - (void) encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:_memberID forKey:@"memberID"];
-    [aCoder encodeObject:_deviceID forKey:@"deviceID"];
-    [aCoder encodeObject:_pushToken forKey:@"pushToken"];
+    [aCoder encodeObject:_memberName forKey:@"memberName"];
+    [aCoder encodeObject:_firstName forKey:@"firstName"];
+    [aCoder encodeObject:_lastName forKey:@"lastName"];
+    [aCoder encodeObject:_displayName forKey:@"displayName"];
+    [aCoder encodeObject:_comment forKey:@"comment"];
 }
 - (BOOL) isEqual:(id)object {
     if (![object isKindOfClass:[DFSPMember class]]) {
         return NO;
     }
     DFSPMember* obj = (DFSPMember*)object;
-    if (![_memberID isEqualToString:obj.memberID]) {
+    if (![_memberName isEqualToString:obj.memberName]) {
         return NO;
     }
-    if (![_deviceID isEqualToString:obj.deviceID]) {
+    if (![_firstName isEqualToString:obj.firstName]) {
         return NO;
     }
-    return [_pushToken isEqualToString:obj.pushToken];
+    if (![_lastName isEqualToString:obj.lastName]) {
+        return NO;
+    }
+    if (![_displayName isEqualToString:obj.displayName]) {
+        return NO;
+    }
+    return [_comment isEqualToString:obj.comment];
 }
 -(NSUInteger)hash {
-    return [self.memberID hash] ^ [self.deviceID  hash] ^ [self.pushToken hash];
+    return [self.memberName hash] ^ [self.firstName  hash] ^ [self.lastName hash] ^ [self.displayName hash] ^ [self.comment hash];
 }
 - (DFSPMutableMember*) mutableCopy {
     return [[DFSPMutableMember alloc] initWithTemplate:self];
@@ -75,17 +93,25 @@
 @end
 
 @implementation DFSPMutableMember
-@dynamic memberID;
-@dynamic deviceID;
-@dynamic pushToken;
-- (void) setMemberID:(NSString*)memberID {
-    _memberID = [memberID copy];
+@dynamic memberName;
+@dynamic firstName;
+@dynamic lastName;
+@dynamic displayName;
+@dynamic comment;
+- (void) setMemberName:(NSString*)memberID {
+    _memberName = [memberID copy];
 }
-- (void) setDeviceID:(NSString*)deviceID {
-    _deviceID = [deviceID copy];
+- (void) setFirstName:(NSString *)firstName {
+    _firstName = [firstName copy];
 }
-- (void) setPushToken:(NSString*)pushToken {
-    _pushToken = [pushToken copy];
+- (void) setLastName:(NSString *)lastName {
+    _lastName = [lastName copy];
+}
+- (void) setDisplayName:(NSString *)displayName {
+    _displayName = [displayName copy];
+}
+- (void) setComment:(NSString *)comment {
+    _comment = [comment copy];
 }
 - (DFSPMember*) immutableCopy {
     return [[DFSPMember alloc] initWithTemplate:self];

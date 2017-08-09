@@ -13,8 +13,8 @@
 @property (readonly,nonatomic) NSString* userID;
 @property (readonly,nonatomic) NSString* authorizationToken;
 @property (readonly,nonatomic) NSTimeInterval createdTime;
-@property (readonly,nonatomic) NSTimeInterval removedTime;
-@property (readonly,nonatomic) NSDate* received;
+@property (readonly,nonatomic) NSTimeInterval expiredTime;
+@property (readonly,nonatomic) NSTimeInterval timeToLive;
 - (instancetype) initWithTemplate:(DFSPAuthorization*)model;
 - (DFSPMutableAuthorization*) mutableCopy;
 @end
@@ -23,13 +23,13 @@
 @property (strong,nonatomic,setter=setUserID:) NSString* userID;
 @property (strong,nonatomic,setter=setAuthorizationToken:) NSString* authorizationToken;
 @property (nonatomic,setter=setCreatedTime:) NSTimeInterval createdTime;
-@property (nonatomic,setter=setRemovedTime:) NSTimeInterval removedTime;
-@property (nonatomic,setter=setReceived:) NSDate* received;
+@property (nonatomic,setter=setExpiredTime:) NSTimeInterval expiredTime;
+@property (nonatomic,setter=setTimeToLive:) NSTimeInterval timeToLive;
 - (void) setUserID:(NSString*)userID;
 - (void) setAuthorizationToken:(NSString*)authorizationToken;
 - (void) setCreatedTime:(NSTimeInterval)createdTime;
-- (void) setRemovedTime:(NSTimeInterval)removedTime;
-- (void) setReceived:(NSDate *)received;
+- (void) setExpiredTime:(NSTimeInterval)removedTime;
+- (void) setTimeToLive:(NSTimeInterval)timeToLive;
 - (DFSPAuthorization*) immutableCopy;
 @end
 

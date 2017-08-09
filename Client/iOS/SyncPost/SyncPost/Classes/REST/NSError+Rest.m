@@ -76,6 +76,9 @@ const NSString* kDFSPRestErrorDomain = @"kDFSPRestErrorDomain";
         case kDFSPRestErrorMemberNotFound:
             result = @"Member not found";
             break;
+        case kDFSPRestErrorUnauthorizedMember:
+            result = @"Unauthorized Member";
+            break;
 
         default:
             break;

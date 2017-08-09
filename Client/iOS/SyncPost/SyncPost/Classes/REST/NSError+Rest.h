@@ -42,7 +42,8 @@ typedef enum __DFSPRestUnitErrorCodes__:NSUInteger {
     // Errors from Services
     kDFSPRestErrorInvalidMemberName = 3001,
     kDFSPRestErrorInvalidCredentials = 3002,
-    kDFSPRestErrorMemberNotFound = 3003
+    kDFSPRestErrorMemberNotFound = 3003,
+    kDFSPRestErrorUnauthorizedMember = 3004
     
 } DFSPRestUnitErrorCodes;
 
