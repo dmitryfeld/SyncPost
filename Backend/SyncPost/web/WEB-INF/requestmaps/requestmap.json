@@ -12,7 +12,7 @@
                 "parameters": {
                     "memberName":"credentials.memberName",
                     "password":"credentials.password",
-                    "oldToken":"authorization.authorizationToken",
+                    "token":"authorization.token",
                     "appVersion":"appVersion",
                     "appName":"appName",
                     "deviceType":"deviceType",
@@ -27,8 +27,8 @@
             {
                 "name":"signoff",
                 "parameters": {
-                    "userID":"authorization.authorizationId",
-                    "currentToken":"authorization.token",
+                    "authorizationId":"authorization.authorizationId",
+                    "token":"authorization.token",
                     "appVersion":"appVersion",
                     "appName":"appName",
                     "deviceType":"deviceType",

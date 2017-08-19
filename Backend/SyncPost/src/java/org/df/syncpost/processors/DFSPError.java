@@ -14,7 +14,12 @@ public class DFSPError {
         INVALID_REQUEST("3000","Invalid request format"),
         INVALID_MEMBER_NAME("3001","Invalid Member Name"),
         INVALID_CREDENTIALS("3002","Invalid Credentials"),
-        MEMBER_NOT_FOUND("3003","Member is not found");
+        MEMBER_NOT_FOUND("3003","Member is not found"),
+        MEMBER_NOT_AUTHORIZED("3004","Member is not authorized"),
+        MEMBER_IS_ALREADY_AUTHORIZED("3005","Member is already authorized"),
+        AUTHORIZATION_NOT_FOUND("3006","Authorization not found"),
+        INVALID_AUTHORIZATION("3007","Invalid Authorization"),
+        INVALID_AUTHORIZATION_ID("3008","Invalid Authorization ID");
         private final String code;
         private final String message;
         ERRORS(String code,String message) {

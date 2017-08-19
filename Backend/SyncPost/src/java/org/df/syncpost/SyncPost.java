@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.df.syncpost.processors.DFSPRequestMapProcessor;
+import org.df.syncpost.processors.DFSPSignoffProcessor;
 import org.df.syncpost.processors.DFSPSignonProcessor;
 
 /**
@@ -33,26 +34,27 @@ public class SyncPost extends HttpServlet {
             throws ServletException, IOException {
         
         if (!DFSPRequestMapProcessor.process(request, response)) 
-            if (!DFSPSignonProcessor.process(request, response)) {
-            response.setContentType("text/html;charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            try {
-                /* TODO output your page here. You may use following sample code. */
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet SyncPost</title>");            
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>Servlet SyncPost at " + request.getContextPath() + "</h1>");
-                out.println("</body>");
-                out.println("</html>");
-            } finally {
-                out.close();
+            if (!DFSPSignonProcessor.process(request, response))
+                if (!DFSPSignoffProcessor.process(request, response))
+                {
+                    response.setContentType("text/html;charset=UTF-8");
+                    PrintWriter out = response.getWriter();
+                    try {
+                        /* TODO output your page here. You may use following sample code. */
+                        out.println("<!DOCTYPE html>");
+                        out.println("<html>");
+                        out.println("<head>");
+                        out.println("<title>Servlet SyncPost</title>");            
+                        out.println("</head>");
+                        out.println("<body>");
+                        out.println("<h1>Servlet SyncPost at " + request.getContextPath() + "</h1>");
+                        out.println("</body>");
+                        out.println("</html>");
+                    } finally {
+                        out.close();
+                    }
             }
-        }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -91,5 +93,4 @@ public class SyncPost extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

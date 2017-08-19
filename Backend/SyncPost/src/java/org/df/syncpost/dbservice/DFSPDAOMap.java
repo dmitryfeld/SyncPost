@@ -38,6 +38,10 @@ public class DFSPDAOMap {
             result.put("lastName","LAST_NAME");
             result.put("displayName","DISPLAY_NAME");
             result.put("comment","COMMENT");
+            
+            result.put("registrationId", "REGISTRATION_ID");
+            result.put("memberId", "MEMBER_ID");
+            result.put("pushNotificationId", "PUSH_NOTIFICATION_ID");
 
             DFSPDAOMap.MAP = Collections.unmodifiableMap(result);
         }
@@ -50,6 +54,7 @@ public class DFSPDAOMap {
             result.add("COMMENT");
             result.add("PASSWORD");
             result.add("TOKEN");
+            result.add("PUSH_NOTIFICATION_ID");
             
             DFSPDAOMap.LITERALS = Collections.unmodifiableList(result);
         }

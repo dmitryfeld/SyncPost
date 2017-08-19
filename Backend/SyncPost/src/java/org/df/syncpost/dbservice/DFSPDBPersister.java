@@ -20,6 +20,7 @@ import org.df.syncpost.model.DFSPAuthorization;
 import org.df.syncpost.model.DFSPCredentials;
 import org.df.syncpost.model.DFSPMember;
 import org.df.syncpost.model.DFSPModel;
+import org.df.syncpost.model.DFSPRegistration;
 
 /**
  *
@@ -105,6 +106,8 @@ public class DFSPDBPersister {
                 result = new DFSPMember(results);
             } else if (tableName.equalsIgnoreCase("CREDENTIALS")) {
                 result = new DFSPCredentials(results);
+            } else if (tableName.equalsIgnoreCase("REGISTRATIONS")) {
+                result = new DFSPRegistration(results);
             }
         }
         

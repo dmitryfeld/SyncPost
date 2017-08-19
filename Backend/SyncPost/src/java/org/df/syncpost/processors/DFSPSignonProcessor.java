@@ -15,6 +15,7 @@ import org.df.syncpost.dbservice.DFSPDBSeed;
 import org.df.syncpost.model.DFSPAuthorization;
 import org.df.syncpost.model.DFSPCredentials;
 import org.df.syncpost.model.DFSPModel;
+import org.df.syncpost.model.DFSPSignonRequest;
 
 /**
  *
@@ -41,17 +42,17 @@ public class DFSPSignonProcessor {
         Boolean result = false;
         String requestURI = request.getRequestURI();
         if(requestURI.contains("aas/signon")) {
-            DFSPCredentials template = new DFSPCredentials(request);
+            DFSPSignonRequest template = new DFSPSignonRequest(request);
             String memberName = template.getMemberName();
             String password = template.getPassword();
             if ((null != memberName) && (3 < memberName.length())) {
-                List<DFSPModel> credentials = persister.members("select * from CREDENTIALS where MEMBER_NAME = '" + template.getMemberName() + "'");
+                List<DFSPModel> credentials = persister.members("select * from CREDENTIALS where MEMBER_NAME = '" + memberName + "'");
                 if (1 == credentials.size()) {
                     DFSPModel model = (DFSPCredentials)credentials.get(0);
                     if (model instanceof DFSPCredentials) {
                         DFSPCredentials cred = (DFSPCredentials)model;
                         if (cred.getPassword().equalsIgnoreCase(password)) {
-                            this.closeAllAuthorizations(cred);
+                            this.revokeAllAuthorizations(cred);
                             {
                                 DFSPAuthorization auth = this.createAuthorization(cred);
                                 this.persister.addModel(auth);
@@ -74,7 +75,7 @@ public class DFSPSignonProcessor {
         }
         return result;
     }
-    private void closeAllAuthorizations(DFSPCredentials cred) {
+    private void revokeAllAuthorizations(DFSPCredentials cred) {
         List<DFSPModel> authorizations = this.persister.members("select * from AUTHORIZATIONS where CREDENTIALS_ID = " + cred.getCredentialsId());
         for (DFSPModel model : authorizations) {
             if (model instanceof DFSPAuthorization) {
@@ -96,7 +97,6 @@ public class DFSPSignonProcessor {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            //{"name":"signon","error":{"code":"0","message":""},"content":{"userID":"AUROBINDO","authorizationToken":"--TOKEN_TEST__","ttl":"3600"}}
            String body = "{\"name\":\"signon\",\"error\":{\"code\":\"0\",\"message\":\"\"},\"content\":";
            body += auth.toJSON();
            body += "}";
@@ -111,11 +111,15 @@ public class DFSPSignonProcessor {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            //{"name":"signon","error":{"code":"111","message":"abiabi"},"content":{}}
             String body = "{\"name\":\"signon\",\"error\":" + error.toJSON() + ",\"content\":{}}";
             out.println(body);
         } finally {
             out.close();
         }
+    }
+
+    private boolean hasOpenAuthorization(DFSPCredentials cred) {
+        List<DFSPModel> authorizations = this.persister.members("select * from AUTHORIZATIONS where CREDENTIALS_ID = " + cred.getCredentialsId() + " and EXPIRED_TIME = 0");
+        return authorizations.size() > 0;
     }
 }
