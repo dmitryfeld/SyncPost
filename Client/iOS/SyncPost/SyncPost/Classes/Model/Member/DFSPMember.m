@@ -10,6 +10,7 @@
 
 @interface DFSPMember() {
 @protected
+    NSString* _memberId;
     NSString* _memberName;
     NSString* _firstName;
     NSString* _lastName;
@@ -19,6 +20,7 @@
 @end
 
 @implementation DFSPMember
+@synthesize memberId = _memberId;
 @synthesize memberName = _memberName;
 @synthesize firstName = _firstName;
 @synthesize lastName = _lastName;
@@ -26,6 +28,7 @@
 @synthesize comment = _comment;
 - (instancetype) init {
     if (self = [super init]) {
+        _memberId = @"";
         _memberName = @"";
         _firstName = @"";
         _lastName = @"";
@@ -36,6 +39,7 @@
 }
 - (instancetype) initWithTemplate:(DFSPMember*)model {
     if (self = [self init]) {
+        _memberId = [model.memberId copy];
         _memberName = [model.memberName copy];
         _firstName = [model.firstName copy];
         _lastName = [model.lastName copy];
@@ -47,6 +51,7 @@
 }
 - (instancetype) initWithCoder:(NSCoder *)aDecoder {
     if (self = [self init]) {
+        _memberId = [aDecoder decodeObjectForKey:@"memberId"];
         _memberName = [aDecoder decodeObjectForKey:@"memberName"];
         _firstName = [aDecoder decodeObjectForKey:@"firstName"];
         _lastName = [aDecoder decodeObjectForKey:@"lastName"];
@@ -59,6 +64,7 @@
     return [[DFSPMember allocWithZone:zone] initWithTemplate:self];
 }
 - (void) encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:_memberId forKey:@"memberId"];
     [aCoder encodeObject:_memberName forKey:@"memberName"];
     [aCoder encodeObject:_firstName forKey:@"firstName"];
     [aCoder encodeObject:_lastName forKey:@"lastName"];
@@ -70,6 +76,9 @@
         return NO;
     }
     DFSPMember* obj = (DFSPMember*)object;
+    if (![_memberId isEqualToString:obj.memberId]) {
+        return NO;
+    }
     if (![_memberName isEqualToString:obj.memberName]) {
         return NO;
     }
@@ -85,7 +94,7 @@
     return [_comment isEqualToString:obj.comment];
 }
 -(NSUInteger)hash {
-    return [self.memberName hash] ^ [self.firstName  hash] ^ [self.lastName hash] ^ [self.displayName hash] ^ [self.comment hash];
+    return [self.memberId hash] ^ [self.memberName hash] ^ [self.firstName  hash] ^ [self.lastName hash] ^ [self.displayName hash] ^ [self.comment hash];
 }
 - (DFSPMutableMember*) mutableCopy {
     return [[DFSPMutableMember alloc] initWithTemplate:self];
@@ -93,13 +102,17 @@
 @end
 
 @implementation DFSPMutableMember
+@dynamic memberId;
 @dynamic memberName;
 @dynamic firstName;
 @dynamic lastName;
 @dynamic displayName;
 @dynamic comment;
-- (void) setMemberName:(NSString*)memberID {
-    _memberName = [memberID copy];
+- (void) setMemberId:(NSString *)memberId {
+    _memberId = [memberId copy];
+}
+- (void) setMemberName:(NSString*)memberName {
+    _memberName = [memberName copy];
 }
 - (void) setFirstName:(NSString *)firstName {
     _firstName = [firstName copy];
@@ -119,6 +132,7 @@
 @end
 
 @implementation DFSPMemberKVP
+@synthesize error = _error;
 - (void) setValue:(id)value forUndefinedKey:(NSString *)key {
     NSLog(@"UndefinedKey:%@ Value:%@ pair",key,value);
 }

@@ -79,7 +79,18 @@ const NSString* kDFSPRestErrorDomain = @"kDFSPRestErrorDomain";
         case kDFSPRestErrorUnauthorizedMember:
             result = @"Unauthorized Member";
             break;
-
+        case kDFSPRestErrorMemberIsAlreadyAuthorized:
+            result = @"Member is already authorized. Please sign off first";
+            break;
+        case kDFSPAuthorizationNotFound:
+            result = @"Authorization not found";
+            break;
+        case kDFSPInvalidAuthorization:
+            result = @"Invalid Authorization";
+            break;
+        case kDFSPInvalidAuthorizationId:
+            result = @"Invalid Authorization ID";
+            break;
         default:
             break;
     }

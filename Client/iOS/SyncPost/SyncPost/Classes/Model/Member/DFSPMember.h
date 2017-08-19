@@ -10,6 +10,7 @@
 
 @class DFSPMutableMember;
 @interface DFSPMember : NSObject<DFSPModel>
+@property (readonly,nonatomic) NSString* memberId;
 @property (readonly,nonatomic) NSString* memberName;
 @property (readonly,nonatomic) NSString* firstName;
 @property (readonly,nonatomic) NSString* lastName;
@@ -20,13 +21,15 @@
 @end
 
 
-@interface DFSPMutableMember : DFSPMember
+@interface DFSPMutableMember : DFSPMember<DFSPMutableModel>
+@property (nonatomic,strong,setter=setMemberId:)NSString* memberId;
 @property (nonatomic,strong,setter=setMemberName:)NSString* memberName;
 @property (nonatomic,strong,setter=setFirstName:)NSString* firstName;
 @property (nonatomic,strong,setter=setLastName:)NSString* lastName;
 @property (nonatomic,strong,setter=setDisplayName:)NSString* displayName;
 @property (nonatomic,strong,setter=setComment:)NSString* comment;
-- (void) setMemberName:(NSString*)memberID;
+- (void) setMemberId:(NSString*)memberId;
+- (void) setMemberName:(NSString*)memberName;
 - (void) setFirstName:(NSString *)firstName;
 - (void) setLastName:(NSString *)lastName;
 - (void) setDisplayName:(NSString *)displayName;
@@ -34,7 +37,7 @@
 - (DFSPMember*) immutableCopy;
 @end
 
-@interface DFSPMemberKVP : DFSPMutableMember
+@interface DFSPMemberKVP : DFSPMutableMember<DFSPModelKVP>
 - (void) setValue:(id)value forUndefinedKey:(NSString *)key;
 - (void) setValue:(id)value forKey:(NSString *)key;
 + (DFSPMember*) fromDictionary:(NSDictionary*)dictionary;

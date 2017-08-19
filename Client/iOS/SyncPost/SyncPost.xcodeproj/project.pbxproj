@@ -38,6 +38,7 @@
 		008398281F01B71E00D7D6BB /* DFSPModalTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 008398251F01B71E00D7D6BB /* DFSPModalTransitioning.m */; };
 		0083982B1F01B7E400D7D6BB /* ErrorController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 008398291F01B7E400D7D6BB /* ErrorController.storyboard */; };
 		0083982E1F01BC1E00D7D6BB /* DFSPErrorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0083982D1F01BC1E00D7D6BB /* DFSPErrorController.m */; };
+		00BCABC21F47C4AD00C56CB7 /* DFSPRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BCABC11F47C4AD00C56CB7 /* DFSPRegistration.m */; };
 		00CEBD3F1ECE31A200BF6EB4 /* NSString+Service.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEBD3E1ECE31A200BF6EB4 /* NSString+Service.m */; };
 		00CEBD481ECE508C00BF6EB4 /* DFSPMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEBD471ECE508C00BF6EB4 /* DFSPMember.m */; };
 		00CEBD4C1ECE713300BF6EB4 /* DFSPAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CEBD4B1ECE713300BF6EB4 /* DFSPAuthorization.m */; };
@@ -107,6 +108,8 @@
 		0083982A1F01B7E400D7D6BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ErrorController.storyboard; sourceTree = "<group>"; };
 		0083982C1F01BC1E00D7D6BB /* DFSPErrorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPErrorController.h; sourceTree = "<group>"; };
 		0083982D1F01BC1E00D7D6BB /* DFSPErrorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPErrorController.m; sourceTree = "<group>"; };
+		00BCABC01F47C4AD00C56CB7 /* DFSPRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPRegistration.h; sourceTree = "<group>"; };
+		00BCABC11F47C4AD00C56CB7 /* DFSPRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSPRegistration.m; sourceTree = "<group>"; };
 		00CEBD3D1ECE31A200BF6EB4 /* NSString+Service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Service.h"; sourceTree = "<group>"; };
 		00CEBD3E1ECE31A200BF6EB4 /* NSString+Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Service.m"; sourceTree = "<group>"; };
 		00CEBD421ECE34FA00BF6EB4 /* DFSPModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSPModel.h; sourceTree = "<group>"; };
@@ -321,6 +324,8 @@
 			children = (
 				00CEBD461ECE508C00BF6EB4 /* DFSPMember.h */,
 				00CEBD471ECE508C00BF6EB4 /* DFSPMember.m */,
+				00BCABC01F47C4AD00C56CB7 /* DFSPRegistration.h */,
+				00BCABC11F47C4AD00C56CB7 /* DFSPRegistration.m */,
 			);
 			path = Member;
 			sourceTree = "<group>";
@@ -517,6 +522,7 @@
 				00326ED71F3251010002AED4 /* DFSPRestProcessor.m in Sources */,
 				008398281F01B71E00D7D6BB /* DFSPModalTransitioning.m in Sources */,
 				00CEBD4C1ECE713300BF6EB4 /* DFSPAuthorization.m in Sources */,
+				00BCABC21F47C4AD00C56CB7 /* DFSPRegistration.m in Sources */,
 				00CEBD4F1ECE73D900BF6EB4 /* DFSPCredentials.m in Sources */,
 				003EF93C1EF4C8F000A8D8D6 /* UIColor+Service.m in Sources */,
 				0062A36F1E9773B400E8726E /* DFSPPushNotificationSupport.m in Sources */,

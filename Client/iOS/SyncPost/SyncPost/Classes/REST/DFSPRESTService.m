@@ -32,7 +32,7 @@
         } else {
             [_rest startWithRequestName:name andCompletionHandler:^(NSError *error_, id<DFSPModel>model_) {
                 if (error_) {
-                    if (error_.code == kDFSPRestErrorUnauthorizedMember) {
+                    if (error_.code == kDFSPRestErrorInvalidCredentials) {
                         [self requestWithName:@"signon" andCompletionHandler:^(NSError *error_, id<DFSPModel>model_) {
                             if (error_) {
                                 [self processHandler:handler withError:error_ andResponse:model_];

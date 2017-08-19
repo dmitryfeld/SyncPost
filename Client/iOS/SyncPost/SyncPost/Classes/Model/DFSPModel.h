@@ -14,10 +14,12 @@
 - (instancetype) initWithTemplate:(id<DFSPModel>)model;
 - (id<DFSPMutableModel>) mutableCopy;
 @end
+
 @protocol DFSPMutableModel<DFSPModel>
 @required
 - (id<DFSPModel>) immutableCopy;
 @end
+
 @protocol DFSPModelKVP<DFSPMutableModel>
 @required
 @property (readonly,nonatomic,strong) NSError* error;
